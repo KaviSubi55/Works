@@ -29,7 +29,7 @@ const tabs: Tab[] = [
 ];
 
 const SecondaryNav: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<TabType>('accommodation');
+  const [activeTab, setActiveTab] = useState<TabType>('home');
 
   return (
     <div className="bg-gray-100 border-b border-gray-200">
