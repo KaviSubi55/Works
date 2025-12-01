@@ -44,7 +44,10 @@ const LoginPage: React.FC = () => {
       // Store username in localStorage
       localStorage.setItem('username', username);
       localStorage.setItem('isLoggedIn', 'true');
-      
+
+      // Dispatch custom event to notify other components
+      window.dispatchEvent(new Event('userLoggedIn'));
+
       // Redirect to home page
       router.push('/');
     }, 1000);
