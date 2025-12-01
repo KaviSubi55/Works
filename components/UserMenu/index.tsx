@@ -59,7 +59,7 @@ const UserMenu: React.FC = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
 
-  // Close dropdown when clicking outside
+  // Close dropdown when clicking outside or scrolling
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       const target = event.target as HTMLElement;
@@ -68,12 +68,18 @@ const UserMenu: React.FC = () => {
       }
     };
 
+    const handleScroll = () => {
+      setIsDropdownOpen(false);
+    };
+
     if (isDropdownOpen) {
       document.addEventListener('mousedown', handleClickOutside);
+      window.addEventListener('scroll', handleScroll, true);
     }
 
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
+      window.removeEventListener('scroll', handleScroll, true);
     };
   }, [isDropdownOpen]);
 
