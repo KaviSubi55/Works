@@ -19,6 +19,7 @@ export const winterMenuSections: MenuSection[] = [
     title: 'Book your trip',
     href: '/book',
     items: [
+      { label: 'Home', href: '/' },
       { label: 'Accommodation', href: '/book/accommodation' },
       { label: 'Affordable packages', href: '/book/packages' },
       { label: 'Lodge and hotel', href: '/book/hotels' },
@@ -79,6 +80,7 @@ export const summerMenuSections: MenuSection[] = [
     title: 'Book your trip',
     href: '/book',
     items: [
+      { label: 'Home', href: '/' },
       { label: 'Accommodation', href: '/book/accommodation' },
       { label: 'Lodge and hotel', href: '/book/hotels' },
       { label: 'Affordable autumn packages', href: '/book/autumn-packages' },
