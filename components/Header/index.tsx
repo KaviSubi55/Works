@@ -58,7 +58,7 @@ const Header: React.FC<HeaderProps> = ({ navigationItems }) => {
               {/* Logo */}
               <Link href="/" className="flex items-center">
                 <div className="text-[#C41E3A] font-bold text-2xl tracking-tight">
-                  SkiStar
+                  Peakster
                 </div>
               </Link>
             </div>

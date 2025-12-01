@@ -66,7 +66,7 @@ const LoginPage: React.FC = () => {
       <div className="max-w-md w-full">
         {/* Logo/Header */}
         <div className="text-center mb-8">
-          <div className="text-5xl font-bold text-[#C41E3A] mb-2">skistar</div>
+          <div className="text-5xl font-bold text-[#C41E3A] mb-2">Peakster</div>
           <p className="text-gray-600">Welcome back! Please login to continue.</p>
         </div>
 
