@@ -2,9 +2,12 @@
 
 import React from 'react';
 import { ChevronRight } from 'lucide-react';
+import HomeMain from '../HomeMain';
 
 const HeroSection: React.FC = () => {
   return (
+    <>
+    <HomeMain />
     <div className="w-full bg-gray-50">
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
@@ -82,6 +85,7 @@ const HeroSection: React.FC = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 
