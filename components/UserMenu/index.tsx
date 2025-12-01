@@ -105,16 +105,18 @@ const UserMenu: React.FC = () => {
 
       {/* Dropdown menu - shows on click */}
       {isDropdownOpen && (
-        <div className="absolute top-full right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 z-50">
+        <div className="absolute top-full right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 z-50 py-2">
           {/* Greeting */}
-          <div className="px-4 py-3 border-b border-gray-200">
-            <p className="text-sm text-gray-900 font-medium">Hi, {username}</p>
+          <div className="px-4 py-2">
+            <p className="text-sm text-gray-900 font-medium">
+              Hi, {username ? username.charAt(0).toUpperCase() + username.slice(1).toLowerCase() : 'User'}
+            </p>
           </div>
 
           {/* Logout button */}
           <button
             onClick={handleLogout}
-            className="w-full text-left px-4 py-3 hover:bg-gray-50 transition-colors flex items-center gap-2 text-gray-700 hover:text-red-600 rounded-b-lg"
+            className="w-full text-left px-4 py-2 hover:bg-gray-50 transition-colors flex items-center gap-2 text-gray-700 hover:text-red-600"
           >
             <LogOut className="w-4 h-4" />
             <span className="font-medium">Logout</span>
