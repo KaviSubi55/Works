@@ -18,6 +18,21 @@ const Header: React.FC<HeaderProps> = ({ navigationItems }) => {
     { label: 'Destinations', href: '/destinations', hasDropdown: true },
   ];
 
+  // Determine current season based on month
+  const getCurrentSeason = () => {
+    const month = new Date().getMonth(); // 0-11
+    // Winter: December (11), January (0), February (1), March (2)
+    // Summer: June (5), July (6), August (7)
+    if (month === 11 || month <= 2) {
+      return 'winter';
+    } else if (month >= 5 && month <= 7) {
+      return 'summer';
+    }
+    return null;
+  };
+
+  const season = getCurrentSeason();
+
   return (
     <>
       <header className="bg-white border-b border-gray-200 sticky top-0 z-50">
@@ -71,6 +86,30 @@ const Header: React.FC<HeaderProps> = ({ navigationItems }) => {
 
             {/* Right Section: Icons */}
             <div className="flex items-center gap-3">
+              {/* Seasonal Logo */}
+              {season === 'winter' && (
+                <div className="flex items-center justify-center w-10 h-10" title="Winter Season">
+                  <Image
+                    src="/winter-logo.svg"
+                    alt="Winter"
+                    width={24}
+                    height={24}
+                    className="text-[#4A90E2]"
+                  />
+                </div>
+              )}
+              {season === 'summer' && (
+                <div className="flex items-center justify-center w-10 h-10" title="Summer Season">
+                  <Image
+                    src="/summer-logo.svg"
+                    alt="Summer"
+                    width={24}
+                    height={24}
+                    className="text-[#FFA500]"
+                  />
+                </div>
+              )}
+
               {/* Search Icon */}
               <button
                 className="flex items-center justify-center w-10 h-10 text-gray-700 hover:text-[#C41E3A] transition-colors"
