@@ -71,7 +71,7 @@ const Header: React.FC<HeaderProps> = ({ navigationItems }) => {
             {/* Right Section: Icons */}
             <div className="flex items-center gap-3">
               {/* Winter Logo */}
-              <div className="relative group flex items-center justify-center w-10 h-10 text-[#4A90E2] cursor-pointer">
+              <div className="relative group flex items-center justify-center w-10 h-10 text-gray-700 hover:text-[#C41E3A] transition-colors cursor-pointer">
                 <Snowflake className="w-5 h-5" />
                 <div className="absolute top-full mt-2 px-2 py-1 bg-gray-900 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap pointer-events-none z-50">
                   Winter
@@ -80,7 +80,7 @@ const Header: React.FC<HeaderProps> = ({ navigationItems }) => {
               </div>
 
               {/* Summer Logo */}
-              <div className="relative group flex items-center justify-center w-10 h-10 text-[#FFA500] cursor-pointer">
+              <div className="relative group flex items-center justify-center w-10 h-10 text-gray-700 hover:text-[#C41E3A] transition-colors cursor-pointer">
                 <Sun className="w-5 h-5" />
                 <div className="absolute top-full mt-2 px-2 py-1 bg-gray-900 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap pointer-events-none z-50">
                   Summer
