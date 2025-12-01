@@ -27,7 +27,7 @@ const LanguageSelector: React.FC<LanguageSelectorProps> = ({
 
   const currentLang = languages.find((lang) => lang.code === currentLanguage);
 
-  // Close dropdown when clicking outside
+  // Close dropdown when clicking outside or scrolling
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
@@ -38,8 +38,17 @@ const LanguageSelector: React.FC<LanguageSelectorProps> = ({
       }
     };
 
+    const handleScroll = () => {
+      setIsOpen(false);
+    };
+
     document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
+    window.addEventListener('scroll', handleScroll, true);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      window.removeEventListener('scroll', handleScroll, true);
+    };
   }, []);
 
   const handleLanguageSelect = (code: string) => {
