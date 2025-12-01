@@ -66,18 +66,14 @@ const UserMenu: React.FC = () => {
     );
   }
 
-  // Show username with dropdown on hover
+  // Show username first letter with dropdown on hover
   return (
     <div className="relative group">
-      {/* Username display with down arrow */}
-      <div className="flex items-center gap-2 px-3 py-2 bg-blue-50 rounded-full border border-blue-200 cursor-pointer hover:bg-blue-100 transition-colors">
-        <div className="w-7 h-7 bg-[#C41E3A] rounded-full flex items-center justify-center">
-          <span className="text-white font-bold text-sm uppercase">
-            {username?.[0] || 'U'}
-          </span>
-        </div>
-        <span className="font-medium text-gray-900 hidden sm:inline">{username}</span>
-        {/* <ChevronDown className="w-4 h-4 text-gray-600" /> */}
+      {/* User avatar with first letter */}
+      <div className="flex items-center justify-center w-10 h-10 bg-[#C41E3A] rounded-full cursor-pointer hover:bg-[#A01830] transition-colors">
+        <span className="text-white font-bold text-sm uppercase">
+          {username?.[0] || 'U'}
+        </span>
       </div>
 
       {/* Dropdown menu - shows on hover */}
