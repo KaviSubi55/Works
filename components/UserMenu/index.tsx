@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { LogOut, LogIn } from 'lucide-react';
+import { LogOut, LogIn, User } from 'lucide-react';
 
 const UserMenu: React.FC = () => {
   const router = useRouter();
@@ -105,21 +105,27 @@ const UserMenu: React.FC = () => {
 
       {/* Dropdown menu - shows on click */}
       {isDropdownOpen && (
-        <div className="absolute top-full right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 z-50 py-2">
-          {/* Greeting */}
-          <div className="px-4 py-2">
-            <p className="text-sm text-gray-900 font-medium">
-              Hi, {username ? username.charAt(0).toUpperCase() + username.slice(1).toLowerCase() : 'User'}
+        <div className="absolute top-full right-0 mt-2 w-56 bg-white rounded-xl shadow-xl border border-gray-200 z-50 overflow-hidden">
+          {/* User Info Section */}
+          <div className="bg-gradient-to-br from-[#C41E3A] to-[#A01830] px-4 py-6 text-center">
+            {/* User Icon Circle */}
+            <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-3 shadow-md">
+              <User className="w-8 h-8 text-[#C41E3A]" />
+            </div>
+
+            {/* Greeting */}
+            <p className="text-white font-semibold text-base">
+              Hi, {username ? username.charAt(0).toUpperCase() + username.slice(1).toLowerCase() : 'User'}!
             </p>
           </div>
 
           {/* Logout button */}
           <button
             onClick={handleLogout}
-            className="w-full text-left px-4 py-2 hover:bg-gray-50 transition-colors flex items-center gap-2 text-gray-700 hover:text-red-600"
+            className="w-full text-left px-4 py-3 hover:bg-red-50 transition-colors flex items-center justify-center gap-2 text-gray-700 hover:text-red-600 font-medium"
           >
-            <LogOut className="w-4 h-4" />
-            <span className="font-medium">Logout</span>
+            <LogOut className="w-5 h-5" />
+            <span>Logout</span>
           </button>
         </div>
       )}
