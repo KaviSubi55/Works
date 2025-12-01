@@ -9,6 +9,7 @@ const UserMenu: React.FC = () => {
   const router = useRouter();
   const [username, setUsername] = useState<string | null>(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   useEffect(() => {
     // Check if user is logged in
@@ -50,8 +51,31 @@ const UserMenu: React.FC = () => {
     localStorage.removeItem('isLoggedIn');
     setUsername(null);
     setIsLoggedIn(false);
+    setIsDropdownOpen(false);
     router.push('/login');
   };
+
+  const toggleDropdown = () => {
+    setIsDropdownOpen(!isDropdownOpen);
+  };
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as HTMLElement;
+      if (!target.closest('.user-menu-container')) {
+        setIsDropdownOpen(false);
+      }
+    };
+
+    if (isDropdownOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isDropdownOpen]);
 
   if (!isLoggedIn) {
     // Show Login button
@@ -66,26 +90,37 @@ const UserMenu: React.FC = () => {
     );
   }
 
-  // Show username first letter with dropdown on hover
+  // Show username first letter with dropdown on click
   return (
-    <div className="relative group">
+    <div className="relative user-menu-container">
       {/* User avatar with first letter */}
-      <div className="flex items-center justify-center w-10 h-10 bg-[#C41E3A] rounded-full cursor-pointer hover:bg-[#A01830] transition-colors">
+      <div
+        onClick={toggleDropdown}
+        className="flex items-center justify-center w-10 h-10 bg-[#C41E3A] rounded-full cursor-pointer transition-colors"
+      >
         <span className="text-white font-bold text-sm uppercase">
           {username?.[0] || 'U'}
         </span>
       </div>
 
-      {/* Dropdown menu - shows on hover */}
-      <div className="absolute top-full right-0 mt-2 w-40 bg-white rounded-lg shadow-lg border border-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50">
-        <button
-          onClick={handleLogout}
-          className="w-full text-left px-4 py-3 hover:bg-gray-50 transition-colors flex items-center gap-2 text-gray-700 hover:text-red-600 rounded-lg"
-        >
-          <LogOut className="w-4 h-4" />
-          <span className="font-medium">Logout</span>
-        </button>
-      </div>
+      {/* Dropdown menu - shows on click */}
+      {isDropdownOpen && (
+        <div className="absolute top-full right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 z-50">
+          {/* Greeting */}
+          <div className="px-4 py-3 border-b border-gray-200">
+            <p className="text-sm text-gray-900 font-medium">Hi, {username}</p>
+          </div>
+
+          {/* Logout button */}
+          <button
+            onClick={handleLogout}
+            className="w-full text-left px-4 py-3 hover:bg-gray-50 transition-colors flex items-center gap-2 text-gray-700 hover:text-red-600 rounded-b-lg"
+          >
+            <LogOut className="w-4 h-4" />
+            <span className="font-medium">Logout</span>
+          </button>
+        </div>
+      )}
     </div>
   );
 };
