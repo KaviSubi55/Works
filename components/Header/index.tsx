@@ -3,10 +3,9 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { Menu, X, Search, ShoppingCart, User, ChevronDown, Snowflake, Sun } from 'lucide-react';
-import { HeaderProps } from '@/utils/types'; 
+import { HeaderProps } from '@/utils/types';
 import MegaMenu from '../MegaMenu';
 import LanguageSelector from '../LanguageSelector';
-import DestinationDropdown from '../DestinationDropdown';
 import UserMenu from '../UserMenu';
 
 const Header: React.FC<HeaderProps> = ({ navigationItems }) => {
@@ -62,11 +61,6 @@ const Header: React.FC<HeaderProps> = ({ navigationItems }) => {
                 </div>
               </Link>
             </div>
-
-            {/* Center Section: Navigation (Desktop) */}
-            <nav className="hidden lg:flex items-center">
-              <DestinationDropdown />
-            </nav>
 
             {/* Right Section: Icons */}
             <div className="flex items-center gap-3">
