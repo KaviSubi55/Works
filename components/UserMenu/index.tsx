@@ -107,14 +107,14 @@ const UserMenu: React.FC = () => {
       {isDropdownOpen && (
         <div className="absolute top-full right-0 mt-2 w-56 bg-white rounded-xl shadow-xl border border-gray-200 z-50 overflow-hidden">
           {/* User Info Section */}
-          <div className="bg-gradient-to-br from-[#C41E3A] to-[#A01830] px-4 py-6 text-center">
+          <div className="px-4 py-6 text-center">
             {/* User Icon Circle */}
-            <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-3 shadow-md">
-              <User className="w-8 h-8 text-[#C41E3A]" />
+            <div className="w-16 h-16 bg-[#C41E3A] rounded-full flex items-center justify-center mx-auto mb-3 shadow-md">
+              <User className="w-8 h-8 text-white" />
             </div>
 
             {/* Greeting */}
-            <p className="text-white font-semibold text-base">
+            <p className="text-gray-900 font-semibold text-base">
               Hi, {username ? username.charAt(0).toUpperCase() + username.slice(1).toLowerCase() : 'User'}!
             </p>
           </div>
