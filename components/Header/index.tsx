@@ -37,7 +37,7 @@ const Header: React.FC<HeaderProps> = ({ navigationItems }) => {
               </button>
 
               {/* Desktop Menu Button */}
-              <button
+              {/* <button
                 onClick={() => setIsMegaMenuOpen(!isMegaMenuOpen)}
                 className="hidden lg:flex items-center gap-2 px-6 py-2 rounded-full border-2 border-[#C41E3A] text-[#C41E3A] hover:bg-[#C41E3A] hover:text-white transition-colors font-medium"
               >
@@ -52,7 +52,7 @@ const Header: React.FC<HeaderProps> = ({ navigationItems }) => {
                     <span>Menu</span>
                   </>
                 )}
-              </button>
+              </button> */}
 
               {/* Logo */}
               <Link href="/" className="flex items-center">
