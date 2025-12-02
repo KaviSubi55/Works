@@ -34,8 +34,6 @@ const SecondaryNav: React.FC = () => {
     setIsMobileMenuOpen(false); // Close mobile menu when tab is selected
   };
 
-  const activeTabLabel = tabs.find(tab => tab.id === activeTab)?.label || 'Home';
-
   return (
     <div className="bg-gray-100">
       {/* Desktop Navigation Tabs - Hidden on mobile/tablet */}
@@ -48,7 +46,7 @@ const SecondaryNav: React.FC = () => {
                 <button
                   key={tab.id}
                   onClick={() => handleTabClick(tab.id)}
-                  className={`flex items-center gap-2 py-4 px-2 font-medium whitespace-nowrap transition-colors relative ${
+                  className={`flex items-center gap-2 py-4 px-2 font-medium whitespace-nowrap transition-colors relative group ${
                     isActive ? 'text-[#C41E3A]' : 'text-gray-600 hover:text-gray-900'
                   }`}
                 >
@@ -56,8 +54,13 @@ const SecondaryNav: React.FC = () => {
                     {tab.icon}
                   </span>
                   {tab.label}
+                  {/* Active underline */}
                   {isActive && (
                     <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#C41E3A]" />
+                  )}
+                  {/* Hover underline animation from center */}
+                  {!isActive && (
+                    <span className="absolute bottom-0 left-1/2 w-0 h-0.5 bg-[#C41E3A] transition-all duration-300 ease-out group-hover:w-full group-hover:left-0"></span>
                   )}
                 </button>
               );
@@ -69,14 +72,8 @@ const SecondaryNav: React.FC = () => {
       {/* Mobile/Tablet Hamburger Navigation */}
       <div className="lg:hidden bg-white">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6">
-          <div className="flex items-center justify-between py-3">
-            {/* Current Tab Display */}
-            <div className="flex items-center gap-2 text-[#C41E3A] font-medium">
-              {tabs.find(tab => tab.id === activeTab)?.icon}
-              <span>{activeTabLabel}</span>
-            </div>
-
-            {/* Hamburger Button */}
+          <div className="flex items-center justify-center py-3">
+            {/* Hamburger Button - Centered */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="flex items-center justify-center w-10 h-10 rounded-full border-2 border-[#C41E3A] text-[#C41E3A] hover:bg-[#C41E3A] hover:text-white transition-colors"
@@ -100,16 +97,18 @@ const SecondaryNav: React.FC = () => {
                     <button
                       key={tab.id}
                       onClick={() => handleTabClick(tab.id)}
-                      className={`w-full flex items-center gap-3 px-4 py-3 font-medium transition-colors ${
+                      className={`w-full flex items-center gap-3 px-4 py-3 font-medium transition-colors relative group ${
                         isActive
-                          ? 'text-[#C41E3A] bg-red-50'
-                          : 'text-gray-600 hover:bg-gray-50'
+                          ? 'text-[#C41E3A]'
+                          : 'text-gray-600 hover:text-gray-900'
                       }`}
                     >
                       <span className={isActive ? 'text-[#C41E3A]' : 'text-gray-400'}>
                         {tab.icon}
                       </span>
                       {tab.label}
+                      {/* Hover underline animation from center */}
+                      <span className="absolute bottom-0 left-1/2 w-0 h-0.5 bg-[#C41E3A] transition-all duration-300 ease-out group-hover:w-full group-hover:left-0"></span>
                     </button>
                   );
                 })}
