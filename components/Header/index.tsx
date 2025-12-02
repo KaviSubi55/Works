@@ -35,7 +35,7 @@ const Header: React.FC<HeaderProps> = ({ navigationItems }) => {
                 ) : (
                   <Menu className="w-5 h-5" />
                 )}
-              </button>
+              </button> */}
 
               {/* Logo */}
               <Link href="/" className="flex items-center gap-1 sm:gap-2">
@@ -104,10 +104,10 @@ const Header: React.FC<HeaderProps> = ({ navigationItems }) => {
       </header>
 
       {/* Mega Menu */}
-      <MegaMenu
+      {/* <MegaMenu
         isOpen={isMegaMenuOpen}
         onClose={() => setIsMegaMenuOpen(false)}
-      />
+      /> */}
     </>
   );
 };
