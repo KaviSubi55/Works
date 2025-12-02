@@ -33,18 +33,18 @@ const SecondaryNav: React.FC = () => {
       {/* Navigation Tabs */}
       <div className="bg-white">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
-          <nav className="flex items-center gap-8 overflow-x-auto">
+          <nav className="flex items-center gap-4 sm:gap-6 md:gap-8 overflow-x-auto scrollbar-hide">
             {tabs.map((tab) => {
               const isActive = tab.id === activeTab;
               return (
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
-                  className={`flex items-center gap-2 py-4 px-2 font-medium whitespace-nowrap transition-colors relative ${
+                  className={`flex items-center gap-1.5 sm:gap-2 py-3 sm:py-4 px-1 sm:px-2 font-medium whitespace-nowrap transition-colors relative text-sm sm:text-base ${
                     isActive ? 'text-[#C41E3A]' : 'text-gray-600 hover:text-gray-900'
                   }`}
                 >
-                  <span className={isActive ? 'text-[#C41E3A]' : 'text-gray-400'}>
+                  <span className={`w-4 h-4 sm:w-5 sm:h-5 ${isActive ? 'text-[#C41E3A]' : 'text-gray-400'}`}>
                     {tab.icon}
                   </span>
                   {tab.label}
