@@ -29,9 +29,9 @@ const SecondaryNav: React.FC = () => {
   const [activeTab, setActiveTab] = useState<TabType>('home');
 
   return (
-    <div className="bg-gray-100 border-b border-gray-200">
+    <div className="bg-gray-100">
       {/* Navigation Tabs */}
-      <div className="bg-white border-b border-gray-200">
+      <div className="bg-white">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
           <nav className="flex items-center gap-8 overflow-x-auto">
             {tabs.map((tab) => {
