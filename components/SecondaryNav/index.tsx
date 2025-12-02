@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Home, Tag, Ticket, Key, Shield } from 'lucide-react';
+import { Home, Tag, Ticket, Key, Shield, Menu, X } from 'lucide-react';
 import AccommodationSearch from '../AccomodationSearch';
 import PackageSearch from '../PackageSearch';
 import SkiPassSearch from '../SkiPassSearch';
@@ -27,24 +27,32 @@ const tabs: Tab[] = [
 
 const SecondaryNav: React.FC = () => {
   const [activeTab, setActiveTab] = useState<TabType>('home');
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const handleTabClick = (tabId: TabType) => {
+    setActiveTab(tabId);
+    setIsMobileMenuOpen(false); // Close mobile menu when tab is selected
+  };
+
+  const activeTabLabel = tabs.find(tab => tab.id === activeTab)?.label || 'Home';
 
   return (
     <div className="bg-gray-100">
-      {/* Navigation Tabs */}
-      <div className="bg-white">
+      {/* Desktop Navigation Tabs - Hidden on mobile/tablet */}
+      <div className="hidden lg:block bg-white">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
-          <nav className="flex items-center gap-4 sm:gap-6 md:gap-8 overflow-x-auto scrollbar-hide">
+          <nav className="flex items-center gap-8 overflow-x-auto scrollbar-hide">
             {tabs.map((tab) => {
               const isActive = tab.id === activeTab;
               return (
                 <button
                   key={tab.id}
-                  onClick={() => setActiveTab(tab.id)}
-                  className={`flex items-center gap-1.5 sm:gap-2 py-3 sm:py-4 px-1 sm:px-2 font-medium whitespace-nowrap transition-colors relative text-sm sm:text-base ${
+                  onClick={() => handleTabClick(tab.id)}
+                  className={`flex items-center gap-2 py-4 px-2 font-medium whitespace-nowrap transition-colors relative ${
                     isActive ? 'text-[#C41E3A]' : 'text-gray-600 hover:text-gray-900'
                   }`}
                 >
-                  <span className={`w-4 h-4 sm:w-5 sm:h-5 ${isActive ? 'text-[#C41E3A]' : 'text-gray-400'}`}>
+                  <span className={isActive ? 'text-[#C41E3A]' : 'text-gray-400'}>
                     {tab.icon}
                   </span>
                   {tab.label}
@@ -55,6 +63,59 @@ const SecondaryNav: React.FC = () => {
               );
             })}
           </nav>
+        </div>
+      </div>
+
+      {/* Mobile/Tablet Hamburger Navigation */}
+      <div className="lg:hidden bg-white">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-6">
+          <div className="flex items-center justify-between py-3">
+            {/* Current Tab Display */}
+            <div className="flex items-center gap-2 text-[#C41E3A] font-medium">
+              {tabs.find(tab => tab.id === activeTab)?.icon}
+              <span>{activeTabLabel}</span>
+            </div>
+
+            {/* Hamburger Button */}
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="flex items-center justify-center w-10 h-10 rounded-full border-2 border-[#C41E3A] text-[#C41E3A] hover:bg-[#C41E3A] hover:text-white transition-colors"
+              aria-label="Toggle navigation menu"
+            >
+              {isMobileMenuOpen ? (
+                <X className="w-5 h-5" />
+              ) : (
+                <Menu className="w-5 h-5" />
+              )}
+            </button>
+          </div>
+
+          {/* Mobile Menu Dropdown */}
+          {isMobileMenuOpen && (
+            <div className="border-t border-gray-200">
+              <nav className="py-2">
+                {tabs.map((tab) => {
+                  const isActive = tab.id === activeTab;
+                  return (
+                    <button
+                      key={tab.id}
+                      onClick={() => handleTabClick(tab.id)}
+                      className={`w-full flex items-center gap-3 px-4 py-3 font-medium transition-colors ${
+                        isActive
+                          ? 'text-[#C41E3A] bg-red-50'
+                          : 'text-gray-600 hover:bg-gray-50'
+                      }`}
+                    >
+                      <span className={isActive ? 'text-[#C41E3A]' : 'text-gray-400'}>
+                        {tab.icon}
+                      </span>
+                      {tab.label}
+                    </button>
+                  );
+                })}
+              </nav>
+            </div>
+          )}
         </div>
       </div>
 
