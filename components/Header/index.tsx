@@ -26,7 +26,7 @@ const Header: React.FC<HeaderProps> = ({ navigationItems }) => {
             {/* Left Section: Menu Button and Logo */}
             <div className="flex items-center gap-4">
               {/* Burger Menu Button */}
-              <button
+              {/* <button
                 onClick={() => setIsMegaMenuOpen(!isMegaMenuOpen)}
                 className="flex items-center justify-center w-10 h-10 rounded-full border-2 border-[#C41E3A] text-[#C41E3A] hover:bg-[#C41E3A] hover:text-white transition-colors"
                 aria-label="Toggle menu"
@@ -36,7 +36,7 @@ const Header: React.FC<HeaderProps> = ({ navigationItems }) => {
                 ) : (
                   <Menu className="w-5 h-5" />
                 )}
-              </button> */}
+              </button>  */}
 
               {/* Logo */}
               <Link href="/" className="flex items-center gap-2">
@@ -105,7 +105,7 @@ const Header: React.FC<HeaderProps> = ({ navigationItems }) => {
             {/* Top Row: Menu Button and Logo */}
             <div className="flex items-center justify-center gap-2 mb-3">
               {/* Burger Menu Button */}
-              <button
+              {/* <button
                 onClick={() => setIsMegaMenuOpen(!isMegaMenuOpen)}
                 className="flex items-center justify-center w-10 h-10 rounded-full border-2 border-[#C41E3A] text-[#C41E3A] hover:bg-[#C41E3A] hover:text-white transition-colors"
                 aria-label="Toggle menu"
@@ -115,7 +115,7 @@ const Header: React.FC<HeaderProps> = ({ navigationItems }) => {
                 ) : (
                   <Menu className="w-5 h-5" />
                 )}
-              </button>
+              </button> */}
 
               {/* Logo */}
               <Link href="/" className="flex items-center gap-2">
