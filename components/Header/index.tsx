@@ -25,7 +25,7 @@ const Header: React.FC<HeaderProps> = ({ navigationItems }) => {
             {/* Left Section: Logo and Menu Button */}
             <div className="flex items-center gap-4">
               {/* Mobile Menu Button */}
-              <button
+              {/* <button
                 onClick={() => setIsMegaMenuOpen(!isMegaMenuOpen)}
                 className="lg:hidden flex items-center justify-center w-10 h-10 rounded-full border-2 border-[#C41E3A] text-[#C41E3A] hover:bg-[#C41E3A] hover:text-white transition-colors"
                 aria-label="Toggle menu"
@@ -35,7 +35,7 @@ const Header: React.FC<HeaderProps> = ({ navigationItems }) => {
                 ) : (
                   <Menu className="w-5 h-5" />
                 )}
-              </button>
+              </button> */}
 
               {/* Desktop Menu Button */}
               {/* <button
@@ -60,8 +60,8 @@ const Header: React.FC<HeaderProps> = ({ navigationItems }) => {
                 <Image
                   src="/peakster.png"
                   alt="Peakster Logo"
-                  width={40}
-                  height={40}
+                  width={60}
+                  height={60}
                   className="object-contain"
                 />
                 <div className="text-[#C41E3A] font-bold text-2xl tracking-tight">
@@ -120,10 +120,10 @@ const Header: React.FC<HeaderProps> = ({ navigationItems }) => {
       </header>
 
       {/* Mega Menu */}
-      <MegaMenu
+      {/* <MegaMenu
         isOpen={isMegaMenuOpen}
         onClose={() => setIsMegaMenuOpen(false)}
-      />
+      /> */}
     </>
   );
 };
