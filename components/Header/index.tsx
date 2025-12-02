@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Menu, X, Search, ShoppingCart, User, ChevronDown, Snowflake, Sun } from 'lucide-react';
 import { HeaderProps } from '@/utils/types';
 import MegaMenu from '../MegaMenu';
@@ -55,7 +56,14 @@ const Header: React.FC<HeaderProps> = ({ navigationItems }) => {
               </button> */}
 
               {/* Logo */}
-              <Link href="/" className="flex items-center">
+              <Link href="/" className="flex items-center gap-2">
+                <Image
+                  src="/peakster.png"
+                  alt="Peakster Logo"
+                  width={40}
+                  height={40}
+                  className="object-contain"
+                />
                 <div className="text-[#C41E3A] font-bold text-2xl tracking-tight">
                   Peakster
                 </div>
