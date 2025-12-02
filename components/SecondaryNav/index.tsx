@@ -81,33 +81,42 @@ const SecondaryNav: React.FC = () => {
             </button>
           </div>
 
-          {/* Mobile Menu Dropdown */}
+          {/* Mobile Menu Dropdown - Full Screen Height */}
           {isMobileMenuOpen && (
-            <div className="border-t border-gray-200">
-              <nav className="py-2">
-                {tabs.map((tab) => {
-                  const isActive = tab.id === activeTab;
-                  return (
-                    <button
-                      key={tab.id}
-                      onClick={() => handleTabClick(tab.id)}
-                      className={`w-full flex items-center gap-3 px-4 py-3 font-medium transition-colors relative group ${
-                        isActive
-                          ? 'text-[#C41E3A]'
-                          : 'text-gray-600 hover:text-gray-900'
-                      }`}
-                    >
-                      <span className={isActive ? 'text-[#C41E3A]' : 'text-gray-400'}>
-                        {tab.icon}
-                      </span>
-                      {tab.label}
-                      {/* Hover underline animation from center to both sides */}
-                      <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#C41E3A] transform scale-x-0 transition-transform duration-300 ease-out group-hover:scale-x-100 origin-center"></span>
-                    </button>
-                  );
-                })}
-              </nav>
-            </div>
+            <>
+              {/* Overlay */}
+              <div
+                className="fixed inset-0 bg-black bg-opacity-50 z-40"
+                onClick={() => setIsMobileMenuOpen(false)}
+              />
+
+              {/* Full Screen Menu */}
+              <div className="fixed left-0 right-0 top-[120px] bottom-0 bg-white z-50 overflow-y-auto">
+                <nav className="py-4">
+                  {tabs.map((tab) => {
+                    const isActive = tab.id === activeTab;
+                    return (
+                      <button
+                        key={tab.id}
+                        onClick={() => handleTabClick(tab.id)}
+                        className={`w-full flex items-center gap-3 px-6 py-4 font-medium transition-colors relative group ${
+                          isActive
+                            ? 'text-[#C41E3A]'
+                            : 'text-gray-600 hover:text-gray-900'
+                        }`}
+                      >
+                        <span className={isActive ? 'text-[#C41E3A]' : 'text-gray-400'}>
+                          {tab.icon}
+                        </span>
+                        {tab.label}
+                        {/* Hover underline animation from center to both sides */}
+                        <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#C41E3A] transform scale-x-0 transition-transform duration-300 ease-out group-hover:scale-x-100 origin-center"></span>
+                      </button>
+                    );
+                  })}
+                </nav>
+              </div>
+            </>
           )}
         </div>
       </div>
