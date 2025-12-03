@@ -19,7 +19,7 @@ const Header: React.FC<HeaderProps> = ({ navigationItems }) => {
 
   return (
     <>
-      <header className="bg-white border-b border-gray-200 sticky top-0 z-50">
+      <header className="bg-white border-b border-gray-200 z-50">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
           {/* Desktop Layout - Single Row */}
           <div className="hidden lg:flex items-center justify-between h-16">
