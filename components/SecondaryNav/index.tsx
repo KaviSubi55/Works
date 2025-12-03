@@ -82,14 +82,14 @@ const SecondaryNav: React.FC = () => {
           {/* Mobile Menu Dropdown - Full Screen Height */}
           {isMobileMenuOpen && (
             <>
-              {/* Overlay - starts below the header */}
+              {/* Overlay - starts below the navigation section */}
               <div
-                className="fixed left-0 right-0 top-0 bottom-0 bg-black bg-opacity-50 z-40"
+                className="fixed left-0 right-0 top-[140px] bottom-0 bg-black bg-opacity-50 z-40"
                 onClick={() => setIsMobileMenuOpen(false)}
               />
 
-              {/* Full Screen Menu */}
-              <div className="fixed left-0 right-0 top-0 bottom-0 bg-white z-50 overflow-y-auto">
+              {/* Full Screen Menu - starts below navigation */}
+              <div className="fixed left-0 right-0 top-[140px] bottom-0 bg-white z-50 overflow-y-auto">
                 {/* Close Button at Top - Sticky */}
                 <div className="sticky top-0 bg-white flex items-center justify-center py-3 border-b border-gray-200 z-10">
                   <button
