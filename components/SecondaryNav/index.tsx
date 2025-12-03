@@ -1,7 +1,8 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Home, Tag, Ticket, Key, Shield, Menu, X } from 'lucide-react';
+import { Home, Tag, Ticket, Key, Shield } from 'lucide-react';
+import Hamburger from 'hamburger-react';
 import AccommodationSearch from '../AccomodationSearch';
 import PackageSearch from '../PackageSearch';
 import SkiPassSearch from '../SkiPassSearch';
@@ -66,68 +67,56 @@ const SecondaryNav: React.FC = () => {
       {/* Mobile/Tablet Hamburger Navigation */}
       <div className="lg:hidden bg-white relative z-50">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6">
-          {!isMobileMenuOpen && (
-            <div className="flex items-center justify-center py-3">
-              {/* Hamburger Button - Centered */}
-              <button
-                onClick={() => setIsMobileMenuOpen(true)}
-                className="flex items-center justify-center w-10 h-10 rounded-full border-2 border-[#C41E3A] text-[#C41E3A] hover:bg-[#C41E3A] hover:text-white transition-colors"
-                aria-label="Open navigation menu"
-              >
-                <Menu className="w-5 h-5" />
-              </button>
-            </div>
-          )}
-
-          {/* Mobile Menu Dropdown - Full Screen Height */}
-          {isMobileMenuOpen && (
-            <>
-              {/* Overlay - starts below the navigation section */}
-              <div
-                className="fixed left-0 right-0 top-[140px] bottom-0 bg-black bg-opacity-50 z-40"
-                onClick={() => setIsMobileMenuOpen(false)}
+          <div className="flex items-center justify-center py-3">
+            {/* Hamburger Button - Centered */}
+            <div className="z-[60]">
+              <Hamburger
+                toggled={isMobileMenuOpen}
+                toggle={setIsMobileMenuOpen}
+                color="#C41E3A"
+                size={24}
               />
+            </div>
+          </div>
 
-              {/* Full Screen Menu - starts below navigation */}
-              <div className="fixed left-0 right-0 top-[140px] bottom-0 bg-white z-50 overflow-y-auto">
-                {/* Close Button at Top - Sticky */}
-                <div className="sticky top-0 bg-white flex items-center justify-center py-3 border-b border-gray-200 z-10">
-                  <button
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    className="flex items-center justify-center w-10 h-10 rounded-full bg-[#C41E3A] text-white border-2 border-[#C41E3A] transition-colors"
-                    aria-label="Close navigation menu"
-                  >
-                    <X className="w-5 h-5" />
-                  </button>
-                </div>
-
-                <nav className="py-4">
-                  
-                  {tabs.map((tab) => {
-                    const isActive = tab.id === activeTab;
-                    return (
-                      <button
-                        key={tab.id}
-                        onClick={() => handleTabClick(tab.id)}
-                        className={`w-full flex items-center gap-3 px-6 py-4 font-medium transition-colors relative group ${
-                          isActive
-                            ? 'text-[#C41E3A]'
-                            : 'text-gray-600 hover:text-gray-900'
-                        }`}
-                      >
-                        <span className={isActive ? 'text-[#C41E3A]' : 'text-gray-400'}>
-                          {tab.icon}
-                        </span>
-                        {tab.label}
-                        {/* Hover underline animation from center to both sides */}
-                        <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#C41E3A] transform scale-x-0 transition-transform duration-300 ease-out group-hover:scale-x-100 origin-center"></span>
-                      </button>
-                    );
-                  })}
-                </nav>
-              </div>
-            </>
+          {/* Overlay - starts below the navigation section */}
+          {isMobileMenuOpen && (
+            <div
+              className="fixed left-0 right-0 top-[140px] bottom-0 bg-black bg-opacity-50 z-40"
+              onClick={() => setIsMobileMenuOpen(false)}
+            />
           )}
+
+          {/* Full Screen Menu - slides in from left */}
+          <div
+            className={`fixed left-0 top-[140px] bottom-0 w-full bg-white z-50 overflow-y-auto transition-transform duration-700 ease-in-out ${
+              isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'
+            }`}
+          >
+            <nav className="py-4">
+              {tabs.map((tab) => {
+                const isActive = tab.id === activeTab;
+                return (
+                  <button
+                    key={tab.id}
+                    onClick={() => handleTabClick(tab.id)}
+                    className={`w-full flex items-center gap-3 px-6 py-4 font-medium transition-colors relative group ${
+                      isActive
+                        ? 'text-[#C41E3A]'
+                        : 'text-gray-600 hover:text-gray-900'
+                    }`}
+                  >
+                    <span className={isActive ? 'text-[#C41E3A]' : 'text-gray-400'}>
+                      {tab.icon}
+                    </span>
+                    {tab.label}
+                    {/* Hover underline animation from center to both sides */}
+                    <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#C41E3A] transform scale-x-0 transition-transform duration-300 ease-out group-hover:scale-x-100 origin-center"></span>
+                  </button>
+                );
+              })}
+            </nav>
+          </div>
         </div>
       </div>
 
