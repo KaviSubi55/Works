@@ -66,36 +66,41 @@ const SecondaryNav: React.FC = () => {
       {/* Mobile/Tablet Hamburger Navigation */}
       <div className="lg:hidden bg-white relative z-50">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6">
-          <div className="flex items-center justify-center py-3">
-            {/* Hamburger Button - Centered */}
-            <button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className={`flex items-center justify-center w-10 h-10 rounded-full border-2 transition-colors ${
-                isMobileMenuOpen
-                  ? 'bg-[#C41E3A] text-white border-[#C41E3A]'
-                  : 'border-[#C41E3A] text-[#C41E3A] hover:bg-[#C41E3A] hover:text-white'
-              }`}
-              aria-label="Toggle navigation menu"
-            >
-              {isMobileMenuOpen ? (
-                <X className="w-5 h-5" />
-              ) : (
+          {!isMobileMenuOpen && (
+            <div className="flex items-center justify-center py-3">
+              {/* Hamburger Button - Centered */}
+              <button
+                onClick={() => setIsMobileMenuOpen(true)}
+                className="flex items-center justify-center w-10 h-10 rounded-full border-2 border-[#C41E3A] text-[#C41E3A] hover:bg-[#C41E3A] hover:text-white transition-colors"
+                aria-label="Open navigation menu"
+              >
                 <Menu className="w-5 h-5" />
-              )}
-            </button>
-          </div>
+              </button>
+            </div>
+          )}
 
           {/* Mobile Menu Dropdown - Full Screen Height */}
           {isMobileMenuOpen && (
             <>
-              {/* Overlay - starts below the hamburger button */}
+              {/* Overlay - starts below the header */}
               <div
-                className="fixed left-0 right-0 top-[60px] bottom-0 bg-black bg-opacity-50 z-40"
+                className="fixed left-0 right-0 top-0 bottom-0 bg-black bg-opacity-50 z-40"
                 onClick={() => setIsMobileMenuOpen(false)}
               />
 
               {/* Full Screen Menu */}
-              <div className="fixed left-0 right-0 top-[60px] bottom-0 bg-white z-50 overflow-y-auto">
+              <div className="fixed left-0 right-0 top-0 bottom-0 bg-white z-50 overflow-y-auto">
+                {/* Close Button at Top */}
+                <div className="flex items-center justify-center py-3 border-b border-gray-200">
+                  <button
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="flex items-center justify-center w-10 h-10 rounded-full bg-[#C41E3A] text-white border-2 border-[#C41E3A] transition-colors"
+                    aria-label="Close navigation menu"
+                  >
+                    <X className="w-5 h-5" />
+                  </button>
+                </div>
+
                 <nav className="py-4">
                   {tabs.map((tab) => {
                     const isActive = tab.id === activeTab;
