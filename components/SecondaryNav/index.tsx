@@ -64,13 +64,17 @@ const SecondaryNav: React.FC = () => {
       </div>
 
       {/* Mobile/Tablet Hamburger Navigation */}
-      <div className="lg:hidden bg-white">
+      <div className="lg:hidden bg-white relative z-50">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6">
           <div className="flex items-center justify-center py-3">
             {/* Hamburger Button - Centered */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="flex items-center justify-center w-10 h-10 rounded-full border-2 border-[#C41E3A] text-[#C41E3A] hover:bg-[#C41E3A] hover:text-white transition-colors"
+              className={`flex items-center justify-center w-10 h-10 rounded-full border-2 transition-colors ${
+                isMobileMenuOpen
+                  ? 'bg-[#C41E3A] text-white border-[#C41E3A]'
+                  : 'border-[#C41E3A] text-[#C41E3A] hover:bg-[#C41E3A] hover:text-white'
+              }`}
               aria-label="Toggle navigation menu"
             >
               {isMobileMenuOpen ? (
