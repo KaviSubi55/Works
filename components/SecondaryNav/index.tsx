@@ -90,8 +90,8 @@ const SecondaryNav: React.FC = () => {
 
               {/* Full Screen Menu */}
               <div className="fixed left-0 right-0 top-0 bottom-0 bg-white z-50 overflow-y-auto">
-                {/* Close Button at Top */}
-                <div className="flex items-center justify-center py-3 border-b border-gray-200">
+                {/* Close Button at Top - Sticky */}
+                <div className="sticky top-0 bg-white flex items-center justify-center py-3 border-b border-gray-200 z-10">
                   <button
                     onClick={() => setIsMobileMenuOpen(false)}
                     className="flex items-center justify-center w-10 h-10 rounded-full bg-[#C41E3A] text-white border-2 border-[#C41E3A] transition-colors"
