@@ -1,8 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Home, Tag, Ticket, Key, Shield } from 'lucide-react';
-import Hamburger from 'hamburger-react';
+import { Home, Tag, Ticket, Key, Shield, Menu, X } from 'lucide-react';
 import AccommodationSearch from '../AccomodationSearch';
 import PackageSearch from '../PackageSearch';
 import SkiPassSearch from '../SkiPassSearch';
@@ -69,14 +68,17 @@ const SecondaryNav: React.FC = () => {
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6">
           <div className="flex items-center justify-center py-3">
             {/* Hamburger Button - Centered */}
-            <div className="z-[60]">
-              <Hamburger
-                toggled={isMobileMenuOpen}
-                toggle={setIsMobileMenuOpen}
-                color="#C41E3A"
-                size={24}
-              />
-            </div>
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="z-[60] text-[#C41E3A] hover:opacity-80 transition-opacity"
+              aria-label="Toggle navigation menu"
+            >
+              {isMobileMenuOpen ? (
+                <X className="w-6 h-6" />
+              ) : (
+                <Menu className="w-6 h-6" />
+              )}
+            </button>
           </div>
 
           {/* Overlay - starts below the navigation section */}
