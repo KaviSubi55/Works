@@ -89,14 +89,16 @@ const SecondaryNav: React.FC = () => {
           {isMobileMenuOpen && (
             <>
               {/* Overlay - starts below the hamburger button */}
-              <div
-                className="fixed left-0 right-0 top-[60px] bottom-0 bg-black bg-opacity-50 z-40"
-                onClick={() => setIsMobileMenuOpen(false)}
-              />
+             
 
               {/* Full Screen Menu */}
-              <div className="fixed left-0 right-0 top-[60px] bottom-0 bg-white z-50 overflow-y-auto">
+              <div className="fixed left-0 right-0 top-[100px] bottom-0 bg-white z-50 overflow-y-auto">
+                 <div
+                // className="fixed left-0 right-0 top-[60px] bottom-0 bg-black bg-opacity-50 z-40"
+                onClick={() => setIsMobileMenuOpen(false)}
+              />
                 <nav className="py-4">
+                  
                   {tabs.map((tab) => {
                     const isActive = tab.id === activeTab;
                     return (
