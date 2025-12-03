@@ -95,7 +95,7 @@ const SecondaryNav: React.FC = () => {
           >
             <nav className="py-4">
               {/* Close Button inside nav */}
-              <div className="flex items-center justify-center pb-4 mb-4 border-b border-gray-200">
+              <div className="flex items-center justify-center pb-6 mb-2">
                 <button
                   onClick={() => setIsMobileMenuOpen(false)}
                   className="text-[#C41E3A] hover:opacity-80 transition-opacity"
