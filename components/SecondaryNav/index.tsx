@@ -66,20 +66,18 @@ const SecondaryNav: React.FC = () => {
       {/* Mobile/Tablet Hamburger Navigation */}
       <div className="lg:hidden bg-white relative z-50">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6">
-          <div className="flex items-center justify-center py-3">
-            {/* Hamburger Button - Centered */}
-            <button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="z-[60] text-[#C41E3A] hover:opacity-80 transition-opacity"
-              aria-label="Toggle navigation menu"
-            >
-              {isMobileMenuOpen ? (
-                <X className="w-6 h-6" />
-              ) : (
+          {!isMobileMenuOpen && (
+            <div className="flex items-center justify-center py-3">
+              {/* Hamburger Button - Centered */}
+              <button
+                onClick={() => setIsMobileMenuOpen(true)}
+                className="text-[#C41E3A] hover:opacity-80 transition-opacity"
+                aria-label="Open navigation menu"
+              >
                 <Menu className="w-6 h-6" />
-              )}
-            </button>
-          </div>
+              </button>
+            </div>
+          )}
 
           {/* Overlay - starts below the navigation section */}
           {isMobileMenuOpen && (
@@ -96,6 +94,18 @@ const SecondaryNav: React.FC = () => {
             }`}
           >
             <nav className="py-4">
+              {/* Close Button inside nav */}
+              <div className="flex items-center justify-center pb-4 mb-4 border-b border-gray-200">
+                <button
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="text-[#C41E3A] hover:opacity-80 transition-opacity"
+                  aria-label="Close navigation menu"
+                >
+                  <X className="w-6 h-6" />
+                </button>
+              </div>
+
+              {/* Navigation Links */}
               {tabs.map((tab) => {
                 const isActive = tab.id === activeTab;
                 return (
