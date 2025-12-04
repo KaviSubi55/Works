@@ -7,12 +7,8 @@ export const winterMenuSections: MenuSection[] = [
     href: '/destinations',
     hasDropdown: true,
     items: [
-      { label: 'The seal', href: '/destinations/the-seal' },
       { label: 'Åre', href: '/destinations/are' },
-      { label: 'Vemdalen', href: '/destinations/vemdalen' },
-      { label: 'Trysil', href: '/destinations/trysil' },
-      { label: 'Hemsedal', href: '/destinations/hemsedal' },
-      { label: 'Hammarbybacken', href: '/destinations/hammarbybacken' },
+      { label: 'Stockholm', href: '/destinations/stockholm' },
     ],
   },
   {
@@ -68,12 +64,8 @@ export const summerMenuSections: MenuSection[] = [
     href: '/destinations',
     hasDropdown: true,
     items: [
-      { label: 'The seal', href: '/destinations/the-seal' },
       { label: 'Åre', href: '/destinations/are' },
-      { label: 'Vemdalen', href: '/destinations/vemdalen' },
-      { label: 'Trysil', href: '/destinations/trysil' },
-      { label: 'Hemsedal', href: '/destinations/hemsedal' },
-      { label: 'Hammarbybacken', href: '/destinations/hammarbybacken' },
+      { label: 'Stockholm', href: '/destinations/stockholm' },
     ],
   },
   {

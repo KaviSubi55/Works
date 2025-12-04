@@ -10,12 +10,8 @@ interface Destination {
 }
 
 const destinations: Destination[] = [
-  { id: 'seal', name: 'The seal' },
   { id: 'are', name: 'Åre' },
-  { id: 'vemdalen', name: 'Vemdalen' },
-  { id: 'hemsedal', name: 'Hemsedal' },
-  { id: 'trysil', name: 'Trysil' },
-  { id: 'hammarbybacken', name: 'Hammarbybacken' },
+  { id: 'stockholm', name: 'Stockholm' },
 ];
 
 const RentSearch: React.FC = () => {

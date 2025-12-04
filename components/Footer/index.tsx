@@ -21,49 +21,17 @@ const Footer: React.FC = () => {
 
           {/* Destinations */}
           <div className="flex items-center justify-center gap-8 flex-wrap">
-            {/* Sälen */}
-            <Link 
-              href="/destination/salen" 
-              className="text-white hover:opacity-80 transition-opacity"
-            >
-              <span className="text-2xl font-serif italic">Sälen</span>
-            </Link>
-
             {/* ÅRE */}
-            <Link 
-              href="/destination/are" 
+            <Link
+              href="/destination/are"
               className="text-white hover:opacity-80 transition-opacity"
             >
               <span className="text-2xl font-bold tracking-wider">ÅRE</span>
             </Link>
 
-            {/* VEMDALEN */}
-            <Link 
-              href="/destination/vemdalen" 
-              className="text-white hover:opacity-80 transition-opacity"
-            >
-              <span className="text-xl font-bold tracking-widest">VEMDALEN</span>
-            </Link>
-
-            {/* TRYSIL */}
-            <Link 
-              href="/destination/trysil" 
-              className="text-white hover:opacity-80 transition-opacity"
-            >
-              <span className="text-2xl font-bold tracking-widest">TRYSIL</span>
-            </Link>
-
-            {/* HEMSEDAL */}
-            <Link 
-              href="/destination/hemsedal" 
-              className="text-white hover:opacity-80 transition-opacity"
-            >
-              <span className="text-xl font-bold tracking-wider">HEMSEDAL</span>
-            </Link>
-
             {/* STOCKHOLM Hammarbybacken */}
-            <Link 
-              href="/destination/stockholm" 
+            <Link
+              href="/destination/stockholm"
               className="text-white hover:opacity-80 transition-opacity"
             >
               <div className="text-center">
