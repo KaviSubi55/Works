@@ -1,77 +1,29 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { Home } from 'lucide-react';
 import SearchSummaryBar from '@/components/Searchsummarybar';
 import RentFilterBar from '@/components/RentFilterBar';
 import RentCard from '@/components/RentCard';
-
-// Sample rental equipment data
-const rentals = [
-  {
-    id: '1',
-    title: 'Premium Ski Package',
-    description: 'Top-of-the-line ski equipment perfect for experienced skiers. Includes the latest models with advanced technology for optimal performance on all slopes.',
-    image: '/premium-ski.jpg',
-    category: 'Skis',
-    includes: ['Skis', 'Ski boots', 'Poles', 'Helmet'],
-    price: 450,
-    buttonText: 'Rent now',
-  },
-  {
-    id: '2',
-    title: 'Standard Ski Package',
-    description: 'Quality ski equipment suitable for intermediate skiers. Great value package with everything you need for a fantastic day on the slopes.',
-    image: '/standard-ski.jpg',
-    category: 'Skis',
-    includes: ['Skis', 'Ski boots', 'Poles'],
-    price: 295,
-    buttonText: 'Rent now',
-  },
-  {
-    id: '3',
-    title: 'Snowboard Complete Set',
-    description: 'Complete snowboard package with board, boots, and safety equipment. Perfect for snowboarders of all skill levels.',
-    image: '/snowboard-set.jpg',
-    category: 'Snowboard',
-    includes: ['Snowboard', 'Snowboard boots', 'Helmet', 'Wrist guards'],
-    price: 395,
-    buttonText: 'Rent now',
-  },
-  {
-    id: '4',
-    title: 'Junior Ski Package',
-    description: 'Specially designed equipment for young skiers. Safe, easy-to-use gear that helps children learn and enjoy skiing.',
-    image: '/junior-ski.jpg',
-    category: 'Junior',
-    includes: ['Junior skis', 'Junior boots', 'Poles', 'Helmet'],
-    price: 195,
-    buttonText: 'Rent now',
-    badge: 'Great for kids!',
-  },
-  {
-    id: '5',
-    title: 'Cross-Country Ski Set',
-    description: 'Lightweight cross-country skiing equipment for exploring the scenic winter trails. Ideal for fitness and nature lovers.',
-    image: '/cross-country.jpg',
-    category: 'Cross-Country',
-    includes: ['Cross-country skis', 'Boots', 'Poles'],
-    price: 225,
-    buttonText: 'Rent now',
-  },
-  {
-    id: '6',
-    title: 'Safety Equipment Package',
-    description: 'Complete safety gear including helmet, goggles, and protective gear. Can be rented separately or as an add-on.',
-    image: '/safety-gear.jpg',
-    category: 'Safety',
-    includes: ['Helmet', 'Goggles', 'Back protector', 'Gloves'],
-    price: 150,
-    buttonText: 'Add to rental',
-  },
-];
+import { getRentalsByDestination, Rental } from '@/data/rentals';
 
 export default function RentListingPage() {
+  const searchParams = useSearchParams();
+  const [rentals, setRentals] = useState<Rental[]>([]);
+  const [destination, setDestination] = useState('');
+  const [guests, setGuests] = useState('');
+
+  useEffect(() => {
+    const destinationParam = searchParams.get('destination') || 'Åre';
+    const guestsParam = searchParams.get('guests') || 'Add guests';
+
+    setDestination(destinationParam);
+    setGuests(guestsParam);
+
+    const filteredRentals = getRentalsByDestination(destinationParam);
+    setRentals(filteredRentals);
+  }, [searchParams]);
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Page Header */}
@@ -82,11 +34,11 @@ export default function RentListingPage() {
             <h1 className="text-4xl font-bold text-gray-900">Rent Equipment</h1>
           </div>
 
-          {/* Search Summary */}
+          {/* Search Summary - Dynamic values from query params */}
           <SearchSummaryBar
-            destination="Åre"
-            date="Saturday 30 Nov. 2025"
-            guests="2 adults, 1 child"
+            destination={destination}
+            date=""
+            guests={guests}
             onEdit={() => window.history.back()}
           />
 
@@ -116,18 +68,49 @@ export default function RentListingPage() {
         </div>
 
         {/* Section Title */}
-        <h2 className="text-3xl font-bold text-gray-900 mb-6">Choose your equipment</h2>
+        <h2 className="text-3xl font-bold text-gray-900 mb-6">
+          Rentals available in {destination || 'selected destination'}
+        </h2>
 
         {/* Rental Listings */}
-        <div className="space-y-6">
-          {rentals.map((rental) => (
-            <RentCard
-              key={rental.id}
-              {...rental}
-              onButtonClick={() => console.log(`Renting ${rental.title}`)}
-            />
-          ))}
-        </div>
+        {rentals.length > 0 ? (
+          <div className="space-y-6">
+            {rentals.map((rental) => (
+              <RentCard
+                key={rental.id}
+                id={rental.id}
+                title={rental.title}
+                description={rental.description}
+                image={rental.image}
+                category={rental.category}
+                includes={rental.features}
+                price={rental.price}
+                buttonText="Add to Cart"
+                onButtonClick={() => {
+                  const cartItems = JSON.parse(localStorage.getItem('cartItems') || '[]');
+                  const cartItem = {
+                    id: rental.id,
+                    name: rental.title,
+                    location: rental.location,
+                    area: rental.location,
+                    image: rental.image,
+                    propertyType: rental.type,
+                    beds: rental.priceUnit,
+                    price: rental.price,
+                    addedAt: new Date().toISOString(),
+                  };
+                  cartItems.push(cartItem);
+                  localStorage.setItem('cartItems', JSON.stringify(cartItems));
+                  window.dispatchEvent(new Event('cartUpdated'));
+                }}
+              />
+            ))}
+          </div>
+        ) : (
+          <div className="text-center py-12">
+            <p className="text-xl text-gray-600">No rentals found for the selected destination.</p>
+          </div>
+        )}
 
         {/* Load More */}
         <div className="mt-8 text-center">

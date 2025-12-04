@@ -1,52 +1,31 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { Home } from 'lucide-react';
 import SearchSummaryBar from '@/components/Searchsummarybar';
 import PackageFilterBar from '@/components/PackageFilterBar';
 import PackageCard from '@/components/PackageCard';
-
-// Sample package data
-const packages = [
-  {
-    id: '1',
-    title: 'Short week at Högfjället in Sälen',
-    location: 'The seal',
-    images: ['/package-1.jpg', '/package-2.jpg'],
-    days: 4,
-    propertyType: 'Apartment',
-    includes: 'incl. SkiPass Högfjället',
-    recommended: true,
-    price: 1775,
-    multipleArrivalDates: true,
-  },
-  {
-    id: '2',
-    title: 'Ski days at Skistar Lodge Lindvallen',
-    location: 'The seal',
-    images: ['/package-3.jpg', '/package-4.jpg'],
-    days: 5,
-    dates: 'Jan. 31 - Feb. 5',
-    propertyType: 'Apartment',
-    includes: 'incl. Ski Pass',
-    recommended: true,
-    price: 3995,
-  },
-  {
-    id: '3',
-    title: 'Sports holiday in Sälen',
-    location: 'The seal',
-    images: ['/package-5.jpg', '/package-6.jpg'],
-    days: 7,
-    propertyType: 'Apartment',
-    includes: 'incl. Ski Pass',
-    recommended: true,
-    price: 4995,
-    multipleArrivalDates: true,
-  },
-];
+import { getPackagesByDestination, Package } from '@/data/packages';
 
 export default function PackagePage() {
+  const searchParams = useSearchParams();
+  const [packages, setPackages] = useState<Package[]>([]);
+  const [destination, setDestination] = useState('');
+  const [guests, setGuests] = useState('');
+
+  useEffect(() => {
+    // Get query parameters
+    const destinationParam = searchParams.get('destination') || 'Åre';
+    const guestsParam = searchParams.get('guests') || 'Add guests';
+
+    setDestination(destinationParam);
+    setGuests(guestsParam);
+
+    // Filter packages based on destination
+    const filteredPackages = getPackagesByDestination(destinationParam);
+    setPackages(filteredPackages);
+  }, [searchParams]);
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Page Header */}
@@ -57,11 +36,11 @@ export default function PackagePage() {
             <h1 className="text-4xl font-bold text-gray-900">Package offers</h1>
           </div>
 
-          {/* Search Summary */}
+          {/* Search Summary - Dynamic values from query params */}
           <SearchSummaryBar
-            destination="The seal"
-            date="2025-11-27 - 2026-06-04"
-            guests="1 adult"
+            destination={destination}
+            date=""
+            guests={guests}
             onEdit={() => window.history.back()}
           />
 
@@ -82,14 +61,22 @@ export default function PackagePage() {
         </div>
 
         {/* Section Title */}
-        <h2 className="text-3xl font-bold text-gray-900 mb-6">Choose package</h2>
+        <h2 className="text-3xl font-bold text-gray-900 mb-6">
+          Packages in {destination || 'selected destination'}
+        </h2>
 
         {/* Package Listings */}
-        <div className="space-y-6">
-          {packages.map((pkg) => (
-            <PackageCard key={pkg.id} {...pkg} />
-          ))}
-        </div>
+        {packages.length > 0 ? (
+          <div className="space-y-6">
+            {packages.map((pkg) => (
+              <PackageCard key={pkg.id} {...pkg} />
+            ))}
+          </div>
+        ) : (
+          <div className="text-center py-12">
+            <p className="text-xl text-gray-600">No packages found for the selected destination.</p>
+          </div>
+        )}
 
         {/* Load More */}
         <div className="mt-8 text-center">

@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { ChevronLeft, ChevronRight, Building2, Ticket, ThumbsUp } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Building2, Ticket, ThumbsUp, ShoppingCart } from 'lucide-react';
 
 interface PackageCardProps {
   id: string;
@@ -18,6 +18,7 @@ interface PackageCardProps {
 }
 
 const PackageCard: React.FC<PackageCardProps> = ({
+  id,
   title,
   location,
   images,
@@ -30,6 +31,39 @@ const PackageCard: React.FC<PackageCardProps> = ({
   multipleArrivalDates = false,
 }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [isAdded, setIsAdded] = useState(false);
+
+  const handleAddToCart = () => {
+    // Get existing cart from localStorage
+    const cartItems = JSON.parse(localStorage.getItem('cartItems') || '[]');
+
+    // Check if item already exists
+    const existingItemIndex = cartItems.findIndex((item: any) => item.id === id);
+
+    if (existingItemIndex === -1) {
+      // Add new item to cart
+      const cartItem = {
+        id,
+        name: title,
+        location,
+        area: location,
+        image: images[0],
+        propertyType: `${days} days package`,
+        beds: includes,
+        price,
+        addedAt: new Date().toISOString(),
+      };
+
+      cartItems.push(cartItem);
+      localStorage.setItem('cartItems', JSON.stringify(cartItems));
+
+      // Dispatch custom event to notify other components
+      window.dispatchEvent(new Event('cartUpdated'));
+
+      setIsAdded(true);
+      setTimeout(() => setIsAdded(false), 2000);
+    }
+  };
 
   const nextImage = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -124,6 +158,17 @@ const PackageCard: React.FC<PackageCardProps> = ({
                 {price.toLocaleString()} SEK
               </div>
             </div>
+            <button
+              onClick={handleAddToCart}
+              className={`${
+                isAdded
+                  ? 'bg-green-600 hover:bg-green-700'
+                  : 'bg-[#C41E3A] hover:bg-[#A01830]'
+              } text-white px-6 py-3 rounded-full font-bold transition-colors flex items-center gap-2`}
+            >
+              <ShoppingCart className="w-5 h-5" />
+              {isAdded ? 'Added!' : 'Add to Cart'}
+            </button>
           </div>
         </div>
       </div>
