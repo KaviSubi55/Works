@@ -197,13 +197,21 @@ const SkiPassSearch: React.FC = () => {
                     </label>
                   ))}
                 </div>
-                <div className="border-t border-gray-200 p-4">
+                <div className="border-t border-gray-200 p-4 flex gap-2">
                   <button
                     onClick={clearDestination}
-                    className="w-full px-6 py-2 rounded-full border-2 border-[#C41E3A] text-[#C41E3A] font-medium hover:bg-[#C41E3A] hover:text-white transition-colors"
+                    className="flex-1 px-6 py-2 rounded-full border-2 border-[#C41E3A] text-[#C41E3A] font-medium hover:bg-[#C41E3A] hover:text-white transition-colors"
                   >
                     Clear
                   </button>
+                  {selectedDestination && (
+                    <button
+                      onClick={() => setDestinationOpen(false)}
+                      className="flex-1 px-6 py-2 rounded-full bg-[#C41E3A] text-white font-medium hover:bg-[#A01830] transition-colors"
+                    >
+                      OK
+                    </button>
+                  )}
                 </div>
               </div>
             )}
