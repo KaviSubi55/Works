@@ -11,11 +11,8 @@ interface Destination {
 
 const destinations: Destination[] = [
   { id: 'all', name: 'All destinations' },
-  { id: 'seal', name: 'The seal' },
   { id: 'are', name: 'Åre' },
-  { id: 'vemdalen', name: 'Vemdalen' },
-  { id: 'hemsedal', name: 'Hemsedal' },
-  { id: 'trysil', name: 'Trysil' },
+  { id: 'stockholm', name: 'Stockholm' },
 ];
 
 const PackageSearch: React.FC = () => {
