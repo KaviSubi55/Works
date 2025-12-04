@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { ChevronLeft, ChevronRight, Building2, Bed, Mountain, Snowflake, Plane, Train, Key } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Building2, Bed, Mountain, Snowflake, Plane, Train, Key, ShoppingCart } from 'lucide-react';
 
 interface PropertyCardProps {
   id: string;
@@ -20,6 +20,7 @@ interface PropertyCardProps {
 }
 
 const PropertyCard: React.FC<PropertyCardProps> = ({
+  id,
   name,
   location,
   area,
@@ -34,6 +35,39 @@ const PropertyCard: React.FC<PropertyCardProps> = ({
   price,
 }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [isAdded, setIsAdded] = useState(false);
+
+  const handleAddToCart = () => {
+    // Get existing cart from localStorage
+    const cartItems = JSON.parse(localStorage.getItem('cartItems') || '[]');
+
+    // Check if item already exists
+    const existingItemIndex = cartItems.findIndex((item: any) => item.id === id);
+
+    if (existingItemIndex === -1) {
+      // Add new item to cart
+      const cartItem = {
+        id,
+        name,
+        location,
+        area,
+        image: images[0],
+        propertyType,
+        beds,
+        price,
+        addedAt: new Date().toISOString(),
+      };
+
+      cartItems.push(cartItem);
+      localStorage.setItem('cartItems', JSON.stringify(cartItems));
+
+      // Dispatch custom event to notify other components
+      window.dispatchEvent(new Event('cartUpdated'));
+
+      setIsAdded(true);
+      setTimeout(() => setIsAdded(false), 2000);
+    }
+  };
 
   const nextImage = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -147,10 +181,23 @@ const PropertyCard: React.FC<PropertyCardProps> = ({
                 {price.toLocaleString()} SEK
               </div>
             </div>
-            <button className="bg-[#C41E3A] text-white px-8 py-3 rounded-full font-bold hover:bg-[#A01830] transition-colors flex items-center gap-2">
-              View properties
-              <ChevronRight className="w-5 h-5" />
-            </button>
+            <div className="flex gap-3">
+              <button
+                onClick={handleAddToCart}
+                className={`${
+                  isAdded
+                    ? 'bg-green-600 hover:bg-green-700'
+                    : 'bg-gray-800 hover:bg-gray-900'
+                } text-white px-6 py-3 rounded-full font-bold transition-colors flex items-center gap-2`}
+              >
+                <ShoppingCart className="w-5 h-5" />
+                {isAdded ? 'Added!' : 'Add to Cart'}
+              </button>
+              <button className="bg-[#C41E3A] text-white px-8 py-3 rounded-full font-bold hover:bg-[#A01830] transition-colors flex items-center gap-2">
+                View
+                <ChevronRight className="w-5 h-5" />
+              </button>
+            </div>
           </div>
         </div>
       </div>
