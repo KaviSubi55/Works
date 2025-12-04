@@ -1,14 +1,13 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Home, Tag, Ticket, Key, Shield, Menu, X } from 'lucide-react';
+import { Home, Tag, Ticket, Key, Menu, X } from 'lucide-react';
 import AccommodationSearch from '../AccomodationSearch';
 import PackageSearch from '../PackageSearch';
 import SkiPassSearch from '../SkiPassSearch';
 import RentSearch from '../RentSearch';
-import SkiSchoolSearch from '../SkiSchoolSearch';
 
-type TabType = 'home' | 'accommodation' | 'package' | 'skipass' | 'rent' | 'skischool';
+type TabType = 'home' | 'accommodation' | 'package' | 'skipass' | 'rent';
 
 interface Tab {
   id: TabType;
@@ -22,7 +21,6 @@ const tabs: Tab[] = [
   { id: 'package', label: 'Package', icon: <Tag className="w-5 h-5" /> },
   { id: 'skipass', label: 'Activity Pass', icon: <Ticket className="w-5 h-5" /> },
   { id: 'rent', label: 'Rent', icon: <Key className="w-5 h-5" /> },
-  { id: 'skischool', label: 'Ski school', icon: <Shield className="w-5 h-5" /> },
 ];
 
 const SecondaryNav: React.FC = () => {
@@ -137,7 +135,6 @@ const SecondaryNav: React.FC = () => {
       {activeTab === 'package' && <PackageSearch />}
       {activeTab === 'skipass' && <SkiPassSearch />}
       {activeTab === 'rent' && <RentSearch />}
-      {activeTab === 'skischool' && <SkiSchoolSearch />}
       {/* Home tab shows no search component */}
     </div>
   );
