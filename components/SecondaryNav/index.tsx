@@ -45,10 +45,10 @@ const SecondaryNav: React.FC = () => {
                   key={tab.id}
                   onClick={() => handleTabClick(tab.id)}
                   className={`flex items-center gap-2 py-4 px-2 font-medium whitespace-nowrap transition-colors relative group ${
-                    isActive ? 'text-[#C41E3A]' : 'text-gray-600 hover:text-gray-900'
+                    isActive ? 'text-[#C41E3A]' : 'text-gray-600 hover:text-[#C41E3A]'
                   }`}
                 >
-                  <span className={isActive ? 'text-[#C41E3A]' : 'text-gray-400'}>
+                  <span className={`transition-colors ${isActive ? 'text-[#C41E3A]' : 'text-gray-400 group-hover:text-[#C41E3A]'}`}>
                     {tab.icon}
                   </span>
                   {tab.label}
@@ -115,10 +115,10 @@ const SecondaryNav: React.FC = () => {
                     className={`w-full flex items-center gap-3 px-6 py-4 font-medium transition-colors relative group ${
                       isActive
                         ? 'text-[#C41E3A]'
-                        : 'text-gray-600 hover:text-gray-900'
+                        : 'text-gray-600 hover:text-[#C41E3A]'
                     }`}
                   >
-                    <span className={isActive ? 'text-[#C41E3A]' : 'text-gray-400'}>
+                    <span className={`transition-colors ${isActive ? 'text-[#C41E3A]' : 'text-gray-400 group-hover:text-[#C41E3A]'}`}>
                       {tab.icon}
                     </span>
                     {tab.label}
