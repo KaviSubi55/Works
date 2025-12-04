@@ -8,7 +8,20 @@ const CardOverlay: React.FC = () => {
     <div className="relative w-screen h-screen flex items-center justify-center">
       {/* Cards Container */}
 
-      <div className="absolute bottom-[10%] flex gap-5 max-md:flex-wrap max-md:justify-center max-md:bottom-[-25%] max-[480px]:flex-col max-[480px]:items-center max-[480px]:bottom-[15] max-[480px]:mr-[15px] ">
+<div
+  className="
+    relative
+    md:absolute           /* Overlay only on MD+ screens */
+    md:bottom-[30%]
+    lg:bottom-[10%]
+    bottom-[-30%]           /* Use natural flow on SM */
+    flex gap-5 flex-wrap justify-center
+    max-[480px]:flex-col max-[480px]:items-center
+  "
+>
+
+
+
 
         {/* Left Card */}
         <div className="bg-white rounded-[20px] p-5 w-[300px] shadow-[6px_6px_8px_0px_rgba(170,176,176,1)] text-center max-md:w-[250px] max-md:p-[15px] max-[480px]:w-[90%] max-[480px]:p-[15px]">
