@@ -54,8 +54,10 @@ const SecondaryNav: React.FC = () => {
                     {tab.icon}
                   </span>
                   {tab.label}
-                  {/* Hover underline animation from center to both sides */}
-                  <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#C41E3A] transform scale-x-0 transition-transform duration-300 ease-out group-hover:scale-x-100 origin-center"></span>
+                  {/* Active/Hover underline */}
+                  <span className={`absolute bottom-0 left-0 right-0 h-0.5 bg-[#C41E3A] transform transition-transform duration-300 ease-out origin-center ${
+                    isActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
+                  }`}></span>
                 </button>
               );
             })}
@@ -122,8 +124,10 @@ const SecondaryNav: React.FC = () => {
                       {tab.icon}
                     </span>
                     {tab.label}
-                    {/* Hover underline animation from center to both sides */}
-                    <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#C41E3A] transform scale-x-0 transition-transform duration-300 ease-out group-hover:scale-x-100 origin-center"></span>
+                    {/* Active/Hover underline */}
+                    <span className={`absolute bottom-0 left-0 right-0 h-0.5 bg-[#C41E3A] transform transition-transform duration-300 ease-out origin-center ${
+                      isActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
+                    }`}></span>
                   </button>
                 );
               })}
