@@ -37,7 +37,7 @@ const SecondaryNav: React.FC = () => {
       {/* Desktop Navigation Tabs - Hidden on mobile/tablet */}
       <div className="hidden lg:block bg-white">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
-          <nav className="flex items-center gap-8 overflow-x-auto scrollbar-hide">
+          <nav className="flex items-center gap-12 overflow-x-auto scrollbar-hide">
             {tabs.map((tab) => {
               const isActive = tab.id === activeTab;
               return (
