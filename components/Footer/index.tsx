@@ -29,15 +29,12 @@ const Footer: React.FC = () => {
               <span className="text-2xl font-bold tracking-wider">ÅRE</span>
             </Link>
 
-            {/* STOCKHOLM Hammarbybacken */}
+            {/* STOCKHOLM */}
             <Link
               href="/destination/stockholm"
               className="text-white hover:opacity-80 transition-opacity"
             >
-              <div className="text-center">
-                <div className="text-xl font-bold tracking-widest">STOCKHOLM</div>
-                <div className="text-xs tracking-wide">HAMMARBYBACKEN</div>
-              </div>
+              <span className="text-2xl font-bold tracking-wider">STOCKHOLM</span>
             </Link>
           </div>
         </div>
