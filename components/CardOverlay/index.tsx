@@ -7,7 +7,7 @@ const CardOverlay: React.FC = () => {
   return (
     <div className="relative w-screen h-screen flex items-center justify-center">
       {/* Cards Container */}
-      <div className="absolute bottom-[5%] flex gap-5 max-md:flex-wrap max-md:justify-center sm:bottom-[-10%] md:bottom-[40%] max-[480px]:flex-col max-[480px]:items-center max-[480px]:bottom-[5] max-[480px]:mr-[15px]">
+      <div className="absolute bottom-[10%] flex gap-5 max-md:flex-wrap max-md:justify-center max-md:bottom-[-25%] max-[480px]:flex-col max-[480px]:items-center max-[480px]:bottom-[15] max-[480px]:mr-[15px] ">
         {/* Left Card */}
         <div className="bg-white rounded-[20px] p-5 w-[300px] shadow-[6px_6px_8px_0px_rgba(170,176,176,1)] text-center max-md:w-[250px] max-md:p-[15px] max-[480px]:w-[90%] max-[480px]:p-[15px]">
           <h3 className="text-[1.2rem] p-3 mb-2.5 max-md:text-[1.3rem] max-[480px]:text-[1.4rem]">
