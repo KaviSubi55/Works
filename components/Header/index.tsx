@@ -8,10 +8,12 @@ import { HeaderProps } from '@/utils/types';
 import MegaMenu from '../MegaMenu';
 import LanguageSelector from '../LanguageSelector';
 import UserMenu from '../UserMenu';
+import CartDropdown from '../CartDropdown';
 
 const Header: React.FC<HeaderProps> = ({ navigationItems }) => {
   const [isMegaMenuOpen, setIsMegaMenuOpen] = useState(false);
   const [currentLanguage, setCurrentLanguage] = useState('SE');
+  const [isCartOpen, setIsCartOpen] = useState(false);
 
   const defaultNavItems = navigationItems || [
     { label: 'Destinations', href: '/destinations', hasDropdown: true },
@@ -82,12 +84,16 @@ const Header: React.FC<HeaderProps> = ({ navigationItems }) => {
               </button>
 
               {/* Shopping Cart Icon */}
-              <button
-                className="flex items-center justify-center w-10 h-10 text-gray-700 hover:text-[#C41E3A] transition-colors"
-                aria-label="Shopping cart"
-              >
-                <ShoppingCart className="w-5 h-5" />
-              </button>
+              <div className="relative">
+                <button
+                  onClick={() => setIsCartOpen(!isCartOpen)}
+                  className="flex items-center justify-center w-10 h-10 text-gray-700 hover:text-[#C41E3A] transition-colors"
+                  aria-label="Shopping cart"
+                >
+                  <ShoppingCart className="w-5 h-5" />
+                </button>
+                <CartDropdown isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
+              </div>
 
               {/* User Menu */}
               <UserMenu />
@@ -161,12 +167,16 @@ const Header: React.FC<HeaderProps> = ({ navigationItems }) => {
               </button>
 
               {/* Shopping Cart Icon */}
-              <button
-                className="flex items-center justify-center w-9 h-9 text-gray-700 hover:text-[#C41E3A] transition-colors"
-                aria-label="Shopping cart"
-              >
-                <ShoppingCart className="w-4 h-4" />
-              </button>
+              <div className="relative">
+                <button
+                  onClick={() => setIsCartOpen(!isCartOpen)}
+                  className="flex items-center justify-center w-9 h-9 text-gray-700 hover:text-[#C41E3A] transition-colors"
+                  aria-label="Shopping cart"
+                >
+                  <ShoppingCart className="w-4 h-4" />
+                </button>
+                <CartDropdown isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
+              </div>
 
               {/* User Menu */}
               <UserMenu />
