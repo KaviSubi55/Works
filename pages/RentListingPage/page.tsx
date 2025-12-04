@@ -88,6 +88,13 @@ export default function RentListingPage() {
                 buttonText="Add to Cart"
                 onButtonClick={() => {
                   const cartItems = JSON.parse(localStorage.getItem('cartItems') || '[]');
+
+                  // Check if item already exists in cart
+                  const existingIndex = cartItems.findIndex((item: any) => item.id === rental.id);
+                  if (existingIndex !== -1) {
+                    return; // Item already in cart, don't add again
+                  }
+
                   const cartItem = {
                     id: rental.id,
                     name: rental.title,
