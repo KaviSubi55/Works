@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight, Building2, Bed, Mountain, Snowflake, Plane, Train, Key, ShoppingCart } from 'lucide-react';
 
 interface PropertyCardProps {
@@ -35,9 +35,34 @@ const PropertyCard: React.FC<PropertyCardProps> = ({
   price,
 }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [isAdded, setIsAdded] = useState(false);
+  const [isInCart, setIsInCart] = useState(false);
+
+  // Check if item is already in cart
+  const checkIfInCart = () => {
+    const cartItems = JSON.parse(localStorage.getItem('cartItems') || '[]');
+    const exists = cartItems.some((item: any) => item.id === id);
+    setIsInCart(exists);
+  };
+
+  useEffect(() => {
+    // Check initially
+    checkIfInCart();
+
+    // Listen for cart updates
+    const handleCartUpdate = () => {
+      checkIfInCart();
+    };
+
+    window.addEventListener('cartUpdated', handleCartUpdate);
+
+    return () => {
+      window.removeEventListener('cartUpdated', handleCartUpdate);
+    };
+  }, [id]);
 
   const handleAddToCart = () => {
+    if (isInCart) return; // Don't add if already in cart
+
     // Get existing cart from localStorage
     const cartItems = JSON.parse(localStorage.getItem('cartItems') || '[]');
 
@@ -63,9 +88,6 @@ const PropertyCard: React.FC<PropertyCardProps> = ({
 
       // Dispatch custom event to notify other components
       window.dispatchEvent(new Event('cartUpdated'));
-
-      setIsAdded(true);
-      setTimeout(() => setIsAdded(false), 2000);
     }
   };
 
@@ -184,14 +206,15 @@ const PropertyCard: React.FC<PropertyCardProps> = ({
             <div className="flex gap-3">
               <button
                 onClick={handleAddToCart}
+                disabled={isInCart}
                 className={`${
-                  isAdded
-                    ? 'bg-green-600 hover:bg-green-700'
+                  isInCart
+                    ? 'bg-green-600 hover:bg-green-700 cursor-default'
                     : 'bg-gray-800 hover:bg-gray-900'
                 } text-white px-6 py-3 rounded-full font-bold transition-colors flex items-center gap-2`}
               >
                 <ShoppingCart className="w-5 h-5" />
-                {isAdded ? 'Added!' : 'Add to Cart'}
+                {isInCart ? 'Added!' : 'Add to Cart'}
               </button>
               <button className="bg-[#C41E3A] text-white px-8 py-3 rounded-full font-bold hover:bg-[#A01830] transition-colors flex items-center gap-2">
                 View
