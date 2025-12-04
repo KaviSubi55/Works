@@ -155,6 +155,7 @@ const CartDropdown: React.FC<CartDropdownProps> = ({ isOpen, onClose }) => {
                 </div>
                 <button
                   onClick={(e) => removeFromCart(e, item.id)}
+                  onMouseDown={(e) => e.stopPropagation()}
                   className="text-gray-400 hover:text-red-600 transition-colors"
                   aria-label="Remove from cart"
                 >
