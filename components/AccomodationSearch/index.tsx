@@ -10,7 +10,6 @@ interface Destination {
 }
 
 const destinations: Destination[] = [
-  { id: 'all', name: 'All destinations' },
   { id: 'are', name: 'Åre' },
   { id: 'stockholm', name: 'Stockholm' },
 ];
@@ -63,13 +62,9 @@ const AccommodationSearch: React.FC = () => {
 
   // Handle destination checkbox
   const handleDestinationChange = (id: string) => {
-    if (id === 'all') {
-      setSelectedDestinations([]);
-    } else {
-      setSelectedDestinations((prev) =>
-        prev.includes(id) ? prev.filter((d) => d !== id) : [...prev, id]
-      );
-    }
+    setSelectedDestinations((prev) =>
+      prev.includes(id) ? prev.filter((d) => d !== id) : [...prev, id]
+    );
   };
 
   // Clear destinations
@@ -227,11 +222,7 @@ const AccommodationSearch: React.FC = () => {
                     >
                       <input
                         type="checkbox"
-                        checked={
-                          dest.id === 'all'
-                            ? selectedDestinations.length === 0
-                            : selectedDestinations.includes(dest.id)
-                        }
+                        checked={selectedDestinations.includes(dest.id)}
                         onChange={() => handleDestinationChange(dest.id)}
                         className="w-5 h-5 rounded border-gray-300 text-[#C41E3A] focus:ring-[#C41E3A]"
                       />
