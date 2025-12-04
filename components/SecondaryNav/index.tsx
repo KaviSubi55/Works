@@ -20,7 +20,7 @@ const tabs: Tab[] = [
   { id: 'home', label: 'Home', icon: <Home className="w-5 h-5" /> },
   { id: 'accommodation', label: 'Accommodation', icon: <Home className="w-5 h-5" /> },
   { id: 'package', label: 'Package', icon: <Tag className="w-5 h-5" /> },
-  { id: 'skipass', label: 'Ski Pass', icon: <Ticket className="w-5 h-5" /> },
+  { id: 'skipass', label: 'Activity Pass', icon: <Ticket className="w-5 h-5" /> },
   { id: 'rent', label: 'Rent', icon: <Key className="w-5 h-5" /> },
   { id: 'skischool', label: 'Ski school', icon: <Shield className="w-5 h-5" /> },
 ];
