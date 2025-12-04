@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Ticket, Clock, CheckCircle2, ShoppingCart } from 'lucide-react';
 
 interface SkiPassCardProps {
@@ -28,9 +28,34 @@ const SkiPassCard: React.FC<SkiPassCardProps> = ({
   recommended,
   description,
 }) => {
-  const [isAdded, setIsAdded] = useState(false);
+  const [isInCart, setIsInCart] = useState(false);
+
+  // Check if item is already in cart
+  const checkIfInCart = () => {
+    const cartItems = JSON.parse(localStorage.getItem('cartItems') || '[]');
+    const exists = cartItems.some((item: any) => item.id === id);
+    setIsInCart(exists);
+  };
+
+  useEffect(() => {
+    // Check initially
+    checkIfInCart();
+
+    // Listen for cart updates
+    const handleCartUpdate = () => {
+      checkIfInCart();
+    };
+
+    window.addEventListener('cartUpdated', handleCartUpdate);
+
+    return () => {
+      window.removeEventListener('cartUpdated', handleCartUpdate);
+    };
+  }, [id]);
 
   const handleAddToCart = () => {
+    if (isInCart) return; // Don't add if already in cart
+
     const cartItems = JSON.parse(localStorage.getItem('cartItems') || '[]');
     const existingItemIndex = cartItems.findIndex((item: any) => item.id === id);
 
@@ -50,9 +75,6 @@ const SkiPassCard: React.FC<SkiPassCardProps> = ({
       cartItems.push(cartItem);
       localStorage.setItem('cartItems', JSON.stringify(cartItems));
       window.dispatchEvent(new Event('cartUpdated'));
-
-      setIsAdded(true);
-      setTimeout(() => setIsAdded(false), 2000);
     }
   };
 
@@ -106,10 +128,11 @@ const SkiPassCard: React.FC<SkiPassCardProps> = ({
         </div>
         <button
           onClick={handleAddToCart}
-          className={`w-full ${isAdded ? 'bg-green-600 hover:bg-green-700' : 'bg-[#C41E3A] hover:bg-[#A01830]'} text-white px-6 py-3 rounded-full font-bold transition-colors flex items-center justify-center gap-2`}
+          disabled={isInCart}
+          className={`w-full ${isInCart ? 'bg-green-600 hover:bg-green-700 cursor-default' : 'bg-[#C41E3A] hover:bg-[#A01830]'} text-white px-6 py-3 rounded-full font-bold transition-colors flex items-center justify-center gap-2`}
         >
           <ShoppingCart className="w-5 h-5" />
-          {isAdded ? 'Added to Cart!' : 'Add to Cart'}
+          {isInCart ? 'Added!' : 'Add to Cart'}
         </button>
       </div>
     </div>

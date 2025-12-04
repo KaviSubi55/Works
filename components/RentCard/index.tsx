@@ -1,7 +1,7 @@
 'use client';
 
-import React from 'react';
-import { Package, Info } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Package, Info, ShoppingCart } from 'lucide-react';
 
 interface RentCardProps {
   id: string;
@@ -18,6 +18,7 @@ interface RentCardProps {
 }
 
 const RentCard: React.FC<RentCardProps> = ({
+  id,
   title,
   description,
   image,
@@ -29,6 +30,36 @@ const RentCard: React.FC<RentCardProps> = ({
   buttonText,
   onButtonClick,
 }) => {
+  const [isInCart, setIsInCart] = useState(false);
+
+  // Check if item is already in cart
+  const checkIfInCart = () => {
+    const cartItems = JSON.parse(localStorage.getItem('cartItems') || '[]');
+    const exists = cartItems.some((item: any) => item.id === id);
+    setIsInCart(exists);
+  };
+
+  useEffect(() => {
+    // Check initially
+    checkIfInCart();
+
+    // Listen for cart updates
+    const handleCartUpdate = () => {
+      checkIfInCart();
+    };
+
+    window.addEventListener('cartUpdated', handleCartUpdate);
+
+    return () => {
+      window.removeEventListener('cartUpdated', handleCartUpdate);
+    };
+  }, [id]);
+
+  const handleClick = () => {
+    if (onButtonClick && !isInCart) {
+      onButtonClick();
+    }
+  };
   return (
     <div className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow border border-gray-200">
       <div className="grid grid-cols-1 md:grid-cols-12 gap-0">
@@ -99,10 +130,16 @@ const RentCard: React.FC<RentCardProps> = ({
             )}
 
             <button
-              onClick={onButtonClick}
-              className="bg-[#C41E3A] text-white px-8 py-3 rounded-full font-bold hover:bg-[#A01830] transition-colors shadow-lg"
+              onClick={handleClick}
+              disabled={isInCart}
+              className={`${
+                isInCart
+                  ? 'bg-green-600 hover:bg-green-700 cursor-default'
+                  : 'bg-[#C41E3A] hover:bg-[#A01830]'
+              } text-white px-8 py-3 rounded-full font-bold transition-colors shadow-lg flex items-center gap-2`}
             >
-              {buttonText}
+              {isInCart && <ShoppingCart className="w-5 h-5" />}
+              {isInCart ? 'Added!' : buttonText}
             </button>
           </div>
         </div>
