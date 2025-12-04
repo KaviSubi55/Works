@@ -19,7 +19,7 @@ export const winterMenuSections: MenuSection[] = [
       { label: 'Accommodation', href: '/book/accommodation' },
       { label: 'Affordable packages', href: '/book/packages' },
       { label: 'Lodge and hotel', href: '/book/hotels' },
-      { label: 'Ski Pass', href: '/book/ski-pass' },
+      { label: 'Activity Pass', href: '/book/ski-pass' },
       { label: 'Ski rental', href: '/book/ski-rental' },
       { label: 'Ski lessons', href: '/book/ski-lessons' },
       { label: 'Travel to our destinations', href: '/book/travel' },

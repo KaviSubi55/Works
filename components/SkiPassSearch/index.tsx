@@ -329,7 +329,7 @@ const SkiPassSearch: React.FC = () => {
             onClick={handleSearch}
             className="w-full lg:w-auto bg-[#C41E3A] text-white px-6 sm:px-10 py-3 sm:py-4 rounded-full font-bold hover:bg-[#A01830] transition-colors whitespace-nowrap shadow-lg hover:shadow-xl"
           >
-            Buy Ski Pass
+            Buy Activity Pass
           </button>
         </div>
       </div>
