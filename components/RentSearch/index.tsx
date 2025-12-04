@@ -46,7 +46,6 @@ const RentSearch: React.FC = () => {
 
   const handleDestinationSelect = (id: string) => {
     setSelectedDestination(id);
-    setDestinationOpen(false);
   };
 
   const clearDestination = () => {
