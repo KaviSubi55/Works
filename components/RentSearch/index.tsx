@@ -19,7 +19,7 @@ const RentSearch: React.FC = () => {
   
   const [destinationOpen, setDestinationOpen] = useState(false);
   const [dateOpen, setDateOpen] = useState(false);
-  const [selectedDestination, setSelectedDestination] = useState<string>('');
+  const [selectedDestinations, setSelectedDestinations] = useState<string[]>([]);
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [currentMonth, setCurrentMonth] = useState(new Date());
 
@@ -44,17 +44,16 @@ const RentSearch: React.FC = () => {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  const handleDestinationSelect = (id: string) => {
-    setSelectedDestination(id);
+  // Handle destination checkbox
+  const handleDestinationChange = (id: string) => {
+    setSelectedDestinations((prev) =>
+      prev.includes(id) ? prev.filter((d) => d !== id) : [...prev, id]
+    );
   };
 
-  const clearDestination = () => {
-    setSelectedDestination('');
-  };
-
-  const getSelectedDestinationName = () => {
-    const dest = destinations.find((d) => d.id === selectedDestination);
-    return dest ? dest.name : 'Choose destination';
+  // Clear destinations
+  const clearDestinations = () => {
+    setSelectedDestinations([]);
   };
 
   const getDaysInMonth = (date: Date) => {
@@ -97,7 +96,7 @@ const RentSearch: React.FC = () => {
     let hasError = false;
 
     // Validation: Check if destination is selected
-    if (!selectedDestination) {
+    if (selectedDestinations.length === 0) {
       setDestinationError(true);
       hasError = true;
     }
@@ -113,8 +112,11 @@ const RentSearch: React.FC = () => {
       return;
     }
 
-    // Get destination name
-    const destinationName = destinations.find(d => d.id === selectedDestination)?.name || '';
+    // Get selected destination names
+    const destinationNames = selectedDestinations
+      .map(id => destinations.find(d => d.id === id)?.name)
+      .filter(Boolean)
+      .join(', ');
 
     // Format date
     const dateStr = selectedDate!.toLocaleDateString('en-US', {
@@ -126,7 +128,7 @@ const RentSearch: React.FC = () => {
 
     // Build query parameters
     const params = new URLSearchParams();
-    params.append('destination', destinationName);
+    params.append('destination', destinationNames);
     params.append('date', dateStr);
 
     // Navigate to rent listing page
@@ -155,7 +157,11 @@ const RentSearch: React.FC = () => {
             >
               <div className="text-xs sm:text-sm text-gray-600 mb-1">Where do you want to go?</div>
               <div className="flex items-center justify-between">
-                <span className="text-sm sm:text-base text-gray-900 font-medium">{getSelectedDestinationName()}</span>
+                <span className="text-sm sm:text-base text-gray-900 font-medium">
+                  {selectedDestinations.length === 0
+                    ? 'Choose destination'
+                    : `${selectedDestinations.length} selected`}
+                </span>
                 {destinationOpen ? (
                   <ChevronUp className="w-5 h-5 text-gray-400" />
                 ) : (
@@ -170,14 +176,13 @@ const RentSearch: React.FC = () => {
                   {destinations.map((dest) => (
                     <label
                       key={dest.id}
-                      className="flex items-center gap-3 cursor-pointer hover:bg-gray-50 p-3 rounded"
+                      className="flex items-center gap-3 cursor-pointer hover:bg-gray-50 p-2 rounded"
                     >
                       <input
-                        type="radio"
-                        name="destination"
-                        checked={selectedDestination === dest.id}
-                        onChange={() => handleDestinationSelect(dest.id)}
-                        className="w-5 h-5 text-[#C41E3A] focus:ring-[#C41E3A]"
+                        type="checkbox"
+                        checked={selectedDestinations.includes(dest.id)}
+                        onChange={() => handleDestinationChange(dest.id)}
+                        className="w-5 h-5 rounded border-gray-300 text-[#C41E3A] focus:ring-[#C41E3A]"
                       />
                       <span className="text-gray-900">{dest.name}</span>
                     </label>
@@ -185,12 +190,12 @@ const RentSearch: React.FC = () => {
                 </div>
                 <div className="border-t border-gray-200 p-4 flex gap-2">
                   <button
-                    onClick={clearDestination}
+                    onClick={clearDestinations}
                     className="flex-1 px-6 py-2 rounded-full border-2 border-[#C41E3A] text-[#C41E3A] font-medium hover:bg-[#C41E3A] hover:text-white transition-colors"
                   >
                     Clear
                   </button>
-                  {selectedDestination && (
+                  {selectedDestinations.length > 0 && (
                     <button
                       onClick={() => setDestinationOpen(false)}
                       className="flex-1 px-6 py-2 rounded-full bg-[#C41E3A] text-white font-medium hover:bg-[#A01830] transition-colors"
