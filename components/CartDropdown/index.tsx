@@ -91,7 +91,8 @@ const CartDropdown: React.FC<CartDropdownProps> = ({ isOpen, onClose }) => {
     };
   }, [isOpen, onClose]);
 
-  const removeFromCart = (id: string) => {
+  const removeFromCart = (e: React.MouseEvent, id: string) => {
+    e.stopPropagation(); // Prevent event bubbling to click-outside handler
     const updatedCart = cartItems.filter(item => item.id !== id);
     localStorage.setItem('cartItems', JSON.stringify(updatedCart));
     setCartItems(updatedCart);
@@ -153,7 +154,7 @@ const CartDropdown: React.FC<CartDropdownProps> = ({ isOpen, onClose }) => {
                   </div>
                 </div>
                 <button
-                  onClick={() => removeFromCart(item.id)}
+                  onClick={(e) => removeFromCart(e, item.id)}
                   className="text-gray-400 hover:text-red-600 transition-colors"
                   aria-label="Remove from cart"
                 >
