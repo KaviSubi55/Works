@@ -72,7 +72,14 @@ const CartDropdown: React.FC<CartDropdownProps> = ({ isOpen, onClose }) => {
 
     // Handle click outside
     const handleClickOutside = (event: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+      const target = event.target as HTMLElement;
+
+      // Don't close if clicking the remove button or its children
+      if (target.closest('button[aria-label="Remove from cart"]')) {
+        return;
+      }
+
+      if (dropdownRef.current && !dropdownRef.current.contains(target)) {
         onClose();
       }
     };
