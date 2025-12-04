@@ -147,28 +147,28 @@ const SkiPassSearch: React.FC = () => {
   };
 
   return (
-    <div className="bg-gray-100 py-6">
+    <div className="bg-gray-100 py-4 sm:py-6">
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-start gap-4 flex-wrap">
+        <div className="flex flex-col lg:flex-row items-stretch lg:items-start gap-3 sm:gap-4">
           {/* Destination Dropdown */}
-          <div className="flex-1 min-w-[300px] relative" ref={destinationRef}>
+          <div className="w-full lg:flex-1 lg:min-w-[280px] relative" ref={destinationRef}>
             <button
               onClick={() => {
                 setDestinationOpen(!destinationOpen);
                 setDateOpen(false);
                 setDestinationError(false); // Clear error on click
               }}
-              className={`w-full bg-white rounded-full px-6 py-4 shadow-sm text-left transition-colors ${
-                destinationError 
-                  ? 'border-2 border-red-500' 
-                  : destinationOpen 
-                    ? 'border-2 border-[#C41E3A]' 
+              className={`w-full bg-white rounded-full px-4 sm:px-6 py-3 sm:py-4 shadow-sm text-left hover:shadow-md transition-all ${
+                destinationError
+                  ? 'border-2 border-red-500'
+                  : destinationOpen
+                    ? 'border-2 border-[#C41E3A]'
                     : 'border-2 border-gray-200'
               }`}
             >
-              <div className="text-sm text-gray-600 mb-1">Where do you want to go?</div>
+              <div className="text-xs sm:text-sm text-gray-600 mb-1">Where do you want to go?</div>
               <div className="flex items-center justify-between">
-                <span className="text-gray-900 font-medium">{getSelectedDestinationName()}</span>
+                <span className="text-sm sm:text-base text-gray-900 font-medium">{getSelectedDestinationName()}</span>
                 {destinationOpen ? (
                   <ChevronUp className="w-5 h-5 text-gray-400" />
                 ) : (
@@ -179,7 +179,7 @@ const SkiPassSearch: React.FC = () => {
 
             {/* Destination Dropdown Menu */}
             {destinationOpen && (
-              <div className="absolute top-full left-0 right-0 mt-2 bg-white rounded-lg shadow-lg border border-gray-200 z-50 max-h-96 overflow-y-auto">
+              <div className="absolute top-full left-0 right-0 mt-2 bg-white rounded-lg shadow-lg border border-gray-200 z-50 max-h-80 sm:max-h-96 overflow-y-auto">
                 <div className="p-4 space-y-3">
                   {destinations.map((dest) => (
                     <label
@@ -210,24 +210,24 @@ const SkiPassSearch: React.FC = () => {
           </div>
 
           {/* Date Dropdown */}
-          <div className="flex-1 min-w-[250px] relative" ref={dateRef}>
+          <div className="w-full lg:flex-1 lg:min-w-[220px] relative" ref={dateRef}>
             <button
               onClick={() => {
                 setDateOpen(!dateOpen);
                 setDestinationOpen(false);
                 setDateError(false); // Clear error on click
               }}
-              className={`w-full bg-white rounded-full px-6 py-4 shadow-sm text-left transition-colors ${
-                dateError 
-                  ? 'border-2 border-red-500' 
-                  : dateOpen 
-                    ? 'border-2 border-[#C41E3A]' 
+              className={`w-full bg-white rounded-full px-4 sm:px-6 py-3 sm:py-4 shadow-sm text-left hover:shadow-md transition-all ${
+                dateError
+                  ? 'border-2 border-red-500'
+                  : dateOpen
+                    ? 'border-2 border-[#C41E3A]'
                     : 'border-2 border-gray-200'
               }`}
             >
-              <div className="text-sm text-gray-600 mb-1">When</div>
+              <div className="text-xs sm:text-sm text-gray-600 mb-1">When</div>
               <div className="flex items-center justify-between">
-                <span className="text-gray-900 font-medium">
+                <span className="text-sm sm:text-base text-gray-900 font-medium">
                   {selectedDate
                     ? selectedDate.toLocaleDateString('en-US', {
                         month: 'short',
@@ -246,7 +246,7 @@ const SkiPassSearch: React.FC = () => {
 
             {/* Date Picker Dropdown */}
             {dateOpen && (
-              <div className="absolute top-full left-0 mt-2 bg-white rounded-lg shadow-lg border border-gray-200 z-50 p-4 min-w-[350px]">
+              <div className="absolute top-full left-0 right-0 mt-2 bg-white rounded-lg shadow-lg border border-gray-200 z-50 p-4 w-full sm:min-w-[350px] sm:right-auto">
                 {/* Calendar Header */}
                 <div className="flex items-center justify-between mb-4">
                   <button
@@ -316,9 +316,9 @@ const SkiPassSearch: React.FC = () => {
           </div>
 
           {/* Search Button */}
-          <button 
+          <button
             onClick={handleSearch}
-            className="bg-[#C41E3A] text-white px-10 py-4 rounded-full font-bold hover:bg-[#A01830] transition-colors whitespace-nowrap shadow-lg"
+            className="w-full lg:w-auto bg-[#C41E3A] text-white px-6 sm:px-10 py-3 sm:py-4 rounded-full font-bold hover:bg-[#A01830] transition-colors whitespace-nowrap shadow-lg hover:shadow-xl"
           >
             Buy Ski Pass
           </button>

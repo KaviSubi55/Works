@@ -137,26 +137,26 @@ const PackageSearch: React.FC = () => {
   };
 
   return (
-    <div className="bg-gray-100 py-6">
+    <div className="bg-gray-100 py-4 sm:py-6">
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-start gap-4 flex-wrap">
+        <div className="flex flex-col lg:flex-row items-stretch lg:items-start gap-3 sm:gap-4">
           {/* Destination Dropdown */}
-          <div className="flex-1 min-w-[300px] relative" ref={destinationRef}>
+          <div className="w-full lg:flex-1 lg:min-w-[280px] relative" ref={destinationRef}>
             <button
               onClick={() => {
                 setDestinationOpen(!destinationOpen);
                 setGuestsOpen(false);
                 setDestinationError(false); // Clear error on click
               }}
-              className={`w-full bg-white rounded-full px-6 py-4 shadow-sm text-left ${
-                destinationError 
-                  ? 'border-2 border-red-500' 
+              className={`w-full bg-white rounded-full px-4 sm:px-6 py-3 sm:py-4 shadow-sm text-left hover:shadow-md transition-shadow ${
+                destinationError
+                  ? 'border-2 border-red-500'
                   : 'border border-gray-200'
               }`}
             >
-              <div className="text-sm text-gray-600 mb-1">Where do you want to live?</div>
+              <div className="text-xs sm:text-sm text-gray-600 mb-1">Where do you want to live?</div>
               <div className="flex items-center justify-between">
-                <span className="text-gray-900 font-medium">
+                <span className="text-sm sm:text-base text-gray-900 font-medium">
                   {selectedDestinations.length === 0
                     ? 'Choose destination'
                     : `${selectedDestinations.length} selected`}
@@ -171,7 +171,7 @@ const PackageSearch: React.FC = () => {
 
             {/* Destination Dropdown Menu */}
             {destinationOpen && (
-              <div className="absolute top-full left-0 right-0 mt-2 bg-white rounded-lg shadow-lg border border-gray-200 z-50 max-h-96 overflow-y-auto">
+              <div className="absolute top-full left-0 right-0 mt-2 bg-white rounded-lg shadow-lg border border-gray-200 z-50 max-h-80 sm:max-h-96 overflow-y-auto">
                 <div className="p-4 space-y-3">
                   {destinations.map((dest) => (
                     <label
@@ -205,22 +205,22 @@ const PackageSearch: React.FC = () => {
           </div>
 
           {/* Guests Dropdown */}
-          <div className="flex-1 min-w-[250px] relative" ref={guestsRef}>
+          <div className="w-full lg:flex-1 lg:min-w-[220px] relative" ref={guestsRef}>
             <button
               onClick={() => {
                 setGuestsOpen(!guestsOpen);
                 setDestinationOpen(false);
                 setGuestsError(false); // Clear error on click
               }}
-              className={`w-full bg-white rounded-full px-6 py-4 shadow-sm text-left ${
-                guestsError 
-                  ? 'border-2 border-red-500' 
+              className={`w-full bg-white rounded-full px-4 sm:px-6 py-3 sm:py-4 shadow-sm text-left hover:shadow-md transition-shadow ${
+                guestsError
+                  ? 'border-2 border-red-500'
                   : 'border border-gray-200'
               }`}
             >
-              <div className="text-sm text-gray-600 mb-1">Which</div>
+              <div className="text-xs sm:text-sm text-gray-600 mb-1">Which</div>
               <div className="flex items-center justify-between">
-                <span className="text-gray-900 font-medium">
+                <span className="text-sm sm:text-base text-gray-900 font-medium">
                   {totalGuests === 0 ? 'Add guests' : `${totalGuests} guest${totalGuests !== 1 ? 's' : ''}`}
                 </span>
                 {guestsOpen ? (
@@ -233,7 +233,7 @@ const PackageSearch: React.FC = () => {
 
             {/* Guests Dropdown Menu */}
             {guestsOpen && (
-              <div className="absolute top-full left-0 right-0 mt-2 bg-white rounded-lg shadow-lg border border-gray-200 z-50 min-w-[350px]">
+              <div className="absolute top-full left-0 right-0 mt-2 bg-white rounded-lg shadow-lg border border-gray-200 z-50 w-full sm:min-w-[350px]">
                 <div className="p-6 space-y-6">
                   {/* Adults */}
                   <div className="flex items-center justify-between">
@@ -318,9 +318,9 @@ const PackageSearch: React.FC = () => {
           </div>
 
           {/* Search Button */}
-          <button 
+          <button
             onClick={handleSearch}
-            className="bg-[#C41E3A] text-white px-8 py-4 rounded-full font-bold hover:bg-[#A01830] transition-colors whitespace-nowrap shadow-lg"
+            className="w-full lg:w-auto bg-[#C41E3A] text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-bold hover:bg-[#A01830] transition-colors whitespace-nowrap shadow-lg hover:shadow-xl"
           >
             Find a package holiday
           </button>
