@@ -54,7 +54,6 @@ const SkiPassSearch: React.FC = () => {
   // Handle destination selection
   const handleDestinationSelect = (id: string) => {
     setSelectedDestination(id);
-    setDestinationOpen(false);
   };
 
   // Clear destination
