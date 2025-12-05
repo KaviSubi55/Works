@@ -57,9 +57,16 @@ const HeroSection: React.FC = () => {
           {/* Right Side Cards */}
           <div className="lg:col-span-4 flex flex-col gap-6">
             {/* Top Card - Sports Holiday */}
-            <div className="relative h-[250px] rounded-2xl overflow-hidden group cursor-pointer bg-linear-to-br from-blue-400 via-blue-300 to-blue-200">
-              {/* You can add background image here */}
-              
+            <div className="relative h-[250px] rounded-2xl overflow-hidden group cursor-pointer">
+              {/* Background - Winter image */}
+              <div
+                className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+                style={{ backgroundImage: 'url(/winter-home4.jpg)' }}
+              >
+                {/* Dark overlay for better text readability */}
+                <div className="absolute inset-0 bg-black/30" />
+              </div>
+
               {/* Content */}
               <div className="absolute bottom-0 left-0 right-0 p-6 bg-linear-to-t from-black/70 via-black/40 to-transparent z-10">
                 <h3 className="text-white text-2xl lg:text-3xl font-bold mb-2 leading-tight">
