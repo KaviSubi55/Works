@@ -126,15 +126,23 @@ export default function ArePage() {
           {locations.map((location) => (
             <div
               key={location.name}
-              className="bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-shadow group"
+              className="relative rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-shadow group"
             >
-              <div className="p-6">
+              {/* Background Image */}
+              <div
+                className="absolute inset-0 bg-cover bg-center"
+                style={{ backgroundImage: 'url(/winter-home3.jpg)' }}
+              >
+                <div className="absolute inset-0 bg-black/50" />
+              </div>
+
+              <div className="relative z-10 p-6">
                 <div className="flex items-start justify-between mb-3">
                   <div>
-                    <h3 className="text-2xl font-bold text-gray-900 mb-1 group-hover:text-[#C41E3A] transition-colors">
+                    <h3 className="text-2xl font-bold text-white mb-1 group-hover:text-[#C41E3A] transition-colors">
                       {location.name}
                     </h3>
-                    <div className="flex items-center gap-2 text-gray-600">
+                    <div className="flex items-center gap-2 text-white">
                       <MapPin className="w-4 h-4" />
                       <span className="text-sm">{location.area}</span>
                     </div>
@@ -142,25 +150,25 @@ export default function ArePage() {
                   <Home className="w-6 h-6 text-[#C41E3A]" />
                 </div>
 
-                <p className="text-gray-700 mb-4 min-h-[60px]">{location.description}</p>
+                <p className="text-white mb-4 min-h-[60px]">{location.description}</p>
 
                 <div className="space-y-2 mb-4">
-                  <div className="flex items-center gap-2 text-sm text-gray-600">
+                  <div className="flex items-center gap-2 text-sm text-white">
                     <Ski className="w-4 h-4" />
                     <span>{location.distance}</span>
                   </div>
-                  <div className="flex items-center gap-2 text-sm text-gray-600">
+                  <div className="flex items-center gap-2 text-sm text-white">
                     <Home className="w-4 h-4" />
                     <span>{location.beds}</span>
                   </div>
                 </div>
 
-                <div className="border-t border-gray-100 pt-4">
+                <div className="border-t border-white/30 pt-4">
                   <div className="flex flex-wrap gap-2 mb-4">
                     {location.amenities.map((amenity) => (
                       <span
                         key={amenity}
-                        className="px-3 py-1 bg-gray-100 text-gray-700 text-xs rounded-full"
+                        className="px-3 py-1 bg-white/20 backdrop-blur-sm text-white text-xs rounded-full"
                       >
                         {amenity}
                       </span>
@@ -169,7 +177,7 @@ export default function ArePage() {
 
                   <Link
                     href={`/accommodation?destination=Åre&location=${encodeURIComponent(location.name)}`}
-                    className="flex items-center justify-between text-[#C41E3A] font-semibold hover:gap-3 transition-all group"
+                    className="flex items-center justify-between text-white font-semibold hover:gap-3 transition-all group bg-[#C41E3A] px-4 py-2 rounded-lg hover:bg-[#A01830]"
                   >
                     <span>View Details</span>
                     <ChevronRight className="w-5 h-5" />
