@@ -26,6 +26,22 @@ export default function RentListingPage() {
   }, [searchParams]);
   return (
     <div className="min-h-screen bg-gray-50">
+      {/* Hero Section with Background Image */}
+      <div className="relative h-[300px] w-full">
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: 'url(/winter-home.jpg)' }}
+        >
+          <div className="absolute inset-0 bg-black/40" />
+        </div>
+        <div className="relative z-10 h-full flex items-center justify-center">
+          <div className="text-center">
+            <h1 className="text-5xl font-bold text-white mb-4">Rent Your Equipment</h1>
+            <p className="text-xl text-white">High-quality ski and snowboard rentals for your mountain adventure</p>
+          </div>
+        </div>
+      </div>
+
       {/* Page Header */}
       <div className="bg-white border-b border-gray-200">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-8">
