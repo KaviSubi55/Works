@@ -13,10 +13,13 @@ const HeroSection: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
           {/* Main Banner - Left Side (Large) */}
           <div className="lg:col-span-8 relative h-[400px] lg:h-[500px] rounded-2xl overflow-hidden group cursor-pointer">
-            {/* Background - Dark gradient */}
-            <div className="absolute inset-0 bg-linear-to-br from-gray-900 via-gray-800 to-black">
-              {/* You can add background image here */}
-              <div className="absolute inset-0 bg-black/20" />
+            {/* Background - Winter image */}
+            <div
+              className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+              style={{ backgroundImage: 'url(/winter-home.jpg)' }}
+            >
+              {/* Dark overlay for better text readability */}
+              <div className="absolute inset-0 bg-black/30" />
             </div>
 
             {/* Discount Badge - Hexagon using Tailwind */}
