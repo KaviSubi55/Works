@@ -77,16 +77,28 @@ const HeroSection: React.FC = () => {
             </div>
 
             {/* Bottom Card - Opening Dates */}
-            <div className="relative h-[250px] rounded-2xl overflow-hidden bg-[#C41E3A] text-white p-8 flex flex-col justify-between group cursor-pointer hover:bg-[#A01830] transition-colors shadow-lg">
-              <div>
-                <h3 className="text-3xl lg:text-4xl font-bold mb-4 leading-tight">
-                  We open on November 28th!!
-                </h3>
+            <div className="relative h-[250px] rounded-2xl overflow-hidden text-white group cursor-pointer shadow-lg">
+              {/* Background - Winter image */}
+              <div
+                className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+                style={{ backgroundImage: 'url(/winter-home.jpg)' }}
+              >
+                {/* Overlay for text readability */}
+                <div className="absolute inset-0 bg-[#C41E3A]/70 group-hover:bg-[#A01830]/70 transition-colors" />
               </div>
-              <p className="text-white font-medium flex items-center gap-2 group-hover:gap-3 transition-all">
-                See all official opening dates
-                <ChevronRight className="w-5 h-5 shrink-0" />
-              </p>
+
+              {/* Content */}
+              <div className="relative z-10 p-8 flex flex-col justify-between h-full">
+                <div>
+                  <h3 className="text-3xl lg:text-4xl font-bold mb-4 leading-tight">
+                    We open on November 28th!!
+                  </h3>
+                </div>
+                <p className="text-white font-medium flex items-center gap-2 group-hover:gap-3 transition-all">
+                  See all official opening dates
+                  <ChevronRight className="w-5 h-5 shrink-0" />
+                </p>
+              </div>
             </div>
           </div>
         </div>
