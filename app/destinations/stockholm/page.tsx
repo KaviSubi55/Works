@@ -1,5 +1,3 @@
-'use client';
-
 import React from 'react';
 import Link from 'next/link';
 import { Building2, Landmark, Home, MapPin, ChevronRight, Coffee, ShoppingBag, Camera, Ship } from 'lucide-react';
