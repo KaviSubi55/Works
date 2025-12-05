@@ -12,7 +12,7 @@ const HeroSection: React.FC = () => {
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
           {/* Main Banner - Left Side (Large) */}
-          <div className="lg:col-span-8 relative h-[400px] lg:h-[500px] rounded-2xl overflow-hidden group cursor-pointer">
+          <div className="lg:col-span-8 relative h-[400px] lg:h-[525px] rounded-2xl overflow-hidden group cursor-pointer">
             {/* Background - Winter image */}
             <div
               className="absolute inset-0 bg-cover bg-center bg-no-repeat"
@@ -58,7 +58,7 @@ const HeroSection: React.FC = () => {
               {/* Background - Winter image */}
               <div
                 className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-                style={{ backgroundImage: 'url(/winter-home4.jpg)' }}
+                style={{ backgroundImage: 'url(/winter-home5.jpg)' }}
               >
                 {/* Dark overlay for better text readability */}
                 <div className="absolute inset-0 bg-black/30" />
