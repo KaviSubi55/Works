@@ -18,8 +18,8 @@ const HeroSection: React.FC = () => {
               className="absolute inset-0 bg-cover bg-center bg-no-repeat"
               style={{ backgroundImage: 'url(/winter-home2.jpg)' }}
             >
-              {/* Dark overlay for better text readability */}
-              <div className="absolute inset-0 bg-black/30" />
+              {/* Light overlay for text readability */}
+              <div className="absolute inset-0 bg-black/10" />
             </div>
 
             {/* Discount Badge - Hexagon using Tailwind */}
@@ -49,9 +49,6 @@ const HeroSection: React.FC = () => {
                 <ChevronRight className="w-12 h-12 shrink-0" />
               </h2>
             </div>
-
-            {/* Hover Overlay */}
-            <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-20 transition-opacity" />
           </div>
 
           {/* Right Side Cards */}
