@@ -16,7 +16,7 @@ const HeroSection: React.FC = () => {
             {/* Background - Winter image */}
             <div
               className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-              style={{ backgroundImage: 'url(/winter-home.jpg)' }}
+              style={{ backgroundImage: 'url(/winter-home2.jpg)' }}
             >
               {/* Dark overlay for better text readability */}
               <div className="absolute inset-0 bg-black/30" />
