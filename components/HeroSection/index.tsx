@@ -84,7 +84,7 @@ const HeroSection: React.FC = () => {
                 style={{ backgroundImage: 'url(/winter-home.jpg)' }}
               >
                 {/* Overlay for text readability */}
-                <div className="absolute inset-0 bg-[#C41E3A]/70 group-hover:bg-[#A01830]/70 transition-colors" />
+                <div className="absolute inset-0 bg-[#C41E3A]/20 group-hover:bg-[#A01830]/30 transition-colors" />
               </div>
 
               {/* Content */}
