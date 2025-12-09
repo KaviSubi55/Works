@@ -1,13 +1,13 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { Package, Info, ShoppingCart } from 'lucide-react';
+import { Package, Info, ShoppingCart, ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface RentCardProps {
   id: string;
   title: string;
   description: string;
-  image: string;
+  images: string[];
   category?: string;
   includes?: string[];
   price?: number;
@@ -21,7 +21,7 @@ const RentCard: React.FC<RentCardProps> = ({
   id,
   title,
   description,
-  image,
+  images,
   category,
   includes,
   price,
@@ -30,6 +30,7 @@ const RentCard: React.FC<RentCardProps> = ({
   buttonText,
   onButtonClick,
 }) => {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isInCart, setIsInCart] = useState(false);
 
   // Check if item is already in cart
@@ -60,14 +61,24 @@ const RentCard: React.FC<RentCardProps> = ({
       onButtonClick();
     }
   };
+
+  const nextImage = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setCurrentImageIndex((prev) => (prev + 1) % images.length);
+  };
+
+  const prevImage = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
+  };
   return (
     <div className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow border border-gray-200">
       <div className="grid grid-cols-1 md:grid-cols-12 gap-0">
-        {/* Image */}
-        <div className="md:col-span-5 relative">
+        {/* Image Gallery */}
+        <div className="md:col-span-5 relative group">
           <div className="relative aspect-4/3 bg-gray-200">
             <img
-              src={image || '/rent-placeholder.jpg'}
+              src={images[currentImageIndex] || '/rent-placeholder.jpg'}
               alt={title}
               className="w-full h-full object-cover"
             />
@@ -75,6 +86,29 @@ const RentCard: React.FC<RentCardProps> = ({
               <div className="absolute top-4 left-4 bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium">
                 {category}
               </div>
+            )}
+
+            {/* Image Counter */}
+            <div className="absolute bottom-4 right-4 bg-black/70 text-white px-3 py-1 rounded-full text-sm font-medium">
+              {currentImageIndex + 1}/{images.length}
+            </div>
+
+            {/* Navigation Arrows */}
+            {images.length > 1 && (
+              <>
+                <button
+                  onClick={prevImage}
+                  className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-gray-50"
+                >
+                  <ChevronLeft className="w-6 h-6 text-gray-900" />
+                </button>
+                <button
+                  onClick={nextImage}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-gray-50"
+                >
+                  <ChevronRight className="w-6 h-6 text-gray-900" />
+                </button>
+              </>
             )}
           </div>
         </div>

@@ -81,7 +81,7 @@ export default function RentListingPage() {
                 id={rental.id}
                 title={rental.title}
                 description={rental.description}
-                image={rental.image}
+                images={rental.images}
                 category={rental.category}
                 includes={rental.features}
                 price={rental.price}
@@ -100,7 +100,7 @@ export default function RentListingPage() {
                     name: rental.title,
                     location: rental.location,
                     area: rental.location,
-                    image: rental.image,
+                    image: rental.images[0],
                     propertyType: rental.type,
                     beds: rental.priceUnit,
                     price: rental.price,

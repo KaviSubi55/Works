@@ -11,7 +11,7 @@ export interface Rental {
   priceUnit: string;
   recommended: boolean;
   description: string;
-  image: string;
+  images: string[];
 }
 
 export const rentals: Rental[] = [
@@ -29,7 +29,7 @@ export const rentals: Rental[] = [
     priceUnit: 'SEK/day',
     recommended: true,
     description: 'Premium ski equipment from leading brands. Includes skis, boots, poles, and safety helmet.',
-    image: '/rent-ski.jpg',
+    images: ['/rent-ski.jpg', '/rent-ski-2.jpg', '/rent-ski-3.jpg'],
   },
   {
     id: 'are-rent-2',
@@ -44,7 +44,7 @@ export const rentals: Rental[] = [
     priceUnit: 'SEK/day',
     recommended: true,
     description: 'Quality standard ski equipment suitable for all skill levels.',
-    image: '/rental-ski-standard.jpg',
+    images: ['/rental-ski-standard.jpg', '/rental-ski-standard-2.jpg', '/rental-ski-standard-3.jpg'],
   },
   {
     id: 'are-rent-3',
@@ -59,7 +59,7 @@ export const rentals: Rental[] = [
     priceUnit: 'SEK/day',
     recommended: true,
     description: 'Complete snowboard package with safety equipment included.',
-    image: '/rental-snowboard.jpg',
+    images: ['/rental-snowboard.jpg', '/rental-snowboard-2.jpg', '/rental-snowboard-3.jpg'],
   },
   {
     id: 'are-rent-4',
@@ -74,7 +74,7 @@ export const rentals: Rental[] = [
     priceUnit: 'SEK/day',
     recommended: true,
     description: 'Child-sized ski equipment with free size adjustments as they grow.',
-    image: '/rental-kids-ski.jpg',
+    images: ['/rental-kids-ski.jpg', '/rental-kids-ski-2.jpg', '/rental-kids-ski-3.jpg'],
   },
   {
     id: 'are-rent-5',
@@ -89,7 +89,7 @@ export const rentals: Rental[] = [
     priceUnit: 'SEK/day',
     recommended: false,
     description: 'Safety helmet available in all sizes, certified for skiing and snowboarding.',
-    image: '/rental-helmet.jpg',
+    images: ['/rental-helmet.jpg', '/rental-helmet-2.jpg', '/rental-helmet-3.jpg'],
   },
   {
     id: 'are-rent-6',
@@ -104,7 +104,7 @@ export const rentals: Rental[] = [
     priceUnit: 'SEK/day',
     recommended: false,
     description: 'Cross-country skiing equipment with access to groomed trails.',
-    image: '/rental-cross-country.jpg',
+    images: ['/rental-cross-country.jpg', '/rental-cross-country-2.jpg', '/rental-cross-country-3.jpg'],
   },
 
   // Stockholm Rentals (Bikes, Boats, etc.)
@@ -121,7 +121,7 @@ export const rentals: Rental[] = [
     priceUnit: 'SEK/day',
     recommended: true,
     description: 'Premium city bike perfect for exploring Stockholm. Includes helmet and lock.',
-    image: '/rental-bike-premium.jpg',
+    images: ['/rental-bike-premium.jpg', '/rental-bike-premium-2.jpg', '/rental-bike-premium-3.jpg'],
   },
   {
     id: 'stockholm-rent-2',
@@ -136,7 +136,7 @@ export const rentals: Rental[] = [
     priceUnit: 'SEK/day',
     recommended: true,
     description: 'Comfortable city bike for touring Stockholm at your own pace.',
-    image: '/rental-bike-standard.jpg',
+    images: ['/rental-bike-standard.jpg', '/rental-bike-standard-2.jpg', '/rental-bike-standard-3.jpg'],
   },
   {
     id: 'stockholm-rent-3',
@@ -151,7 +151,7 @@ export const rentals: Rental[] = [
     priceUnit: 'SEK/day',
     recommended: true,
     description: 'Electric bike for effortless city exploration. Full-day battery life.',
-    image: '/rental-ebike.jpg',
+    images: ['/rental-ebike.jpg', '/rental-ebike-2.jpg', '/rental-ebike-3.jpg'],
   },
   {
     id: 'stockholm-rent-4',
@@ -166,7 +166,7 @@ export const rentals: Rental[] = [
     priceUnit: 'SEK/hour',
     recommended: true,
     description: 'Single kayak rental for exploring Stockholm waterways.',
-    image: '/rental-kayak-single.jpg',
+    images: ['/rental-kayak-single.jpg', '/rental-kayak-single-2.jpg', '/rental-kayak-single-3.jpg'],
   },
   {
     id: 'stockholm-rent-5',
@@ -181,7 +181,7 @@ export const rentals: Rental[] = [
     priceUnit: 'SEK/hour',
     recommended: true,
     description: 'Double kayak perfect for couples or friends to explore together.',
-    image: '/rental-kayak-double.jpg',
+    images: ['/rental-kayak-double.jpg', '/rental-kayak-double-2.jpg', '/rental-kayak-double-3.jpg'],
   },
   {
     id: 'stockholm-rent-6',
@@ -196,7 +196,7 @@ export const rentals: Rental[] = [
     priceUnit: 'SEK/day',
     recommended: false,
     description: 'Small motorboat for island hopping in the Stockholm archipelago.',
-    image: '/rental-boat-small.jpg',
+    images: ['/rental-boat-small.jpg', '/rental-boat-small-2.jpg', '/rental-boat-small-3.jpg'],
   },
   {
     id: 'stockholm-rent-7',
@@ -211,7 +211,7 @@ export const rentals: Rental[] = [
     priceUnit: 'SEK/day',
     recommended: true,
     description: 'Electric scooter for quick and fun city transportation.',
-    image: '/rental-scooter.jpg',
+    images: ['/rental-scooter.jpg', '/rental-scooter-2.jpg', '/rental-scooter-3.jpg'],
   },
 ];
 
