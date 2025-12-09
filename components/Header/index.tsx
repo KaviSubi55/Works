@@ -36,16 +36,18 @@ const Header: React.FC<HeaderProps> = ({ navigationItems }) => {
     // Set initial cart count
     setCartCount(getCartCount());
 
-    // Listen for cart updates
+    // Listen for cart updates and user login/logout
     const handleCartUpdate = () => {
       setCartCount(getCartCount());
     };
 
     window.addEventListener('cartUpdated', handleCartUpdate);
+    window.addEventListener('userLoggedIn', handleCartUpdate); // Also listen for login/logout
 
     // Cleanup
     return () => {
       window.removeEventListener('cartUpdated', handleCartUpdate);
+      window.removeEventListener('userLoggedIn', handleCartUpdate);
     };
   }, []);
 
