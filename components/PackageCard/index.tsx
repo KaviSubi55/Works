@@ -124,6 +124,11 @@ const PackageCard: React.FC<PackageCardProps> = ({
               <span className="text-sm font-medium">{includes}</span>
             </div>
 
+            {/* Image Counter */}
+            <div className="absolute bottom-4 right-4 bg-black/70 text-white px-3 py-1 rounded-full text-sm font-medium">
+              {currentImageIndex + 1}/{images.length}
+            </div>
+
             {/* Navigation Arrows */}
             {images.length > 1 && (
               <>
