@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Menu, X, Search, ShoppingCart, User, ChevronDown, Snowflake, Sun } from 'lucide-react';
+import { Menu, X, ShoppingCart, User, ChevronDown, Snowflake, Sun } from 'lucide-react';
 import { HeaderProps } from '@/utils/types';
 import MegaMenu from '../MegaMenu';
 import LanguageSelector from '../LanguageSelector';
@@ -56,7 +56,7 @@ const Header: React.FC<HeaderProps> = ({ navigationItems }) => {
             </div>
 
             {/* Right Section: Icons */}
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-5">
               {/* Winter Logo */}
               <div className="relative group flex items-center justify-center w-10 h-10 text-gray-700 hover:text-[#C41E3A] transition-colors cursor-pointer">
                 <Snowflake className="w-5 h-5" />
@@ -74,14 +74,6 @@ const Header: React.FC<HeaderProps> = ({ navigationItems }) => {
                   <div className="absolute -top-1 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-gray-900 rotate-45"></div>
                 </div>
               </div>
-
-              {/* Search Icon */}
-              <button
-                className="flex items-center justify-center w-10 h-10 text-gray-700 hover:text-[#C41E3A] transition-colors"
-                aria-label="Search"
-              >
-                <Search className="w-5 h-5" />
-              </button>
 
               {/* Shopping Cart Icon */}
               <div className="relative">
@@ -139,7 +131,7 @@ const Header: React.FC<HeaderProps> = ({ navigationItems }) => {
             </div>
 
             {/* Bottom Row: All Icons */}
-            <div className="flex items-center justify-center gap-2 sm:gap-3">
+            <div className="flex items-center justify-center gap-3 sm:gap-4">
               {/* Winter Logo */}
               <div className="relative group flex items-center justify-center w-9 h-9 text-gray-700 hover:text-[#C41E3A] transition-colors cursor-pointer">
                 <Snowflake className="w-4 h-4" />
@@ -157,14 +149,6 @@ const Header: React.FC<HeaderProps> = ({ navigationItems }) => {
                   <div className="absolute -top-1 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-gray-900 rotate-45"></div>
                 </div>
               </div>
-
-              {/* Search Icon */}
-              <button
-                className="flex items-center justify-center w-9 h-9 text-gray-700 hover:text-[#C41E3A] transition-colors"
-                aria-label="Search"
-              >
-                <Search className="w-4 h-4" />
-              </button>
 
               {/* Shopping Cart Icon */}
               <div className="relative">
