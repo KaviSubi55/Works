@@ -14,9 +14,26 @@ const LoginPage: React.FC = () => {
     e.preventDefault();
     setError('');
 
-    // Validation: Check username is not empty
-    if (username.trim().length === 0) {
+    // Validation: Check username length
+    if (username.length === 0) {
       setError('Please enter a username');
+      return;
+    }
+
+    if (username.length < 4) {
+      setError('Username must be at least 4 characters');
+      return;
+    }
+
+    if (username.length > 15) {
+      setError('Username must not exceed 15 characters');
+      return;
+    }
+
+    // Check if username contains only letters
+    const onlyLetters = /^[A-Za-z]+$/;
+    if (!onlyLetters.test(username)) {
+      setError('Username must contain only letters (no numbers or special characters)');
       return;
     }
 
@@ -37,7 +54,10 @@ const LoginPage: React.FC = () => {
   };
 
   const handleUsernameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setUsername(e.target.value);
+    const value = e.target.value;
+    // Only allow letters
+    const onlyLetters = value.replace(/[^A-Za-z]/g, '');
+    setUsername(onlyLetters);
     setError(''); // Clear error when user types
   };
 
@@ -78,12 +98,18 @@ const LoginPage: React.FC = () => {
                   value={username}
                   onChange={handleUsernameChange}
                   placeholder="Enter your username"
+                  maxLength={15}
                   className={`block w-full pl-10 pr-3 py-3 border rounded-lg focus:outline-none focus:ring-2 transition-colors ${
                     error
                       ? 'border-red-500 focus:ring-red-500 focus:border-red-500'
                       : 'border-gray-300 focus:ring-[#C41E3A] focus:border-[#C41E3A]'
                   }`}
                 />
+              </div>
+
+              {/* Character count */}
+              <div className="mt-1 text-xs text-gray-500 text-right">
+                {username.length}/15 characters
               </div>
             </div>
 
@@ -102,9 +128,9 @@ const LoginPage: React.FC = () => {
             {/* Login Button */}
             <button
               type="submit"
-              disabled={isLoading || username.trim().length === 0}
+              disabled={isLoading || username.length < 4}
               className={`w-full py-3 px-4 rounded-lg font-bold text-white transition-colors flex items-center justify-center gap-2 ${
-                isLoading || username.trim().length === 0
+                isLoading || username.length < 4
                   ? 'bg-gray-400 cursor-not-allowed'
                   : 'bg-[#C41E3A] hover:bg-[#A01830]'
               }`}
