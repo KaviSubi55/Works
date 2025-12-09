@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Menu, X, ShoppingCart, User, ChevronDown, Snowflake, Sun } from 'lucide-react';
@@ -14,10 +14,43 @@ const Header: React.FC<HeaderProps> = ({ navigationItems }) => {
   const [isMegaMenuOpen, setIsMegaMenuOpen] = useState(false);
   const [currentLanguage, setCurrentLanguage] = useState('SE');
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [cartCount, setCartCount] = useState(0);
 
   const defaultNavItems = navigationItems || [
     { label: 'Destinations', href: '/destinations', hasDropdown: true },
   ];
+
+  // Function to get cart count from localStorage
+  const getCartCount = () => {
+    const cartItems = localStorage.getItem('cartItems');
+    if (cartItems) {
+      try {
+        const items = JSON.parse(cartItems);
+        return Array.isArray(items) ? items.length : 0;
+      } catch (error) {
+        return 0;
+      }
+    }
+    return 0;
+  };
+
+  // Update cart count on mount and when cart changes
+  useEffect(() => {
+    // Set initial cart count
+    setCartCount(getCartCount());
+
+    // Listen for cart updates
+    const handleCartUpdate = () => {
+      setCartCount(getCartCount());
+    };
+
+    window.addEventListener('cartUpdated', handleCartUpdate);
+
+    // Cleanup
+    return () => {
+      window.removeEventListener('cartUpdated', handleCartUpdate);
+    };
+  }, []);
 
   return (
     <>
@@ -84,6 +117,11 @@ const Header: React.FC<HeaderProps> = ({ navigationItems }) => {
                 >
                   <ShoppingCart className="w-5 h-5" />
                 </button>
+                {cartCount > 0 && (
+                  <div className="absolute -top-1 -right-1 bg-[#C41E3A] text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
+                    {cartCount}
+                  </div>
+                )}
                 <CartDropdown isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
               </div>
 
@@ -159,6 +197,11 @@ const Header: React.FC<HeaderProps> = ({ navigationItems }) => {
                 >
                   <ShoppingCart className="w-4 h-4" />
                 </button>
+                {cartCount > 0 && (
+                  <div className="absolute -top-1 -right-1 bg-[#C41E3A] text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
+                    {cartCount}
+                  </div>
+                )}
                 <CartDropdown isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
               </div>
 
