@@ -41,12 +41,11 @@ const CartDropdown: React.FC<CartDropdownProps> = ({ isOpen, onClose }) => {
     // Load cart items
     loadCartItems();
 
-    // Listen for login events
+    // Listen for login/logout events
     const handleLoginEvent = () => {
       const updatedUsername = localStorage.getItem('username');
-      if (updatedUsername) {
-        setUsername(updatedUsername);
-      }
+      setUsername(updatedUsername || ''); // Update for both login and logout
+      loadCartItems(); // Reload cart items for the new user state
     };
 
     // Listen for cart updates

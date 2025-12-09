@@ -54,8 +54,9 @@ const UserMenu: React.FC = () => {
     setIsLoggedIn(false);
     setIsDropdownOpen(false);
 
-    // Notify other components about cart update
-    window.dispatchEvent(new Event('cartUpdated'));
+    // Notify other components about user state and cart changes
+    window.dispatchEvent(new Event('userLoggedIn')); // Triggers username update in components
+    window.dispatchEvent(new Event('cartUpdated')); // Triggers cart reload
 
     router.push('/login');
   };
