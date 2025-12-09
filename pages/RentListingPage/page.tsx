@@ -7,6 +7,7 @@ import SearchSummaryBar from '@/components/Searchsummarybar';
 import RentFilterBar from '@/components/RentFilterBar';
 import RentCard from '@/components/RentCard';
 import { getRentalsByDestination, Rental } from '@/data/rentals';
+import { getCartItems, setCartItems as saveCartItems } from '@/utils/cartUtils';
 
 export default function RentListingPage() {
   const searchParams = useSearchParams();
@@ -87,7 +88,7 @@ export default function RentListingPage() {
                 price={rental.price}
                 buttonText="Add to Cart"
                 onButtonClick={() => {
-                  const cartItems = JSON.parse(localStorage.getItem('cartItems') || '[]');
+                  const cartItems = getCartItems();
 
                   // Check if item already exists in cart
                   const existingIndex = cartItems.findIndex((item: any) => item.id === rental.id);
@@ -107,7 +108,7 @@ export default function RentListingPage() {
                     addedAt: new Date().toISOString(),
                   };
                   cartItems.push(cartItem);
-                  localStorage.setItem('cartItems', JSON.stringify(cartItems));
+                  saveCartItems(cartItems);
                   window.dispatchEvent(new Event('cartUpdated'));
                 }}
               />

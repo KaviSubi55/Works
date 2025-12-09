@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { ShoppingCart, X } from 'lucide-react';
+import { getCartItems, setCartItems as saveCartItems } from '@/utils/cartUtils';
 
 interface CartItem {
   id: string;
@@ -26,7 +27,7 @@ const CartDropdown: React.FC<CartDropdownProps> = ({ isOpen, onClose }) => {
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   const loadCartItems = () => {
-    const items = JSON.parse(localStorage.getItem('cartItems') || '[]');
+    const items = getCartItems();
     setCartItems(items);
   };
 
@@ -101,7 +102,7 @@ const CartDropdown: React.FC<CartDropdownProps> = ({ isOpen, onClose }) => {
   const removeFromCart = (e: React.MouseEvent, id: string) => {
     e.stopPropagation(); // Prevent event bubbling to click-outside handler
     const updatedCart = cartItems.filter(item => item.id !== id);
-    localStorage.setItem('cartItems', JSON.stringify(updatedCart));
+    saveCartItems(updatedCart);
     setCartItems(updatedCart);
     window.dispatchEvent(new Event('cartUpdated'));
   };

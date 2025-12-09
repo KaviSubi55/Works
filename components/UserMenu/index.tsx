@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { LogOut, LogIn, User } from 'lucide-react';
+import { clearCart } from '@/utils/cartUtils';
 
 const UserMenu: React.FC = () => {
   const router = useRouter();
@@ -47,11 +48,18 @@ const UserMenu: React.FC = () => {
   }, []);
 
   const handleLogout = () => {
+    // Clear the user's cart before logging out
+    clearCart();
+
     localStorage.removeItem('username');
     localStorage.removeItem('isLoggedIn');
     setUsername(null);
     setIsLoggedIn(false);
     setIsDropdownOpen(false);
+
+    // Notify other components about cart update
+    window.dispatchEvent(new Event('cartUpdated'));
+
     router.push('/login');
   };
 

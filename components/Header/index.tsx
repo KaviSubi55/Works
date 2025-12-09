@@ -9,6 +9,7 @@ import MegaMenu from '../MegaMenu';
 import LanguageSelector from '../LanguageSelector';
 import UserMenu from '../UserMenu';
 import CartDropdown from '../CartDropdown';
+import { getCartItems } from '@/utils/cartUtils';
 
 const Header: React.FC<HeaderProps> = ({ navigationItems }) => {
   const [isMegaMenuOpen, setIsMegaMenuOpen] = useState(false);
@@ -22,16 +23,12 @@ const Header: React.FC<HeaderProps> = ({ navigationItems }) => {
 
   // Function to get cart count from localStorage
   const getCartCount = () => {
-    const cartItems = localStorage.getItem('cartItems');
-    if (cartItems) {
-      try {
-        const items = JSON.parse(cartItems);
-        return Array.isArray(items) ? items.length : 0;
-      } catch (error) {
-        return 0;
-      }
+    try {
+      const items = getCartItems();
+      return Array.isArray(items) ? items.length : 0;
+    } catch (error) {
+      return 0;
     }
-    return 0;
   };
 
   // Update cart count on mount and when cart changes
