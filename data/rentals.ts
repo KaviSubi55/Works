@@ -29,7 +29,7 @@ export const rentals: Rental[] = [
     priceUnit: 'SEK/day',
     recommended: true,
     description: 'Premium ski equipment from leading brands. Includes skis, boots, poles, and safety helmet.',
-    image: '/rental-ski-premium.jpg',
+    image: '/rent-ski.jpg',
   },
   {
     id: 'are-rent-2',
