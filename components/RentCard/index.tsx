@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Package, Info, ShoppingCart, ChevronLeft, ChevronRight } from 'lucide-react';
+import { getCartItems } from '@/utils/cartUtils';
 
 interface RentCardProps {
   id: string;
@@ -35,7 +36,7 @@ const RentCard: React.FC<RentCardProps> = ({
 
   // Check if item is already in cart
   const checkIfInCart = () => {
-    const cartItems = JSON.parse(localStorage.getItem('cartItems') || '[]');
+    const cartItems = getCartItems();
     const exists = cartItems.some((item: any) => item.id === id);
     setIsInCart(exists);
   };

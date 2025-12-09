@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Ticket, Clock, CheckCircle2, ShoppingCart } from 'lucide-react';
+import { getCartItems, setCartItems as saveCartItems } from '@/utils/cartUtils';
 
 interface SkiPassCardProps {
   id: string;
@@ -32,7 +33,7 @@ const SkiPassCard: React.FC<SkiPassCardProps> = ({
 
   // Check if item is already in cart
   const checkIfInCart = () => {
-    const cartItems = JSON.parse(localStorage.getItem('cartItems') || '[]');
+    const cartItems = getCartItems();
     const exists = cartItems.some((item: any) => item.id === id);
     setIsInCart(exists);
   };
@@ -56,7 +57,7 @@ const SkiPassCard: React.FC<SkiPassCardProps> = ({
   const handleAddToCart = () => {
     if (isInCart) return; // Don't add if already in cart
 
-    const cartItems = JSON.parse(localStorage.getItem('cartItems') || '[]');
+    const cartItems = getCartItems();
     const existingItemIndex = cartItems.findIndex((item: any) => item.id === id);
 
     if (existingItemIndex === -1) {
@@ -73,7 +74,7 @@ const SkiPassCard: React.FC<SkiPassCardProps> = ({
       };
 
       cartItems.push(cartItem);
-      localStorage.setItem('cartItems', JSON.stringify(cartItems));
+      saveCartItems(cartItems);
       window.dispatchEvent(new Event('cartUpdated'));
     }
   };

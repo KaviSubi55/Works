@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight, Building2, Bed, Mountain, Snowflake, Plane, Train, Key, ShoppingCart } from 'lucide-react';
+import { getCartItems, setCartItems as saveCartItems } from '@/utils/cartUtils';
 
 interface PropertyCardProps {
   id: string;
@@ -39,7 +40,7 @@ const PropertyCard: React.FC<PropertyCardProps> = ({
 
   // Check if item is already in cart
   const checkIfInCart = () => {
-    const cartItems = JSON.parse(localStorage.getItem('cartItems') || '[]');
+    const cartItems = getCartItems();
     const exists = cartItems.some((item: any) => item.id === id);
     setIsInCart(exists);
   };
@@ -64,7 +65,7 @@ const PropertyCard: React.FC<PropertyCardProps> = ({
     if (isInCart) return; // Don't add if already in cart
 
     // Get existing cart from localStorage
-    const cartItems = JSON.parse(localStorage.getItem('cartItems') || '[]');
+    const cartItems = getCartItems();
 
     // Check if item already exists
     const existingItemIndex = cartItems.findIndex((item: any) => item.id === id);
@@ -84,7 +85,7 @@ const PropertyCard: React.FC<PropertyCardProps> = ({
       };
 
       cartItems.push(cartItem);
-      localStorage.setItem('cartItems', JSON.stringify(cartItems));
+      saveCartItems(cartItems);
 
       // Dispatch custom event to notify other components
       window.dispatchEvent(new Event('cartUpdated'));
