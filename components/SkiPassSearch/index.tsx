@@ -145,7 +145,7 @@ const SkiPassSearch: React.FC = () => {
   };
 
   return (
-    <div className="bg-gray-100 py-4 sm:py-6">
+    <div className="bg-gray-100 pt-4 sm:pt-6">
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col lg:flex-row items-stretch lg:items-start gap-3 sm:gap-4">
           {/* Destination Dropdown */}
