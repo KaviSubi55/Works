@@ -35,47 +35,7 @@ export default function AccommodationListingPage() {
     <div className="min-h-screen bg-gray-50">
       {/* Page Header */}
       <div className="bg-white border-b border-gray-200">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <div className="flex items-center gap-3 mb-6">
-            <Home className="w-8 h-8 text-gray-900" />
-            <h1 className="text-4xl font-bold text-gray-900">Find accommodation</h1>
-          </div>
-
-          {/* Search Summary - Dynamic values from query params */}
-          <SearchSummaryBar
-            destination={destination}
-            date={date}
-            guests={guests}
-            onEdit={() => window.history.back()}
-          />
-
-          {/* Promotional Code Link */}
-          <div className="mt-4">
-            <button className="text-gray-700 hover:text-[#C41E3A] font-medium underline">
-              Promotional code
-            </button>
-          </div>
-        </div>
-      </div>
-
-      {/* Duration Selection */}
-      <div className="bg-white border-b border-gray-200">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <DurationTabs />
-        </div>
-      </div>
-
-      {/* Main Content */}
-      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Filter Bar */}
-        <div className="mb-6">
-          <FilterBar />
-        </div>
-
-        {/* Info Banner */}
-        <div className="mb-8">
-          <InfoBanner />
-        </div>
+          
 
         {/* Section Title */}
         <h2 className="text-3xl font-bold text-gray-900 mb-6">

@@ -29,44 +29,8 @@ export default function RentListingPage() {
     <div className="min-h-screen bg-gray-50">
       {/* Page Header */}
       <div className="bg-white border-b border-gray-200">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <div className="flex items-center gap-3 mb-6">
-            <Home className="w-8 h-8 text-gray-900" />
-            <h1 className="text-4xl font-bold text-gray-900">Rent Equipment</h1>
-          </div>
+        
 
-          {/* Search Summary - Dynamic values from query params */}
-          <SearchSummaryBar
-            destination={destination}
-            date=""
-            guests={guests}
-            onEdit={() => window.history.back()}
-          />
-
-          {/* Promotional Code Link */}
-          <div className="mt-4">
-            <button className="text-gray-700 hover:text-[#C41E3A] font-medium underline">
-              Discount code
-            </button>
-          </div>
-        </div>
-      </div>
-
-      {/* Info Banner */}
-      <div className="bg-blue-50 border-b border-blue-200">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-3">
-          <p className="text-center text-blue-800 text-sm">
-            📍 Pick up your equipment at the rental shop in your selected destination
-          </p>
-        </div>
-      </div>
-
-      {/* Main Content */}
-      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Filter Bar */}
-        <div className="mb-8">
-          <RentFilterBar />
-        </div>
 
         {/* Section Title */}
         <h2 className="text-3xl font-bold text-gray-900 mb-6">
@@ -120,12 +84,6 @@ export default function RentListingPage() {
           </div>
         )}
 
-        {/* Load More */}
-        <div className="mt-8 text-center">
-          <button className="px-8 py-3 border-2 border-gray-300 rounded-full font-medium text-gray-900 hover:bg-gray-50 transition-colors">
-            Show more equipment
-          </button>
-        </div>
 
         {/* Additional Info Section */}
         <div className="mt-12 bg-green-50 border-l-4 border-green-500 p-6 rounded-lg">
