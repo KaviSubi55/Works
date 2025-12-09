@@ -27,6 +27,7 @@ export const accommodations: Accommodation[] = [
       '/accomodation-brown-hill.jpg',
       '/accomodation-brown-hill1.jpg',
       '/accomodation-brown-hill2.jpg',
+       '/accomodation-brown-hill3.jpg',
     ],
     vacancies: 2,
     description:
