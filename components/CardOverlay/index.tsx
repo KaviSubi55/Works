@@ -5,7 +5,7 @@ const CardOverlay: React.FC = () => {
   const [learnMoreLink2] = useState<string>('/package');
 
   return (
-    <div className="relative w-full h-screen flex items-center justify-center overflow-hidden">
+    <div className="relative w-full h-screen flex items-center justify-center overflow-x-hidden">
       {/* Cards Container */}
 
 <div
