@@ -99,7 +99,7 @@ const PackageCard: React.FC<PackageCardProps> = ({
   };
 
   return (
-    <div className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow border border-gray-200">
+    <div className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow border border-gray-200 m-4">
       <div className="grid grid-cols-1 md:grid-cols-12 gap-0">
         {/* Image Gallery */}
         <div className="md:col-span-5 relative group">
@@ -151,7 +151,7 @@ const PackageCard: React.FC<PackageCardProps> = ({
         </div>
 
         {/* Content */}
-        <div className="md:col-span-7 flex flex-col p-6">
+        <div className="md:col-span-7 md:order-1 flex flex-col p-6 ml-6">
           {/* Header */}
           <div className="mb-4">
             <div className="flex items-center gap-2 text-gray-600 mb-2">

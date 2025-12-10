@@ -111,10 +111,10 @@ const PropertyCard: React.FC<PropertyCardProps> = ({
 
   return (
     <div className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow border border-gray-200">
-      <div className="grid grid-cols-1 md:grid-cols-12 gap-6 p-6">
+      <div className="grid grid-cols-1 md:grid-cols-12 gap-0">
         {/* Image Gallery */}
         <div className="md:col-span-5 relative group">
-          <div className="relative aspect-4/3 rounded-xl overflow-hidden bg-gray-200">
+         <div className="relative aspect-4/3 bg-gray-200">
             <img
               src={images[currentImageIndex] || '/placeholder-accommodation.jpg'}
               alt={name}
@@ -147,10 +147,10 @@ const PropertyCard: React.FC<PropertyCardProps> = ({
         </div>
 
         {/* Content */}
-        <div className="md:col-span-7 flex flex-col">
+       <div className="md:col-span-7 md:order-1 flex flex-col p-6 ml-6">
           {/* Header */}
-          <div className="flex items-start justify-between mb-3">
-            <div>
+          <div className="mb-4">
+            <div className="flex items-center gap-2 text-gray-600 mb-2">
               <div className="flex items-center gap-3 mb-1">
                 <h3 className="text-2xl font-bold text-gray-900">{name}</h3>
                 <span className="bg-pink-100 text-pink-800 px-3 py-1 rounded-full text-sm font-medium">
@@ -211,7 +211,7 @@ const PropertyCard: React.FC<PropertyCardProps> = ({
                 className={`${
                   isInCart
                     ? 'bg-green-600 hover:bg-green-700 cursor-default'
-                    : 'bg-gray-800 hover:bg-gray-900'
+                    : 'bg-red-800 hover:bg-red-900'
                 } text-white px-6 py-3 rounded-full font-bold transition-colors flex items-center gap-2`}
               >
                 <ShoppingCart className="w-5 h-5" />

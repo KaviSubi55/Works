@@ -96,9 +96,9 @@ export default function AccommodationListingPage() {
   }, [searchParams]); // this is safe now
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 m-8">
       <div className="bg-white border-b border-gray-200">
-        <h2 className="text-3xl font-bold text-gray-900 mb-6">
+        <h2 className="text-3xl font-bold text-gray-800 mb-6 flex justify-center m-8">
           Accommodations in {destination}
         </h2>
 

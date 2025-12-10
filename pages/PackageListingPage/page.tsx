@@ -70,6 +70,7 @@ import React, { useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import PackageCard from '@/components/PackageCard';
 import { getPackagesByDestination, Package } from '@/data/packages';
+import { Tag } from 'lucide-react';
 
 export default function PackagePage() {
   const searchParams = useSearchParams();
@@ -93,31 +94,25 @@ export default function PackagePage() {
   }, [paramsString]); // <-- SAFE dependency
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 mt-8">
       <div className="bg-white border-b border-gray-200">
-        <h2 className="text-3xl font-bold text-gray-900 mb-6">
-          Packages in {destination}
+        <h2 className="flex text-3xl font-bold text-gray-800 mb-8 justify-center items-center">
+         Packages in {destination}
         </h2>
 
         {packages.length > 0 ? (
-          <div className="space-y-6">
+          <div className="space-y-16">
             {packages.map((pkg) => (
               <PackageCard key={pkg.id} {...pkg} />
             ))}
           </div>
         ) : (
-          <div className="text-center py-12">
+          <div className="text-center py-24">
             <p className="text-xl text-gray-600">
               No packages found for the selected destination.
             </p>
           </div>
         )}
-
-        <div className="mt-8 text-center">
-          <button className="px-8 py-3 border-2 border-gray-300 rounded-full font-medium text-gray-900 hover:bg-gray-50 transition-colors">
-            Load more packages
-          </button>
-        </div>
       </div>
     </div>
   );

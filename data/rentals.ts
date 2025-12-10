@@ -31,7 +31,7 @@ export const rentals: Rental[] = [
     description: 'Premium ski equipment from leading brands. Includes skis, boots, poles, and safety helmet.',
     images: [
       '/rent-ski.jpg', 
-      '/rent-ski1.jpg', 
+      '/rent-åre-3.jpg', 
       '/rent-ski2.jpg',
     ],
   },
@@ -49,9 +49,9 @@ export const rentals: Rental[] = [
     recommended: true,
     description: 'Quality standard ski equipment suitable for all skill levels.',
     images: [
-      '/rent-ski.jpg', 
-      '/rent-ski1.jpg', 
-      '/rent-ski2.jpg',
+      '/rent-åre-1.jpg', 
+      '/rent-åre-2.jpg', 
+      '/rent-åre-3.jpg',
     ],
   },
   {
@@ -68,9 +68,9 @@ export const rentals: Rental[] = [
     recommended: true,
     description: 'Complete snowboard package with safety equipment included.',
     images: [
-      '/rent-ski.jpg', 
-      '/rent-ski1.jpg', 
-      '/rent-ski2.jpg',
+      '/rent-åre-3.jpg', 
+      '/rent-åre-2.jpg', 
+      '/rent-åre-1.jpg',
     ],
   },
   {
@@ -87,9 +87,10 @@ export const rentals: Rental[] = [
     recommended: true,
     description: 'Child-sized ski equipment with free size adjustments as they grow.',
     images: [
-      '/rent-ski.jpg', 
-      '/rent-ski1.jpg', 
-      '/rent-ski2.jpg',
+     '/package-stock-7.jpg', 
+     '/package-stock-5.jpg', 
+     '/package-stock-3.jpg', 
+     '/package-stock-10.jpg',
     ],
   },
   {
@@ -106,9 +107,11 @@ export const rentals: Rental[] = [
     recommended: false,
     description: 'Safety helmet available in all sizes, certified for skiing and snowboarding.',
     images: [
-      '/rent-ski.jpg', 
-      '/rent-ski1.jpg', 
-      '/rent-ski2.jpg',
+           '/rent-åre-1.jpg', 
+     '/rent-åre-2.jpg', 
+     '/rent-åre-3.jpg',  
+     '/package-åre-5.jpg', 
+
     ],
   },
   {
@@ -125,9 +128,10 @@ export const rentals: Rental[] = [
     recommended: false,
     description: 'Cross-country skiing equipment with access to groomed trails.',
     images: [
-      '/rent-ski.jpg', 
-      '/rent-ski1.jpg', 
-      '/rent-ski2.jpg',
+           '/package-åre-6.jpg', 
+     '/package-åre-3.jpg', 
+     '/package-åre-10.jpg', 
+     '/package-åre-5.jpg', 
     ],
   },
 
@@ -165,9 +169,9 @@ export const rentals: Rental[] = [
     recommended: true,
     description: 'Comfortable city bike for touring Stockholm at your own pace.',
     images: [
-      '/rent-ski.jpg', 
-      '/rent-ski1.jpg', 
-      '/rent-ski2.jpg',
+      '/rent-åre-1.jpg', 
+      '/rent-åre-2.jpg', 
+      '/rent-åre-3.jpg',
     ],
   },
   {
@@ -184,9 +188,10 @@ export const rentals: Rental[] = [
     recommended: true,
     description: 'Electric bike for effortless city exploration. Full-day battery life.',
     images: [
-      '/rent-ski.jpg', 
-      '/rent-ski1.jpg', 
-      '/rent-ski2.jpg',
+        '/package-åre-6.jpg', 
+     '/package-åre-3.jpg', 
+     '/package-åre-10.jpg', 
+     '/package-åre-5.jpg', 
     ],
   },
   {
@@ -223,8 +228,8 @@ export const rentals: Rental[] = [
     description: 'Double kayak perfect for couples or friends to explore together.',
     images: [
      '/rent-ski.jpg', 
-      '/rent-ski1.jpg', 
-      '/rent-ski2.jpg',
+      '/rent-åre-3.jpg', 
+      '/rent-åre-1.jpg',
     ],
   },
   {
@@ -241,7 +246,7 @@ export const rentals: Rental[] = [
     recommended: false,
     description: 'Small motorboat for island hopping in the Stockholm archipelago.',
     images: [
-      '/rent-ski.jpg', 
+      '/rent-åre-1.jpg', 
       '/rent-ski1.jpg', 
       '/rent-ski2.jpg',
     ],
@@ -260,7 +265,7 @@ export const rentals: Rental[] = [
     recommended: true,
     description: 'Electric scooter for quick and fun city transportation.',
     images: [
-     '/rent-ski.jpg', 
+     '/rent-åre-3.jpg', 
       '/rent-ski1.jpg', 
       '/rent-ski2.jpg',
     ],

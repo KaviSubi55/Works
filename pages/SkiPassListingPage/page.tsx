@@ -87,7 +87,7 @@ export default function SkiPassListingPage() {
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <h2 className="text-3xl font-bold text-gray-900 mb-6">
+        <h2 className=" flex justify-center m-8 text-3xl font-bold text-gray-900 mb-6">
           Available passes in {destination}
         </h2>
 

@@ -24,10 +24,11 @@ export const accommodations: Accommodation[] = [
     area: 'Åre',
     destination: 'are',
     images: [
-      '/accomodation-brown-hill.jpg',
-      '/accomodation-brown-hill1.jpg',
-      '/accomodation-brown-hill2.jpg',
-       '/accomodation-brown-hill3.jpg',
+      '/accomodation-åre-1.jpg',
+     '/accomodation-åre-2.jpg',
+     '/accomodation-åre-3.jpg',
+     '/accomodation-åre-4.jpg',
+     '/accomodation-åre-25.jpg',
     ],
     vacancies: 2,
     description:
@@ -46,8 +47,11 @@ export const accommodations: Accommodation[] = [
     area: 'Åre',
     destination: 'are',
     images: [
-      '/accomodation-brown-hill.jpg',
-      '/accomodation-brown-hill1.jpg',
+       '/accomodation-åre-5.jpg',
+     '/accomodation-åre-6.jpg',
+     '/accomodation-åre-8.jpg',
+     '/accomodation-åre-7.jpg',
+     '/accomodation-åre-24.jpg',
     ],
     vacancies: 1,
     description:
@@ -66,9 +70,11 @@ export const accommodations: Accommodation[] = [
     area: 'Åre',
     destination: 'are',
     images: [
-      '/accomodation-brown-hill.jpg',
-      '/accomodation-brown-hill1.jpg',
-      '/accomodation-brown-hill2.jpg',
+      '/accomodation-åre-3.jpg',
+     '/accomodation-åre-11.jpg',
+     '/accomodation-åre-9.jpg',
+     '/accomodation-åre-10.jpg',
+     '/accomodation-åre-23.jpg',
     ],
     vacancies: 3,
     description:
@@ -87,8 +93,11 @@ export const accommodations: Accommodation[] = [
     area: 'Åre',
     destination: 'are',
     images: [
-      '/accomodation-brown-hill.jpg',
-      '/accomodation-brown-hill1.jpg',
+      '/accomodation-åre-12.jpg',
+     '/accomodation-åre-15.jpg',
+     '/accomodation-åre-13.jpg',
+     '/accomodation-åre-14.jpg',
+     '/accomodation-åre-22.jpg',
     ],
     vacancies: 4,
     description:
@@ -107,9 +116,11 @@ export const accommodations: Accommodation[] = [
     area: 'Åre',
     destination: 'are',
     images: [
-      '/accomodation-brown-hill.jpg',
-      '/accomodation-brown-hill1.jpg',
-      '/accomodation-brown-hill2.jpg',
+       '/accomodation-åre-17.jpg',
+     '/accomodation-åre-18.jpg',
+     '/accomodation-åre-19.jpg',
+     '/accomodation-åre-20.jpg',
+     '/accomodation-åre-21.jpg',
     ],
     vacancies: 2,
     description:
@@ -133,6 +144,9 @@ export const accommodations: Accommodation[] = [
       '/accomodation-brown-hill.jpg',
       '/accomodation-brown-hill1.jpg',
       '/accomodation-brown-hill2.jpg',
+      '/accomodation-stock-1.jpg',
+        '/accomodation-stock-15.jpg',
+          '/accomodation-stock-11.jpg',
     ],
     vacancies: 5,
     description:
@@ -151,8 +165,10 @@ export const accommodations: Accommodation[] = [
     area: 'Stockholm',
     destination: 'stockholm',
     images: [
-      '/accomodation-brown-hill.jpg',
-      '/accomodation-brown-hill1.jpg',
+ '/accomodation-stock-2.jpg',
+  '/accomodation-stock-3.jpg',
+   '/accomodation-stock-4.jpg',
+    '/accomodation-stock-5.jpg',
     ],
     vacancies: 3,
     description:
@@ -171,9 +187,10 @@ export const accommodations: Accommodation[] = [
     area: 'Stockholm',
     destination: 'stockholm',
     images: [
-      '/accomodation-brown-hill.jpg',
-      '/accomodation-brown-hill1.jpg',
-      '/accomodation-brown-hill2.jpg',
+  '/accomodation-stock-6.jpg',
+  '/accomodation-stock-7.jpg',
+   '/accomodation-stock-8.jpg',
+    '/accomodation-stock-9.jpg',
     ],
     vacancies: 2,
     description:
@@ -192,8 +209,11 @@ export const accommodations: Accommodation[] = [
     area: 'Stockholm',
     destination: 'stockholm',
     images: [
-      '/accomodation-brown-hill.jpg',
-      '/accomodation-brown-hill1.jpg',
+   '/accomodation-stock-10.jpg',
+  '/accomodation-stock-11.jpg',
+   '/accomodation-stock-12.jpg',
+    '/accomodation-stock-13.jpg',
+      '/accomodation-stock-15.jpg',
     ],
     vacancies: 4,
     description:
@@ -212,9 +232,11 @@ export const accommodations: Accommodation[] = [
     area: 'Stockholm',
     destination: 'stockholm',
     images: [
-      '/accomodation-brown-hill.jpg',
-      '/accomodation-brown-hill1.jpg',
-      '/accomodation-brown-hill2.jpg',
+ '/accomodation-stock-14.jpg',
+  '/accomodation-stock-15.jpg',
+   '/accomodation-stock-16.jpg',
+    '/accomodation-stock-5.jpg',
+      '/accomodation-stock-11.jpg',
     ],
     vacancies: 6,
     description:
@@ -233,8 +255,10 @@ export const accommodations: Accommodation[] = [
     area: 'Stockholm',
     destination: 'stockholm',
     images: [
-      '/accomodation-brown-hill.jpg',
-      '/accomodation-brown-hill1.jpg',
+    '/accomodation-stock-1.jpg',
+  '/accomodation-stock-12.jpg',
+   '/accomodation-stock-16.jpg',
+    '/accomodation-stock-15.jpg',
     ],
     vacancies: 8,
     description:
