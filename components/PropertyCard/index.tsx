@@ -217,10 +217,7 @@ const PropertyCard: React.FC<PropertyCardProps> = ({
                 <ShoppingCart className="w-5 h-5" />
                 {isInCart ? 'Added!' : 'Add to Cart'}
               </button>
-              <button className="bg-[#C41E3A] text-white px-8 py-3 rounded-full font-bold hover:bg-[#A01830] transition-colors flex items-center gap-2">
-                View
-                <ChevronRight className="w-5 h-5" />
-              </button>
+             
             </div>
           </div>
         </div>

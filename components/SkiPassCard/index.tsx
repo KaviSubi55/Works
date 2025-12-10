@@ -84,7 +84,7 @@ const SkiPassCard: React.FC<SkiPassCardProps> = ({
       <div className="p-6 border-b border-gray-200">
         {recommended && (
           <div className="inline-block bg-[#C41E3A] text-white px-3 py-1 rounded-full text-sm font-bold mb-3">
-            Recommended
+           Peakster Recommended
           </div>
         )}
         <h3 className="text-2xl font-bold text-gray-900 mb-2">{title}</h3>

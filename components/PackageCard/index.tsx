@@ -108,7 +108,7 @@ const PackageCard: React.FC<PackageCardProps> = ({
             {recommended && (
               <div className="absolute top-0 left-0 bg-[#C41E3A] text-white px-4 py-2 flex items-center gap-2 z-10 font-bold">
                 <ThumbsUp className="w-5 h-5" />
-                SkiStar recommends
+                Peakster recommends
               </div>
             )}
 
