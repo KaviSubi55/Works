@@ -111,7 +111,7 @@ const SkiPassCard: React.FC<SkiPassCardProps> = ({
         <div className="space-y-2">
           {features.map((feature, index) => (
             <div key={index} className="flex items-start gap-2">
-              <CheckCircle2 className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
+              <CheckCircle2 className="w-4 h-4 text-green-600 mt-0.5 shrink-0" />
               <span className="text-sm text-gray-700">{feature}</span>
             </div>
           ))}
