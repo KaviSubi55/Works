@@ -183,7 +183,7 @@ const SecondaryNav: React.FC = () => {
   };
 
   return (
-    <div className="bg-gray-100">
+    <div className="bg-white">
       {/* Desktop Navigation */}
       <div className="hidden lg:block bg-white">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
