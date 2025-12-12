@@ -1,12 +1,12 @@
 'use client'
 
 import { signUpSchema } from "@/actions/schema"
+import { SignUp } from "@/actions/sign-up"
 import ErrorMessage from "@/components/ErrorMessage"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useMutation } from "@tanstack/react-query"
 import { useForm } from "react-hook-form"
 import { useRouter } from "next/navigation"
-import { createClient } from "@/utils/supabase/client"
 
 const SignUpForm = () => {
   const router = useRouter()
@@ -15,52 +15,10 @@ const SignUpForm = () => {
   })
 
   const { mutate, isPending, data } = useMutation({
-    mutationFn: async (userdata: any) => {
-      const parsedData = signUpSchema.parse(userdata)
-      const supabase = createClient()
-
-      // Sign up on the client side to properly establish session
-      const { data: { user, session }, error } = await supabase.auth.signUp({
-        email: parsedData.email,
-        password: parsedData.password,
-      })
-
-      if (error) return { error: error.message }
-      if (!user || !user.email) return { error: "Signup failed" }
-      if (!session) {
-        return { error: "Please check your email to confirm your account before logging in." }
-      }
-
-      // Now create user profile in database via server action
-      const response = await fetch('/api/create-user-profile', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          userId: user.id,
-          email: user.email,
-          username: parsedData.username
-        })
-      })
-
-      const result = await response.json()
-      if (!response.ok) {
-        // If profile creation fails, sign out the user
-        await supabase.auth.signOut()
-        return { error: result.error || "Failed to create user profile" }
-      }
-
-      return {
-        success: true,
-        user: {
-          id: user.id,
-          email: user.email,
-          username: parsedData.username
-        }
-      }
-    },
+    mutationFn: SignUp,
     onSuccess: (data) => {
       if (data?.success && data?.user) {
-        // The useAuthSync hook will handle setting localStorage
+        // Don't manually set localStorage - let useAuthSync handle it
         // Just dispatch event to notify components
         window.dispatchEvent(new Event('userLoggedIn'))
 
