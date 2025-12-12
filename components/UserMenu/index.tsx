@@ -48,25 +48,32 @@ const UserMenu: React.FC = () => {
   }, []);
 
   const handleLogout = async () => {
+    console.log('Logout initiated...');
+    setIsDropdownOpen(false);
+
     try {
       // Call server action to sign out from Supabase
-      await LogOut();
+      console.log('Calling server logout action...');
+      const result = await LogOut();
+      console.log('Logout result:', result);
     } catch (error) {
       console.error('Logout error:', error);
-    } finally {
-      // Clear localStorage regardless of server action result
-      localStorage.removeItem('username');
-      localStorage.removeItem('isLoggedIn');
-      setUsername(null);
-      setIsLoggedIn(false);
-      setIsDropdownOpen(false);
-
-      // Notify other components about user state and cart changes
-      window.dispatchEvent(new Event('userLoggedIn')); // Triggers username update in components
-      window.dispatchEvent(new Event('cartUpdated')); // Triggers cart reload
-
-      router.push('/auth/login');
     }
+
+    // Always clear localStorage and state, even if server action fails
+    console.log('Clearing localStorage...');
+    localStorage.removeItem('username');
+    localStorage.removeItem('isLoggedIn');
+    setUsername(null);
+    setIsLoggedIn(false);
+
+    // Notify other components about user state and cart changes
+    window.dispatchEvent(new Event('userLoggedIn'));
+    window.dispatchEvent(new Event('cartUpdated'));
+
+    console.log('Redirecting to login page...');
+    // Use window.location for a full page refresh to ensure clean state
+    window.location.href = '/auth/login';
   };
 
   const toggleDropdown = () => {
