@@ -8,63 +8,57 @@ import { createClient } from '@/utils/supabase/client'
  * This ensures that the user's login state is preserved across page refreshes
  */
 export const useAuthSync = () => {
-  const isSyncingRef = useRef(false)
+  const processingQueue = useRef<Promise<void>>(Promise.resolve())
 
   useEffect(() => {
     const supabase = createClient()
 
     // Single handler for auth state - handles both initial state and changes
     const handleAuthChange = async (event: string, session: any) => {
-      // Prevent duplicate syncs from running simultaneously
-      if (isSyncingRef.current) {
-        return
-      }
+      // Queue auth changes to process them sequentially without dropping events
+      processingQueue.current = processingQueue.current.then(async () => {
+        try {
+          console.log('Auth state changed:', event)
 
-      isSyncingRef.current = true
+          if (session?.user) {
+            // User logged in, fetch username
+            const { data: userData, error } = await supabase
+              .from('users')
+              .select('username')
+              .eq('id', session.user.id)
+              .single()
 
-      try {
-        console.log('Auth state changed:', event)
-
-        if (session?.user) {
-          // User logged in, fetch username
-          const { data: userData, error } = await supabase
-            .from('users')
-            .select('username')
-            .eq('id', session.user.id)
-            .single()
-
-          if (!error && userData) {
-            localStorage.setItem('username', userData.username)
-            localStorage.setItem('isLoggedIn', 'true')
-            window.dispatchEvent(new Event('userLoggedIn'))
+            if (!error && userData) {
+              localStorage.setItem('username', userData.username)
+              localStorage.setItem('isLoggedIn', 'true')
+              window.dispatchEvent(new Event('userLoggedIn'))
+            } else {
+              console.error('Failed to fetch user data:', error)
+              // User in Supabase but not in database - clear everything
+              if (event !== 'INITIAL_SESSION') {
+                await supabase.auth.signOut()
+              }
+              localStorage.removeItem('username')
+              localStorage.removeItem('isLoggedIn')
+              window.dispatchEvent(new Event('userLoggedIn'))
+            }
           } else {
-            console.error('Failed to fetch user data:', error)
-            // User in Supabase but not in database - clear everything
-            if (event !== 'INITIAL_SESSION') {
-              await supabase.auth.signOut()
+            // No session - clear localStorage
+            const hasStaleData = localStorage.getItem('username') || localStorage.getItem('isLoggedIn')
+            if (hasStaleData) {
+              console.log('Clearing stale localStorage data...')
             }
             localStorage.removeItem('username')
             localStorage.removeItem('isLoggedIn')
             window.dispatchEvent(new Event('userLoggedIn'))
           }
-        } else {
-          // No session - clear localStorage
-          const hasStaleData = localStorage.getItem('username') || localStorage.getItem('isLoggedIn')
-          if (hasStaleData) {
-            console.log('Clearing stale localStorage data...')
-          }
+        } catch (err) {
+          console.error('Auth sync error:', err)
           localStorage.removeItem('username')
           localStorage.removeItem('isLoggedIn')
           window.dispatchEvent(new Event('userLoggedIn'))
         }
-      } catch (err) {
-        console.error('Auth sync error:', err)
-        localStorage.removeItem('username')
-        localStorage.removeItem('isLoggedIn')
-        window.dispatchEvent(new Event('userLoggedIn'))
-      } finally {
-        isSyncingRef.current = false
-      }
+      })
     }
 
     // Listen for auth state changes (this also fires once for the initial state)
