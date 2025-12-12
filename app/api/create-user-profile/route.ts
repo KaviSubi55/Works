@@ -14,6 +14,20 @@ export async function POST(request: NextRequest) {
 
         // Use admin client to bypass RLS for initial user profile creation
         const adminClient = createAdminClient()
+
+        // Check if user already exists
+        const { data: existingUser } = await adminClient
+            .from('users')
+            .select('id')
+            .eq('id', userId)
+            .single()
+
+        if (existingUser) {
+            // User already exists (likely from a previous signup)
+            console.log('User profile already exists, skipping creation')
+            return NextResponse.json({ success: true, existing: true })
+        }
+
         const { error: insertError } = await adminClient
             .from('users')
             .insert([{
@@ -24,6 +38,11 @@ export async function POST(request: NextRequest) {
 
         if (insertError) {
             console.error('Database insert error:', insertError)
+            // Check if it's a duplicate key error
+            if (insertError.code === '23505') {
+                // Duplicate key - user already exists
+                return NextResponse.json({ success: true, existing: true })
+            }
             return NextResponse.json(
                 { error: insertError.message },
                 { status: 500 }
