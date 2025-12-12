@@ -6,7 +6,6 @@ import { useRouter } from 'next/navigation';
 import { LogOut as LogOutIcon, LogIn as LogInIcon, User } from 'lucide-react';
 import { LogOut } from '@/actions/log-out';
 import { createClient } from '@/utils/supabase/client';
-import { clearCart } from '@/utils/cartUtils';
 
 const UserMenu: React.FC = () => {
   const router = useRouter();
@@ -57,20 +56,16 @@ const UserMenu: React.FC = () => {
     console.log('Logout initiated...');
     setIsDropdownOpen(false);
 
-    // Clear cart first (before clearing username from localStorage)
-    console.log('Clearing cart...');
-    clearCart();
-
     // Clear localStorage and state immediately
+    // NOTE: Cart is NOT cleared to allow cart persistence across logins
     console.log('Clearing localStorage...');
     localStorage.removeItem('username');
     localStorage.removeItem('isLoggedIn');
     setUsername(null);
     setIsLoggedIn(false);
 
-    // Notify other components about user state and cart changes
+    // Notify other components about user state
     window.dispatchEvent(new Event('userLoggedIn'));
-    window.dispatchEvent(new Event('cartUpdated'));
 
     try {
       // Sign out from Supabase client-side

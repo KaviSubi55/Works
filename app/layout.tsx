@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Header from "@/components/Header";
+import ConditionalHeader from "@/components/ConditionalHeader";
 import Footer from "@/components/Footer";
 import Providers from "@/components/Providers";
 import AuthProvider from "@/components/AuthProvider";
@@ -33,7 +33,7 @@ export default function RootLayout({
       >
         <Providers>
           <AuthProvider>
-            <Header />
+            <ConditionalHeader />
             {children}
             <Footer />
           </AuthProvider>
