@@ -39,7 +39,13 @@ All required dependencies have been installed:
    ```
    NEXT_PUBLIC_SUPABASE_URL=your_supabase_project_url
    NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=your_supabase_anon_key
+   SUPABASE_SERVICE_ROLE_KEY=your_supabase_service_role_key
    ```
+
+   **Important:**
+   - The service role key is required for signup to work properly (it bypasses RLS when creating user profiles)
+   - Find it in Supabase Dashboard > Project Settings > API > `service_role` key (secret)
+   - Never expose this key in client-side code - it's only used in server actions
 
 ### 4. Set Up Database Tables
 
