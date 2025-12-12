@@ -5,6 +5,8 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { LogOut as LogOutIcon, LogIn as LogInIcon, User } from 'lucide-react';
 import { LogOut } from '@/actions/log-out';
+import { createClient } from '@/utils/supabase/client';
+import { clearCart } from '@/utils/cartUtils';
 
 const UserMenu: React.FC = () => {
   const router = useRouter();
@@ -52,7 +54,16 @@ const UserMenu: React.FC = () => {
     setIsDropdownOpen(false);
 
     try {
-      // Call server action to sign out from Supabase
+      // Clear cart first (before clearing username from localStorage)
+      console.log('Clearing cart...');
+      clearCart();
+
+      // Sign out from Supabase client-side
+      console.log('Signing out from Supabase client...');
+      const supabase = createClient();
+      await supabase.auth.signOut();
+
+      // Also call server action to clear server-side session
       console.log('Calling server logout action...');
       const result = await LogOut();
       console.log('Logout result:', result);
@@ -60,7 +71,7 @@ const UserMenu: React.FC = () => {
       console.error('Logout error:', error);
     }
 
-    // Always clear localStorage and state, even if server action fails
+    // Always clear localStorage and state, even if signout fails
     console.log('Clearing localStorage...');
     localStorage.removeItem('username');
     localStorage.removeItem('isLoggedIn');

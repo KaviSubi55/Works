@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { createClient } from '@/utils/supabase/client'
+import { clearCart } from '@/utils/cartUtils'
 
 export default function ClearAuthPage() {
   const router = useRouter()
@@ -11,6 +12,11 @@ export default function ClearAuthPage() {
   useEffect(() => {
     const clearAuth = async () => {
       try {
+        setStatus('Clearing cart...')
+
+        // Clear cart first
+        clearCart()
+
         setStatus('Signing out from Supabase...')
 
         // Sign out from Supabase
