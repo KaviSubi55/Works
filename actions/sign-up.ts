@@ -8,30 +8,31 @@ import { z } from "zod"
 export const SignUp = async (userdata: z.infer<typeof signUpSchema>) => {
     const parsedData = signUpSchema.parse(userdata)
 
-    const supabase = await createClient()
+    // Use admin client for signup to auto-confirm email
+    const adminClient = createAdminClient()
 
-    const { data: { user, session }, error } = await supabase.auth.signUp({
+    // Create user with admin client (bypasses email confirmation)
+    const { data: authData, error: signUpError } = await adminClient.auth.admin.createUser({
         email: parsedData.email,
         password: parsedData.password,
-        options: {
-            // Skip email confirmation for immediate login
-            emailRedirectTo: undefined,
+        email_confirm: true, // Auto-confirm email
+        user_metadata: {
+            username: parsedData.username
         }
     })
 
-    if (error) return { error: error.message }
-
-    if (!user || !user.email) return { error: "Signup failed" }
-
-    // Check if session was created (email confirmation might be required)
-    if (!session) {
-        return {
-            error: "Please check your email to confirm your account before logging in."
+    if (signUpError) {
+        // Check if user already exists
+        if (signUpError.message.includes('already registered')) {
+            return { error: "An account with this email already exists. Please login instead." }
         }
+        return { error: signUpError.message }
     }
+    if (!authData.user) return { error: "Signup failed" }
 
-    // Use admin client to bypass RLS for initial user profile creation
-    const adminClient = createAdminClient()
+    const user = authData.user
+
+    // Create user profile in database
     const { error: insertError } = await adminClient
         .from('users')
         .insert([{
@@ -40,13 +41,32 @@ export const SignUp = async (userdata: z.infer<typeof signUpSchema>) => {
             username: parsedData.username
         }])
 
-    if (insertError) return { error: insertError.message }
+    if (insertError) {
+        // If user already exists, that's okay
+        if (insertError.code !== '23505') {
+            return { error: insertError.message }
+        }
+    }
+
+    // Now sign in the user to create a session
+    const supabase = await createClient()
+    const { error: signInError } = await supabase.auth.signInWithPassword({
+        email: parsedData.email,
+        password: parsedData.password,
+    })
+
+    if (signInError) {
+        return {
+            error: "Account created but couldn't log you in. Please try logging in manually.",
+            accountCreated: true
+        }
+    }
 
     return {
         success: true,
         user: {
             id: user.id,
-            email: user.email,
+            email: user.email!,
             username: parsedData.username
         }
     }
