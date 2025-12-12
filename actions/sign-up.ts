@@ -1,6 +1,7 @@
 'use server'
 
 import { createClient } from "@/utils/supabase/server-client"
+import { createAdminClient } from "@/utils/supabase/admin-client"
 import { signUpSchema } from "./schema"
 import { z } from "zod"
 
@@ -18,7 +19,9 @@ export const SignUp = async (userdata: z.infer<typeof signUpSchema>) => {
 
     if (!user || !user.email) return { error: "Signup failed" }
 
-    const { error: insertError } = await supabase
+    // Use admin client to bypass RLS for initial user profile creation
+    const adminClient = createAdminClient()
+    const { error: insertError } = await adminClient
         .from('users')
         .insert([{
             'id': user.id,
