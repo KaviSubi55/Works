@@ -53,25 +53,11 @@ const UserMenu: React.FC = () => {
     console.log('Logout initiated...');
     setIsDropdownOpen(false);
 
-    try {
-      // Clear cart first (before clearing username from localStorage)
-      console.log('Clearing cart...');
-      clearCart();
+    // Clear cart first (before clearing username from localStorage)
+    console.log('Clearing cart...');
+    clearCart();
 
-      // Sign out from Supabase client-side
-      console.log('Signing out from Supabase client...');
-      const supabase = createClient();
-      await supabase.auth.signOut();
-
-      // Also call server action to clear server-side session
-      console.log('Calling server logout action...');
-      const result = await LogOut();
-      console.log('Logout result:', result);
-    } catch (error) {
-      console.error('Logout error:', error);
-    }
-
-    // Always clear localStorage and state, even if signout fails
+    // Clear localStorage and state immediately
     console.log('Clearing localStorage...');
     localStorage.removeItem('username');
     localStorage.removeItem('isLoggedIn');
@@ -82,9 +68,35 @@ const UserMenu: React.FC = () => {
     window.dispatchEvent(new Event('userLoggedIn'));
     window.dispatchEvent(new Event('cartUpdated'));
 
-    console.log('Redirecting to login page...');
-    // Use window.location for a full page refresh to ensure clean state
-    window.location.href = '/auth/login';
+    try {
+      // Sign out from Supabase client-side
+      console.log('Signing out from Supabase client...');
+      const supabase = createClient();
+      const { error: clientError } = await supabase.auth.signOut();
+
+      if (clientError) {
+        console.error('Client signout error:', clientError);
+      }
+
+      // Also call server action to clear server-side session
+      console.log('Calling server logout action...');
+      const result = await LogOut();
+
+      if (result?.error) {
+        console.error('Server logout error:', result.error);
+      }
+
+      console.log('Logout completed successfully');
+    } catch (error) {
+      console.error('Logout error:', error);
+    } finally {
+      // Always redirect, even if signout fails
+      console.log('Redirecting to login page...');
+      // Add a small delay to ensure auth state changes are processed
+      setTimeout(() => {
+        window.location.href = '/auth/login';
+      }, 100);
+    }
   };
 
   const toggleDropdown = () => {

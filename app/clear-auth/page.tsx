@@ -17,15 +17,9 @@ export default function ClearAuthPage() {
         // Clear cart first
         clearCart()
 
-        setStatus('Signing out from Supabase...')
-
-        // Sign out from Supabase
-        const supabase = createClient()
-        await supabase.auth.signOut()
-
         setStatus('Clearing localStorage...')
 
-        // Clear all auth-related localStorage
+        // Clear all auth-related localStorage immediately
         localStorage.removeItem('username')
         localStorage.removeItem('isLoggedIn')
 
@@ -33,12 +27,22 @@ export default function ClearAuthPage() {
         window.dispatchEvent(new Event('userLoggedIn'))
         window.dispatchEvent(new Event('cartUpdated'))
 
+        setStatus('Signing out from Supabase...')
+
+        // Sign out from Supabase
+        const supabase = createClient()
+        const { error: signOutError } = await supabase.auth.signOut()
+
+        if (signOutError) {
+          console.error('Sign out error:', signOutError)
+        }
+
         setStatus('Authentication data cleared successfully!')
 
-        // Redirect to login after 2 seconds
+        // Redirect to login after 1 second
         setTimeout(() => {
           router.push('/auth/login')
-        }, 2000)
+        }, 1000)
       } catch (error) {
         console.error('Error clearing auth:', error)
         setStatus('Error occurred, but localStorage has been cleared. Redirecting...')
@@ -46,7 +50,7 @@ export default function ClearAuthPage() {
         // Still redirect even on error
         setTimeout(() => {
           router.push('/auth/login')
-        }, 2000)
+        }, 1000)
       }
     }
 
