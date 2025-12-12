@@ -3,7 +3,8 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { LogOut, LogIn, User } from 'lucide-react';
+import { LogOut as LogOutIcon, LogIn as LogInIcon, User } from 'lucide-react';
+import { LogOut } from '@/actions/log-out';
 
 const UserMenu: React.FC = () => {
   const router = useRouter();
@@ -46,19 +47,26 @@ const UserMenu: React.FC = () => {
     };
   }, []);
 
-  const handleLogout = () => {
-    // Don't clear cart - preserve it for when user logs back in
-    localStorage.removeItem('username');
-    localStorage.removeItem('isLoggedIn');
-    setUsername(null);
-    setIsLoggedIn(false);
-    setIsDropdownOpen(false);
+  const handleLogout = async () => {
+    try {
+      // Call server action to sign out from Supabase
+      await LogOut();
+    } catch (error) {
+      console.error('Logout error:', error);
+    } finally {
+      // Clear localStorage regardless of server action result
+      localStorage.removeItem('username');
+      localStorage.removeItem('isLoggedIn');
+      setUsername(null);
+      setIsLoggedIn(false);
+      setIsDropdownOpen(false);
 
-    // Notify other components about user state and cart changes
-    window.dispatchEvent(new Event('userLoggedIn')); // Triggers username update in components
-    window.dispatchEvent(new Event('cartUpdated')); // Triggers cart reload
+      // Notify other components about user state and cart changes
+      window.dispatchEvent(new Event('userLoggedIn')); // Triggers username update in components
+      window.dispatchEvent(new Event('cartUpdated')); // Triggers cart reload
 
-    router.push('/login');
+      router.push('/auth/login');
+    }
   };
 
   const toggleDropdown = () => {
@@ -92,11 +100,11 @@ const UserMenu: React.FC = () => {
   if (!isLoggedIn) {
     // Show Login button
     return (
-      <Link 
-        href="/login"
+      <Link
+        href="/auth/login"
         className="flex items-center gap-2 px-4 py-2 rounded-full border border-gray-300 hover:bg-gray-50 transition-colors"
       >
-        <LogIn className="w-4 h-4" />
+        <LogInIcon className="w-4 h-4" />
         <span className="font-medium hidden sm:inline">Login</span>
       </Link>
     );
@@ -136,7 +144,7 @@ const UserMenu: React.FC = () => {
             onClick={handleLogout}
             className="w-full text-left px-4 py-3 hover:bg-red-50 transition-colors flex items-center justify-center gap-2 text-gray-700 hover:text-red-600 font-medium"
           >
-            <LogOut className="w-5 h-5" />
+            <LogOutIcon className="w-5 h-5" />
             <span>Logout</span>
           </button>
         </div>

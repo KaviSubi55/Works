@@ -6,14 +6,29 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { logInSchema } from "@/actions/schema"
 import ErrorMessage from "@/components/ErrorMessage"
 import { useMutation } from "@tanstack/react-query"
+import { useRouter } from "next/navigation"
 
 const LogInForm = () => {
+  const router = useRouter()
   const { register, handleSubmit, formState: { errors } } = useForm({
     resolver: zodResolver(logInSchema)
   })
 
   const { mutate, isPending, data } = useMutation({
-    mutationFn: LogIn
+    mutationFn: LogIn,
+    onSuccess: (data) => {
+      if (data?.success && data?.user) {
+        // Store user data in localStorage
+        localStorage.setItem('username', data.user.username)
+        localStorage.setItem('isLoggedIn', 'true')
+
+        // Dispatch event to notify other components
+        window.dispatchEvent(new Event('userLoggedIn'))
+
+        // Redirect to home page
+        router.push('/')
+      }
+    }
   })
 
   return (
