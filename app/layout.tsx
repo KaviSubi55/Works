@@ -5,6 +5,7 @@ import ConditionalHeader from "@/components/ConditionalHeader";
 import Footer from "@/components/Footer";
 import Providers from "@/components/Providers";
 import AuthProvider from "@/components/AuthProvider";
+import Header from "@/components/Header";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -33,7 +34,8 @@ export default function RootLayout({
       >
         <Providers>
           <AuthProvider>
-            <ConditionalHeader />
+            {/* <ConditionalHeader /> */}
+            <Header />
             {children}
             <Footer />
           </AuthProvider>
