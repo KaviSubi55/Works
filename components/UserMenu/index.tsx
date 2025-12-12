@@ -23,6 +23,10 @@ const UserMenu: React.FC = () => {
       if (loggedIn && storedUsername) {
         setUsername(storedUsername);
         setIsLoggedIn(true);
+      } else {
+        // User is logged out - clear state
+        setUsername(null);
+        setIsLoggedIn(false);
       }
     };
 
