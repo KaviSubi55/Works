@@ -16,11 +16,18 @@ const SignUpForm = () => {
 
   const { mutate, isPending, data } = useMutation({
     mutationFn: SignUp,
-    onSuccess: (data) => {
+    onSuccess: async (data) => {
       if (data?.success && data?.user) {
-        // Don't manually set localStorage - let useAuthSync handle it
-        // Just dispatch event to notify components
+        // Manually set localStorage to show user immediately
+        // useAuthSync will also set it, but this ensures immediate update
+        localStorage.setItem('username', data.user.username)
+        localStorage.setItem('isLoggedIn', 'true')
+
+        // Dispatch event to notify components
         window.dispatchEvent(new Event('userLoggedIn'))
+
+        // Small delay to ensure state updates propagate
+        await new Promise(resolve => setTimeout(resolve, 100))
 
         // Redirect to home page
         router.push('/')
