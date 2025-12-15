@@ -8,7 +8,7 @@ const HeroSection: React.FC = () => {
   return (
     <>
     <HomeMain />
-    <div className="w-full border border-gray-100 mt-68 lg:mt-34 rounded-lg mb-8 shadow-lg ">
+    <div className="w-full border border-gray-100 mt-68 lg:mt-34 md:mt-30 rounded-lg mb-8 shadow-lg ">
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-4 py-4">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
           {/* Main Banner - Left Side (Large) */}
