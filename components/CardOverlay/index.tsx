@@ -13,7 +13,7 @@ const CardOverlay: React.FC = () => {
     relative
     md:absolute           /* Overlay only on MD+ screens */
     md:bottom-[30%]
-    lg:bottom-[10%]
+    lg:bottom-[2%]
     bottom-[-30%]           /* Use natural flow on SM */
     flex gap-5 flex-wrap justify-center
     max-[480px]:flex-col max-[480px]:items-center

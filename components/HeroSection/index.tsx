@@ -8,8 +8,8 @@ const HeroSection: React.FC = () => {
   return (
     <>
     <HomeMain />
-    <div className="w-full bg-gray-50">
-      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div className="w-full border border-gray-100 mt-68 lg:mt-34 rounded-lg mb-8 shadow-lg ">
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-4 py-4">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
           {/* Main Banner - Left Side (Large) */}
           <div className="lg:col-span-8 relative h-[400px] lg:h-[525px] rounded-2xl overflow-hidden group cursor-pointer">
