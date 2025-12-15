@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useRef } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import PromoCard from '../PromoCard';
 
 interface PromoItem {
@@ -18,6 +18,39 @@ interface PromoCardGridProps {
 
 const PromoCardGrid: React.FC<PromoCardGridProps> = ({ items }) => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const [showLeftArrow, setShowLeftArrow] = useState(false);
+  const [showRightArrow, setShowRightArrow] = useState(true);
+
+  const checkScrollPosition = () => {
+    if (scrollContainerRef.current) {
+      const { scrollLeft, scrollWidth, clientWidth } = scrollContainerRef.current;
+
+      // Show left arrow if not at the start
+      setShowLeftArrow(scrollLeft > 0);
+
+      // Show right arrow if not at the end (with small threshold for rounding)
+      setShowRightArrow(scrollLeft < scrollWidth - clientWidth - 1);
+    }
+  };
+
+  useEffect(() => {
+    const scrollContainer = scrollContainerRef.current;
+    if (scrollContainer) {
+      // Check initial position
+      checkScrollPosition();
+
+      // Add scroll event listener
+      scrollContainer.addEventListener('scroll', checkScrollPosition);
+
+      // Add resize event listener to recalculate on window resize
+      window.addEventListener('resize', checkScrollPosition);
+
+      return () => {
+        scrollContainer.removeEventListener('scroll', checkScrollPosition);
+        window.removeEventListener('resize', checkScrollPosition);
+      };
+    }
+  }, [items]);
 
   const scroll = (direction: 'left' | 'right') => {
     if (scrollContainerRef.current) {
@@ -33,45 +66,49 @@ const PromoCardGrid: React.FC<PromoCardGridProps> = ({ items }) => {
     <div className="relative bg-gradient-to-br from-gray-50 to-gray-100 py-12 sm:py-16 lg:py-20">
       <div className="mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-8">
         {/* Navigation Buttons */}
-        <button
-          onClick={() => scroll('left')}
-          className="absolute left-4 top-1/2 z-10 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white/90 shadow-lg transition-all hover:bg-white hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-blue-500 sm:left-8"
-          aria-label="Scroll left"
-        >
-          <svg
-            className="h-6 w-6 text-gray-800"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
+        {showLeftArrow && (
+          <button
+            onClick={() => scroll('left')}
+            className="absolute left-4 top-1/2 z-10 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white/90 shadow-lg transition-all hover:bg-white hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-blue-500 sm:left-8"
+            aria-label="Scroll left"
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M15 19l-7-7 7-7"
-            />
-          </svg>
-        </button>
+            <svg
+              className="h-6 w-6 text-gray-800"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M15 19l-7-7 7-7"
+              />
+            </svg>
+          </button>
+        )}
 
-        <button
-          onClick={() => scroll('right')}
-          className="absolute right-4 top-1/2 z-10 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white/90 shadow-lg transition-all hover:bg-white hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-blue-500 sm:right-8"
-          aria-label="Scroll right"
-        >
-          <svg
-            className="h-6 w-6 text-gray-800"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
+        {showRightArrow && (
+          <button
+            onClick={() => scroll('right')}
+            className="absolute right-4 top-1/2 z-10 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white/90 shadow-lg transition-all hover:bg-white hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-blue-500 sm:right-8"
+            aria-label="Scroll right"
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M9 5l7 7-7 7"
-            />
-          </svg>
-        </button>
+            <svg
+              className="h-6 w-6 text-gray-800"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M9 5l7 7-7 7"
+              />
+            </svg>
+          </button>
+        )}
 
         {/* Carousel Container */}
         <div
