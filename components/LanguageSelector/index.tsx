@@ -3,29 +3,27 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
 import { ChevronDown } from 'lucide-react';
-import { LanguageSelectorProps } from '@/utils/types';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const languages = [
-  { 
-    code: 'SE', 
-    flag: '/swe-flag.png', 
-    name: 'Svenska' 
+  {
+    code: 'sv',
+    flag: '/swe-flag.png',
+    name: 'Svenska'
   },
-  { 
-    code: 'GB', 
-    flag: '/eng-flag.png', 
-    name: 'English' 
+  {
+    code: 'en',
+    flag: '/eng-flag.png',
+    name: 'English'
   },
 ];
 
-const LanguageSelector: React.FC<LanguageSelectorProps> = ({
-  currentLanguage,
-  onLanguageChange,
-}) => {
+const LanguageSelector: React.FC = () => {
+  const { language, setLanguage } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  const currentLang = languages.find((lang) => lang.code === currentLanguage);
+  const currentLang = languages.find((lang) => lang.code === language);
 
   // Close dropdown when clicking outside or scrolling
   useEffect(() => {
@@ -51,8 +49,8 @@ const LanguageSelector: React.FC<LanguageSelectorProps> = ({
     };
   }, []);
 
-  const handleLanguageSelect = (code: string) => {
-    onLanguageChange(code);
+  const handleLanguageSelect = (code: 'en' | 'sv') => {
+    setLanguage(code);
     setIsOpen(false);
   };
 
@@ -86,9 +84,9 @@ const LanguageSelector: React.FC<LanguageSelectorProps> = ({
           {languages.map((lang) => (
             <button
               key={lang.code}
-              onClick={() => handleLanguageSelect(lang.code)}
+              onClick={() => handleLanguageSelect(lang.code as 'en' | 'sv')}
               className={`w-full flex items-center gap-3 px-4 py-2 text-left hover:bg-gray-50 transition-colors ${
-                currentLanguage === lang.code
+                language === lang.code
                   ? 'bg-gray-50 text-[#C41E3A]'
                   : 'text-gray-700'
               }`}

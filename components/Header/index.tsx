@@ -10,10 +10,11 @@ import LanguageSelector from '../LanguageSelector';
 import UserMenu from '../UserMenu';
 import CartDropdown from '../CartDropdown';
 import { getCartItems } from '@/utils/cartUtils';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const Header: React.FC<HeaderProps> = ({ navigationItems }) => {
+  const { t } = useLanguage();
   const [isMegaMenuOpen, setIsMegaMenuOpen] = useState(false);
-  const [currentLanguage, setCurrentLanguage] = useState('SE');
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [cartCount, setCartCount] = useState(0);
 
@@ -93,16 +94,16 @@ const Header: React.FC<HeaderProps> = ({ navigationItems }) => {
               <div className="relative group flex items-center justify-center w-10 h-10 text-gray-700 hover:text-[#C41E3A] transition-colors cursor-pointer">
                 <Snowflake className="w-5 h-5" />
                 <div className="absolute top-full mt-2 px-2 py-1 bg-gray-900 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap pointer-events-none z-50">
-                  Winter
+                  {t('header.winter')}
                   <div className="absolute -top-1 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-gray-900 rotate-45"></div>
                 </div>
               </div>
 
-            
+
               <div className="relative group flex items-center justify-center w-10 h-10 text-gray-700 hover:text-[#C41E3A] transition-colors cursor-pointer">
                 <Sun className="w-5 h-5" />
                 <div className="absolute top-full mt-2 px-2 py-1 bg-gray-900 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap pointer-events-none z-50">
-                  Summer
+                  {t('header.summer')}
                   <div className="absolute -top-1 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-gray-900 rotate-45"></div>
                 </div>
               </div>
@@ -128,10 +129,7 @@ const Header: React.FC<HeaderProps> = ({ navigationItems }) => {
               <UserMenu />
 
               {/* Language Selector */}
-              <LanguageSelector
-                currentLanguage={currentLanguage}
-                onLanguageChange={setCurrentLanguage}
-              />
+              <LanguageSelector />
             </div>
           </div>
 
@@ -173,7 +171,7 @@ const Header: React.FC<HeaderProps> = ({ navigationItems }) => {
               <div className="relative group flex items-center justify-center w-9 h-9 text-gray-700 hover:text-[#C41E3A] transition-colors cursor-pointer">
                 <Snowflake className="w-4 h-4" />
                 <div className="absolute top-full mt-2 px-2 py-1 bg-gray-900 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap pointer-events-none z-50">
-                  Winter
+                  {t('header.winter')}
                   <div className="absolute -top-1 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-gray-900 rotate-45"></div>
                 </div>
               </div>
@@ -182,7 +180,7 @@ const Header: React.FC<HeaderProps> = ({ navigationItems }) => {
               <div className="relative group flex items-center justify-center w-9 h-9 text-gray-700 hover:text-[#C41E3A] transition-colors cursor-pointer">
                 <Sun className="w-4 h-4" />
                 <div className="absolute top-full mt-2 px-2 py-1 bg-gray-900 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap pointer-events-none z-50">
-                  Summer
+                  {t('header.summer')}
                   <div className="absolute -top-1 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-gray-900 rotate-45"></div>
                 </div>
               </div>
@@ -208,10 +206,7 @@ const Header: React.FC<HeaderProps> = ({ navigationItems }) => {
               <UserMenu />
 
               {/* Language Selector */}
-              <LanguageSelector
-                currentLanguage={currentLanguage}
-                onLanguageChange={setCurrentLanguage}
-              />
+              <LanguageSelector />
             </div>
           </div>
         </div>

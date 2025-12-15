@@ -6,6 +6,8 @@ import Footer from "@/components/Footer";
 import Providers from "@/components/Providers";
 import AuthProvider from "@/components/AuthProvider";
 import Header from "@/components/Header";
+import { LanguageProvider } from "@/contexts/LanguageContext";
+import { translations } from "@/locales";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -34,10 +36,12 @@ export default function RootLayout({
       >
         <Providers>
           <AuthProvider>
-            {/* <ConditionalHeader /> */}
-            <Header />
-            {children}
-            <Footer />
+            <LanguageProvider translations={translations}>
+              {/* <ConditionalHeader /> */}
+              <Header />
+              {children}
+              <Footer />
+            </LanguageProvider>
           </AuthProvider>
         </Providers>
       </body>

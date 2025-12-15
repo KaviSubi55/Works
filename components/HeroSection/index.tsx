@@ -3,8 +3,11 @@
 import React from 'react';
 import { ChevronRight } from 'lucide-react';
 import HomeMain from '../HomeMain';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const HeroSection: React.FC = () => {
+  const { t } = useLanguage();
+
   return (
     <>
     <HomeMain />
@@ -24,17 +27,17 @@ const HeroSection: React.FC = () => {
 
             {/* Discount Badge - Hexagon using Tailwind */}
             <div className="absolute top-4 left-4 z-10">
-              <div 
+              <div
                 className="relative w-[180px] h-[180px] bg-[#C41E3A] flex items-center justify-center shadow-2xl"
                 style={{
                   clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)'
                 }}
               >
                 <div className="text-center text-white px-4">
-                  <div className="text-sm font-medium">Up to</div>
+                  <div className="text-sm font-medium">{t('hero.upTo')}</div>
                   <div className="text-6xl font-bold leading-none my-1">50%</div>
-                  <div className="text-sm font-medium">at selected</div>
-                  <div className="text-sm font-medium">accommodation</div>
+                  <div className="text-sm font-medium">{t('hero.atSelected')}</div>
+                  <div className="text-sm font-medium">{t('hero.accommodation')}</div>
                 </div>
               </div>
             </div>
@@ -42,10 +45,10 @@ const HeroSection: React.FC = () => {
             {/* Content */}
             <div className="absolute bottom-0 left-0 right-0 p-8 lg:p-12 z-10">
               <p className="text-white text-lg mb-2 font-medium">
-                Take the opportunity to book your ski trip now!
+                {t('hero.bookNow')}
               </p>
               <h2 className="text-white text-5xl lg:text-6xl font-bold mb-4 flex items-center gap-4 group-hover:gap-6 transition-all">
-                Black Week is here
+                {t('hero.blackWeek')}
                 <ChevronRight className="w-12 h-12 shrink-0" />
               </h2>
             </div>
@@ -67,10 +70,10 @@ const HeroSection: React.FC = () => {
               {/* Content */}
               <div className="absolute bottom-0 left-0 right-0 p-6 bg-linear-to-t from-black/70 via-black/40 to-transparent z-10">
                 <h3 className="text-white text-2xl lg:text-3xl font-bold mb-2 leading-tight">
-                  Celebrate your sports holiday in the mountains
+                  {t('hero.sportsHoliday')}
                 </h3>
                 <p className="text-white text-sm font-medium flex items-center gap-2 group-hover:gap-3 transition-all">
-                  From 3645 per person incl. SkiPass
+                  {t('hero.fromPrice')}
                   <ChevronRight className="w-4 h-4 shrink-0" />
                 </p>
               </div>
@@ -91,11 +94,11 @@ const HeroSection: React.FC = () => {
               <div className="relative z-10 p-8 flex flex-col justify-between h-full">
                 <div>
                   <h3 className="text-3xl lg:text-4xl font-bold mb-4 leading-tight">
-                    We open on November 28th!!
+                    {t('hero.openingDate')}
                   </h3>
                 </div>
                 <p className="text-white font-medium flex items-center gap-2 group-hover:gap-3 transition-all">
-                  See all official opening dates
+                  {t('hero.seeOpeningDates')}
                   <ChevronRight className="w-5 h-5 shrink-0" />
                 </p>
               </div>
