@@ -36,6 +36,62 @@ export default function Home() {
       title: 'Snowboard Rentals',
       description: 'Professional snowboard rental services with expert fitting and guidance for all skill levels.',
     },
+    {
+      id: '5',
+      imageUrl: '/winter-home2.jpg',
+      imageAlt: 'Luxury mountain cabin',
+      title: 'Luxury Mountain Cabins',
+      description: 'Experience ultimate comfort in our premium mountain cabins with panoramic views and modern amenities.',
+    },
+    {
+      id: '6',
+      imageUrl: '/package-adventure2.jpg',
+      imageAlt: 'Family adventure packages',
+      title: 'Family Adventure Packages',
+      description: 'Create unforgettable memories with specially designed family packages including activities for all ages.',
+    },
+    {
+      id: '7',
+      imageUrl: '/accomodation-stock-6.jpg',
+      imageAlt: 'Ski resort accommodations',
+      title: 'Ski Resort Accommodations',
+      description: 'Stay at the heart of the action with our ski-in ski-out accommodations perfectly located on the slopes.',
+    },
+    {
+      id: '8',
+      imageUrl: '/package-stock-5.jpg',
+      imageAlt: 'Winter sports packages',
+      title: 'Complete Winter Sports Packages',
+      description: 'All-inclusive packages combining accommodation, lift passes, and equipment rentals for the ultimate ski vacation.',
+    },
+    {
+      id: '9',
+      imageUrl: '/winter-home4.jpg',
+      imageAlt: 'Cozy winter retreat',
+      title: 'Cozy Winter Retreat',
+      description: 'Relax and unwind in our charming winter retreats featuring fireplaces and stunning alpine scenery.',
+    },
+    {
+      id: '10',
+      imageUrl: '/rent-ski2.jpg',
+      imageAlt: 'Expert ski fitting',
+      title: 'Expert Ski Fitting',
+      description: 'Get personalized ski fitting and equipment recommendations from our experienced staff for optimal performance.',
+    },
+    {
+      id: '11',
+      imageUrl: '/accomodation-stock-3.jpg',
+      imageAlt: 'Mountain lodges',
+      title: 'Traditional Mountain Lodges',
+      description: 'Enjoy authentic alpine hospitality in our traditional mountain lodges with rustic charm and modern comfort.',
+    },
+    {
+      id: '12',
+      imageUrl: '/package-adventure3.jpg',
+      imageAlt: 'Extreme sports packages',
+      title: 'Extreme Sports Adventures',
+      description: 'Push your limits with our extreme sports packages featuring off-piste skiing, snowboarding, and more.',
+    },
   ];
 
   return (
