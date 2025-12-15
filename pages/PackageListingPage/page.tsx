@@ -71,8 +71,10 @@ import { useSearchParams } from 'next/navigation';
 import PackageCard from '@/components/PackageCard';
 import { getPackagesByDestination, Package } from '@/data/packages';
 import { Tag } from 'lucide-react';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function PackagePage() {
+  const { t } = useLanguage();
   const searchParams = useSearchParams();
   const [packages, setPackages] = useState<Package[]>([]);
   const [destination, setDestination] = useState('Åre');
@@ -97,7 +99,7 @@ export default function PackagePage() {
     <div className="min-h-screen bg-gray-50 mt-8">
       <div className="bg-white border-b border-gray-200">
         <h2 className="flex text-3xl font-bold text-gray-800 mb-8 justify-center items-center">
-         Packages in {destination}
+          {t('packageListing.title')} {destination}
         </h2>
 
         {packages.length > 0 ? (
@@ -109,7 +111,7 @@ export default function PackagePage() {
         ) : (
           <div className="text-center py-24">
             <p className="text-xl text-gray-600">
-              No packages found for the selected destination.
+              {t('packageListing.noResults')}
             </p>
           </div>
         )}

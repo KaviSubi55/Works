@@ -257,4 +257,41 @@ export const sv: TranslationKeys = {
     error: 'Ett fel uppstod',
     success: 'Framgång',
   },
+
+  // Listing Pages
+  accommodationListing: {
+    title: 'Boenden i',
+    noResults: 'Inga boenden hittades för vald destination.',
+  },
+
+  packageListing: {
+    title: 'Paket i',
+    noResults: 'Inga paket hittades för vald destination.',
+  },
+
+  skipassListing: {
+    title: 'Tillgängliga pass i',
+    noResults: 'Inga pass hittades för vald destination.',
+  },
+
+  rentListing: {
+    title: 'Uthyrning tillgänglig i',
+    addToCart: 'Lägg till i varukorg',
+    noResults: 'Ingen uthyrning hittades för vald destination.',
+    supportHeading: 'Gratis utrustningsjustering & support',
+    supportDescription: 'Vår erfarna personal hjälper dig att hitta den perfekta utrustningen och gör nödvändiga justeringar. Behöver du hjälp under din hyra? Besök vår uthyrningsbutik när som helst under öppettiderna.',
+  },
+
+  // Login Page
+  login: {
+    heading: 'Logga in!',
+    emailLabel: 'Ange din e-postadress',
+    emailPlaceholder: 'Ange din e-postadress',
+    passwordLabel: 'Ange ditt lösenord',
+    passwordPlaceholder: 'Ange ditt lösenord',
+    submitButton: 'Logga In',
+    submittingButton: 'Loggar in dig!',
+    noAccount: 'Har du inget konto?',
+    signUpLink: 'Registrera dig här!',
+  },
 };

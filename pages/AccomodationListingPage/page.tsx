@@ -73,8 +73,10 @@ import React, { useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import PropertyCard from '@/components/PropertyCard';
 import { getAccommodationsByDestination, Accommodation } from '@/data/accommodations';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function AccommodationListingPage() {
+  const { t } = useLanguage();
   const searchParams = useSearchParams();
   const [properties, setProperties] = useState<Accommodation[]>([]);
   const [destination, setDestination] = useState('Åre');
@@ -93,13 +95,13 @@ export default function AccommodationListingPage() {
     setGuests(guestsParam);
 
     setProperties(getAccommodationsByDestination(destinationParam));
-  }, [searchParams]); 
+  }, [searchParams]);
 
   return (
     <div className="min-h-screen bg-gray-50 m-8">
       <div className="bg-white border-b border-gray-200 ">
         <h2 className="text-3xl font-bold text-gray-800 mb-6 flex justify-center m-8">
-          Accommodations in {destination}
+          {t('accommodationListing.title')} {destination}
         </h2>
 
         {properties.length > 0 ? (
@@ -111,7 +113,7 @@ export default function AccommodationListingPage() {
         ) : (
           <div className="text-center py-12">
             <p className="text-xl text-gray-600">
-              No accommodations found for the selected destination.
+              {t('accommodationListing.noResults')}
             </p>
           </div>
         )}

@@ -115,8 +115,10 @@ import { useSearchParams } from 'next/navigation';
 import RentCard from '@/components/RentCard';
 import { getRentalsByDestination, Rental } from '@/data/rentals';
 import { getCartItems, setCartItems as saveCartItems } from '@/utils/cartUtils';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function RentListingPage() {
+  const { t } = useLanguage();
   const searchParams = useSearchParams();
   const [rentals, setRentals] = useState<Rental[]>([]);
   const [destination, setDestination] = useState('Åre');
@@ -142,7 +144,7 @@ export default function RentListingPage() {
       <div className="bg-white border-b border-gray-200">
 
         <h2 className="text-3xl font-bold text-gray-900 mb-6 flex justify-center m-8">
-          Rentals available in {destination}
+          {t('rentListing.title')} {destination}
         </h2>
 
         {rentals.length > 0 ? (
@@ -157,7 +159,7 @@ export default function RentListingPage() {
                 category={rental.category}
                 includes={rental.features}
                 price={rental.price}
-                buttonText="Add to Cart"
+                buttonText={t('rentListing.addToCart')}
                 onButtonClick={() => {
                   const cartItems = getCartItems();
                   if (!cartItems.some((item: any) => item.id === rental.id)) {
@@ -182,7 +184,7 @@ export default function RentListingPage() {
         ) : (
           <div className="text-center py-12">
             <p className="text-xl text-gray-600">
-              No rentals found for the selected destination.
+              {t('rentListing.noResults')}
             </p>
           </div>
         )}
@@ -194,11 +196,10 @@ export default function RentListingPage() {
             </div>
             <div>
               <h3 className="text-lg font-bold text-gray-900 mb-2">
-                Free equipment adjustment & support
+                {t('rentListing.supportHeading')}
               </h3>
               <p className="text-gray-700">
-                Our experienced staff will help you find the perfect equipment and make any necessary adjustments. 
-                Need help during your rental? Visit our rental shop anytime during operating hours.
+                {t('rentListing.supportDescription')}
               </p>
             </div>
           </div>
