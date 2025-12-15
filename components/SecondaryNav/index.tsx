@@ -187,7 +187,7 @@ const SecondaryNav: React.FC = () => {
       {/* Desktop Navigation */}
       <div className="hidden lg:block bg-white border-b border-gray-100">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
-          <nav className="flex items-center overflow-x-auto scrollbar-hide">
+          <nav className="flex items-center justify-between overflow-x-auto scrollbar-hide">
             {tabs.map((tab) => {
               const isActive = tab.id === activeTab;
               return (
