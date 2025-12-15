@@ -150,12 +150,15 @@
 
 'use client';
 
-import React, { useState } from 'react';
-import { Home, Tag, Ticket, Key, Menu, X } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Home, Tag, Ticket, Key, Menu, X, ShoppingCart } from 'lucide-react';
 import AccommodationSearch from '../AccomodationSearch';
 import PackageSearch from '../PackageSearch';
 import SkiPassSearch from '../SkiPassSearch';
 import RentSearch from '../RentSearch';
+import UserMenu from '../UserMenu';
+import CartDropdown from '../CartDropdown';
+import { getCartItems } from '@/utils/cartUtils';
 
 type TabType = 'home' | 'accommodation' | 'package' | 'skipass' | 'rent';
 
@@ -176,37 +179,95 @@ const tabs: Tab[] = [
 const SecondaryNav: React.FC = () => {
   const [activeTab, setActiveTab] = useState<TabType>('home');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isCartOpen, setIsCartOpen] = useState(false);
+  const [cartCount, setCartCount] = useState(0);
 
   const handleTabClick = (tabId: TabType) => {
     setActiveTab(tabId);
     setIsMobileMenuOpen(false);
   };
 
+  // Function to get cart count from localStorage
+  const getCartCount = () => {
+    try {
+      const items = getCartItems();
+      return Array.isArray(items) ? items.length : 0;
+    } catch (error) {
+      return 0;
+    }
+  };
+
+  // Update cart count on mount and when cart changes
+  useEffect(() => {
+    // Set initial cart count
+    setCartCount(getCartCount());
+
+    // Listen for cart updates and user login/logout
+    const handleCartUpdate = () => {
+      setCartCount(getCartCount());
+    };
+
+    window.addEventListener('cartUpdated', handleCartUpdate);
+    window.addEventListener('userLoggedIn', handleCartUpdate);
+
+    // Cleanup
+    return () => {
+      window.removeEventListener('cartUpdated', handleCartUpdate);
+      window.removeEventListener('userLoggedIn', handleCartUpdate);
+    };
+  }, []);
+
   return (
     <div className="bg-white">
       {/* Desktop Navigation */}
       <div className="hidden lg:block bg-white border-b border-gray-100">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
-          <nav className="flex items-center overflow-x-auto scrollbar-hide">
-            {tabs.map((tab) => {
-              const isActive = tab.id === activeTab;
-              return (
+          <div className="flex items-center justify-between">
+            {/* Left: Navigation Tabs */}
+            <nav className="flex items-center overflow-x-auto scrollbar-hide">
+              {tabs.map((tab) => {
+                const isActive = tab.id === activeTab;
+                return (
+                  <button
+                    key={tab.id}
+                    onClick={() => handleTabClick(tab.id)}
+                    className={`flex items-center gap-2 py-4 px-2 font-medium whitespace-nowrap transition-colors relative group ${
+                      isActive ? 'text-[#C41E3A]' : 'text-gray-600 hover:text-[#C41E3A]'
+                    }`}
+                  >
+                    <span className={`transition-colors ${isActive ? 'text-[#C41E3A]' : 'text-gray-400 group-hover:text-[#C41E3A]'}`}>
+                      {tab.icon}
+                    </span>
+                    {tab.label}
+                    <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#C41E3A] transform transition-transform duration-300 ease-out origin-center scale-x-0 group-hover:scale-x-100"></span>
+                  </button>
+                );
+              })}
+            </nav>
+
+            {/* Right: Cart and User Menu */}
+            <div className="flex items-center gap-4">
+              {/* Shopping Cart Icon */}
+              <div className="relative">
                 <button
-                  key={tab.id}
-                  onClick={() => handleTabClick(tab.id)}
-                  className={`flex items-center gap-2 py-4 px-2 font-medium whitespace-nowrap transition-colors relative group ${
-                    isActive ? 'text-[#C41E3A]' : 'text-gray-600 hover:text-[#C41E3A]'
-                  }`}
+                  onClick={() => setIsCartOpen(!isCartOpen)}
+                  className="flex items-center justify-center w-10 h-10 text-gray-700 hover:text-[#C41E3A] transition-colors"
+                  aria-label="Shopping cart"
                 >
-                  <span className={`transition-colors ${isActive ? 'text-[#C41E3A]' : 'text-gray-400 group-hover:text-[#C41E3A]'}`}>
-                    {tab.icon}
-                  </span>
-                  {tab.label}
-                  <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#C41E3A] transform transition-transform duration-300 ease-out origin-center scale-x-0 group-hover:scale-x-100"></span>
+                  <ShoppingCart className="w-5 h-5" />
                 </button>
-              );
-            })}
-          </nav>
+                {cartCount > 0 && (
+                  <div className="absolute -top-1 -right-1 bg-[#C41E3A] text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
+                    {cartCount}
+                  </div>
+                )}
+                <CartDropdown isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
+              </div>
+
+              {/* User Menu */}
+              <UserMenu />
+            </div>
+          </div>
         </div>
       </div>
 
@@ -214,7 +275,8 @@ const SecondaryNav: React.FC = () => {
       <div className="lg:hidden bg-white relative z-50 border-b border-gray-100">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6">
           {!isMobileMenuOpen && (
-            <div className="flex items-center justify-center py-3">
+            <div className="flex items-center justify-between py-3">
+              {/* Menu Button - Left */}
               <button
                 onClick={() => setIsMobileMenuOpen(true)}
                 className="text-[#C41E3A] hover:opacity-80 transition-opacity"
@@ -222,6 +284,29 @@ const SecondaryNav: React.FC = () => {
               >
                 <Menu className="w-6 h-6" />
               </button>
+
+              {/* Cart and User Menu - Right */}
+              <div className="flex items-center gap-3">
+                {/* Shopping Cart Icon */}
+                <div className="relative">
+                  <button
+                    onClick={() => setIsCartOpen(!isCartOpen)}
+                    className="flex items-center justify-center w-9 h-9 text-gray-700 hover:text-[#C41E3A] transition-colors"
+                    aria-label="Shopping cart"
+                  >
+                    <ShoppingCart className="w-4 h-4" />
+                  </button>
+                  {cartCount > 0 && (
+                    <div className="absolute -top-1 -right-1 bg-[#C41E3A] text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
+                      {cartCount}
+                    </div>
+                  )}
+                  <CartDropdown isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
+                </div>
+
+                {/* User Menu */}
+                <UserMenu />
+              </div>
             </div>
           )}
 

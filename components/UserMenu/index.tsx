@@ -154,7 +154,7 @@ const UserMenu: React.FC = () => {
 
       {/* Dropdown menu - shows on click */}
       {isDropdownOpen && (
-        <div className="absolute top-full right-0 mt-2 w-56 bg-white rounded-xl shadow-xl border border-gray-200 z-50 overflow-hidden">
+        <div className="absolute top-full right-0 mt-2 w-56 bg-white rounded-xl shadow-xl border border-gray-200 z-[9999] overflow-hidden">
           {/* User Info Section */}
           <div className="px-4 py-6 text-center">
             {/* User Icon Circle */}
