@@ -6,8 +6,10 @@ import { useRouter } from 'next/navigation';
 import { LogOut as LogOutIcon, LogIn as LogInIcon, User } from 'lucide-react';
 import { LogOut } from '@/actions/log-out';
 import { createClient } from '@/utils/supabase/client';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const UserMenu: React.FC = () => {
+  const { t } = useLanguage();
   const router = useRouter();
   const [username, setUsername] = useState<string | null>(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -134,7 +136,7 @@ const UserMenu: React.FC = () => {
         className="flex items-center gap-2 px-4 py-2 rounded-full border border-gray-300 hover:bg-gray-50 transition-colors"
       >
         <LogInIcon className="w-4 h-4" />
-        <span className="font-medium hidden sm:inline">Login</span>
+        <span className="font-medium hidden sm:inline">{t('userMenu.login')}</span>
       </Link>
     );
   }
@@ -164,7 +166,7 @@ const UserMenu: React.FC = () => {
 
             {/* Greeting */}
             <p className="text-gray-900 font-semibold text-base">
-              Hi, {username ? username.charAt(0).toUpperCase() + username.slice(1).toLowerCase() : 'User'}!
+              {t('userMenu.hi')}, {username ? username.charAt(0).toUpperCase() + username.slice(1).toLowerCase() : 'User'}!
             </p>
           </div>
 
@@ -174,7 +176,7 @@ const UserMenu: React.FC = () => {
             className="w-full text-left px-4 py-3 hover:bg-red-50 transition-colors flex items-center justify-center gap-2 text-gray-700 hover:text-red-600 font-medium"
           >
             <LogOutIcon className="w-5 h-5" />
-            <span>Logout</span>
+            <span>{t('userMenu.logout')}</span>
           </button>
         </div>
       )}
