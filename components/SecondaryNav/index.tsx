@@ -211,7 +211,7 @@ const SecondaryNav: React.FC = () => {
       </div>
 
       {/* Mobile Navigation */}
-      <div className="lg:hidden bg-white relative z-50">
+      <div className="lg:hidden bg-white relative z-40">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6">
           {!isMobileMenuOpen && (
             <div className="flex items-center justify-center py-3">
@@ -228,13 +228,13 @@ const SecondaryNav: React.FC = () => {
 
           {isMobileMenuOpen && (
             <div
-              className="fixed left-0 right-0 top-[140px] bottom-0 bg-black bg-opacity-50 z-40"
+              className="fixed left-0 right-0 top-[100px] bottom-0 bg-opacity-50 z-40"
               onClick={() => setIsMobileMenuOpen(false)}
             />
           )}
 
           <div
-            className={`fixed left-0 top-[140px] bottom-0 w-full bg-white z-50 overflow-y-auto transition-transform duration-700 ease-in-out ${
+            className={`fixed left-0 top-[120px] bottom-0 w-full bg-white z-50 overflow-y-auto transition-transform duration-700 ease-in-out ${
               isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'
             }`}
           >
