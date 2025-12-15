@@ -5,7 +5,7 @@ const CardOverlay: React.FC = () => {
   const [learnMoreLink2] = useState<string>('/package');
 
   return (
-    <div className="relative w-screen h-screen flex items-center justify-center">
+    <div className="relative w-screen h-screen flex items-center justify-center z-0">
       {/* Cards Container */}
 
 <div
@@ -17,6 +17,7 @@ const CardOverlay: React.FC = () => {
     bottom-[-30%]           /* Use natural flow on SM */
     flex gap-5 flex-wrap justify-center
     max-[480px]:flex-col max-[480px]:items-center
+    z-10
   "
 >
 
