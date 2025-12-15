@@ -118,7 +118,7 @@ const CartDropdown: React.FC<CartDropdownProps> = ({ isOpen, onClose }) => {
       className="absolute top-full -right-2 sm:right-0 mt-2 w-[min(300px,calc(100vw-1rem))] sm:w-[380px] sm:max-w-[380px] md:w-[360px] md:max-w-[360px] lg:w-96 lg:max-w-[384px] bg-white rounded-lg shadow-lg border border-gray-200 z-[9999] max-h-[calc(100vh-120px)] sm:max-h-[500px] md:max-h-[550px] lg:max-h-[600px] flex flex-col"
     >
       {/* Header */}
-      <div className="p-3 sm:p-4 border-b border-gray-200">
+      <div className="p-2 sm:p-4 border-b border-gray-200">
         {username ? (
           <div className="text-xs sm:text-sm">
             <span className="text-gray-600">Hello, </span>
@@ -143,15 +143,15 @@ const CartDropdown: React.FC<CartDropdownProps> = ({ isOpen, onClose }) => {
       ) : (
         <>
           {/* Cart Items - Scrollable */}
-          <div className="flex-1 overflow-y-auto p-3 sm:p-4 space-y-3">
+          <div className="flex-1 overflow-y-auto p-2 sm:p-4 space-y-2">
             {cartItems.map((item) => (
-              <div key={item.id} className="flex gap-2 sm:gap-3 bg-gray-50 rounded-lg p-2.5 sm:p-3">
+              <div key={item.id} className="flex gap-1.5 sm:gap-3 bg-gray-50 rounded-lg p-2 sm:p-3">
                 <div className="flex-1 min-w-0">
-                  <h4 className="font-semibold text-gray-900 text-xs sm:text-sm mb-1 truncate">{item.name}</h4>
-                  <p className="text-[10px] sm:text-xs text-gray-600 mb-1.5 sm:mb-2 truncate">
+                  <h4 className="font-semibold text-gray-900 text-xs sm:text-sm mb-0.5 sm:mb-1 truncate">{item.name}</h4>
+                  <p className="text-[10px] sm:text-xs text-gray-600 mb-1 sm:mb-2 truncate">
                     {item.area}, {item.location}
                   </p>
-                  <div className="flex items-center justify-between gap-2">
+                  <div className="flex items-center justify-between gap-1 sm:gap-2">
                     <div className="text-xs sm:text-sm">
                       <span className="text-gray-600">{item.beds}</span>
                     </div>
@@ -173,14 +173,14 @@ const CartDropdown: React.FC<CartDropdownProps> = ({ isOpen, onClose }) => {
           </div>
 
           {/* Cart Footer - Total and Checkout */}
-          <div className="border-t border-gray-200 p-3 sm:p-4 bg-gray-50">
-            <div className="flex items-center justify-between mb-3 sm:mb-4">
+          <div className="border-t border-gray-200 p-2 sm:p-4 bg-gray-50">
+            <div className="flex items-center justify-between mb-2 sm:mb-4">
               <span className="text-xs sm:text-sm font-semibold text-gray-900">Total:</span>
-              <span className="text-lg sm:text-xl font-bold text-[#C41E3A]">
+              <span className="text-base sm:text-xl font-bold text-[#C41E3A]">
                 {getTotalPrice().toLocaleString()} SEK
               </span>
             </div>
-            <button className="w-full bg-[#C41E3A] text-white py-2.5 sm:py-3 rounded-full text-sm sm:text-base font-bold hover:bg-[#A01830] transition-colors">
+            <button className="w-full bg-[#C41E3A] text-white py-2 sm:py-3 rounded-full text-xs sm:text-base font-bold hover:bg-[#A01830] transition-colors">
               Proceed to Checkout
             </button>
           </div>
