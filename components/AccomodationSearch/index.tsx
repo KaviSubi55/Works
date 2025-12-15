@@ -3,19 +3,21 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { ChevronDown, ChevronUp, Minus, Plus, ChevronLeft, ChevronRight } from 'lucide-react';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 interface Destination {
   id: string;
-  name: string;
+  nameKey: string;
 }
-
-const destinations: Destination[] = [
-  { id: 'are', name: 'Åre' },
-  { id: 'stockholm', name: 'Stockholm' },
-];
 
 const AccommodationSearch: React.FC = () => {
   const router = useRouter();
+  const { t } = useLanguage();
+
+  const destinations: Destination[] = [
+    { id: 'are', nameKey: 'search.destinations.are' },
+    { id: 'stockholm', nameKey: 'search.destinations.stockholm' },
+  ];
   
   // Dropdown states
   const [destinationOpen, setDestinationOpen] = useState(false);
@@ -97,8 +99,10 @@ const AccommodationSearch: React.FC = () => {
   const { daysInMonth, startingDayOfWeek } = getDaysInMonth(currentMonth);
 
   const monthNames = [
-    'January', 'February', 'March', 'April', 'May', 'June',
-    'July', 'August', 'September', 'October', 'November', 'December'
+    t('search.months.january'), t('search.months.february'), t('search.months.march'),
+    t('search.months.april'), t('search.months.may'), t('search.months.june'),
+    t('search.months.july'), t('search.months.august'), t('search.months.september'),
+    t('search.months.october'), t('search.months.november'), t('search.months.december')
   ];
 
   const handlePrevMonth = () => {
@@ -199,8 +203,8 @@ const AccommodationSearch: React.FC = () => {
               <div className="flex items-center justify-between">
                 <span className="text-sm sm:text-base text-gray-900 font-medium">
                   {selectedDestinations.length === 0
-                    ? 'Choose destination'
-                    : `${selectedDestinations.length} selected`}
+                    ? t('search.chooseDestination')
+                    : `${selectedDestinations.length} ${t('search.selected')}`}
                 </span>
                 {destinationOpen ? (
                   <ChevronUp className="w-5 h-5 text-gray-400" />
@@ -225,7 +229,7 @@ const AccommodationSearch: React.FC = () => {
                         onChange={() => handleDestinationChange(dest.id)}
                         className="w-5 h-5 rounded border-gray-300 text-[#C41E3A] focus:ring-[#C41E3A]"
                       />
-                      <span className="text-gray-900">{dest.name}</span>
+                      <span className="text-gray-900">{t(dest.nameKey)}</span>
                     </label>
                   ))}
                 </div>
@@ -234,14 +238,14 @@ const AccommodationSearch: React.FC = () => {
                     onClick={clearDestinations}
                     className="flex-1 px-6 py-2 rounded-full border-2 border-[#C41E3A] text-[#C41E3A] font-medium hover:bg-[#C41E3A] hover:text-white transition-colors"
                   >
-                    Clear
+                    {t('search.clear')}
                   </button>
                   {selectedDestinations.length > 0 && (
                     <button
                       onClick={() => setDestinationOpen(false)}
                       className="flex-1 px-6 py-2 rounded-full bg-[#C41E3A] text-white font-medium hover:bg-[#A01830] transition-colors"
                     >
-                      OK
+                      {t('search.ok')}
                     </button>
                   )}
                 </div>
@@ -264,10 +268,10 @@ const AccommodationSearch: React.FC = () => {
                   : 'border border-gray-200'
               }`}
             >
-              
+
               <div className="flex items-center justify-between">
                 <span className="text-sm sm:text-base text-gray-900 font-medium">
-                  {totalGuests === 0 ? 'Add guests' : `${totalGuests} guest${totalGuests !== 1 ? 's' : ''}`}
+                  {totalGuests === 0 ? t('search.addGuests') : `${totalGuests} ${totalGuests === 1 ? t('search.guest') : t('search.guests')}`}
                 </span>
                 {guestsOpen ? (
                   <ChevronUp className="w-5 h-5 text-gray-400" />
@@ -284,8 +288,8 @@ const AccommodationSearch: React.FC = () => {
                   {/* Adults */}
                   <div className="flex items-center justify-between">
                     <div>
-                      <div className="font-medium text-gray-900">Adult</div>
-                      <div className="text-sm text-gray-600">18 - 64 years</div>
+                      <div className="font-medium text-gray-900">{t('search.adult')}</div>
+                      <div className="text-sm text-gray-600">{t('search.adultAge')}</div>
                     </div>
                     <div className="flex items-center gap-3">
                       <button
@@ -307,8 +311,8 @@ const AccommodationSearch: React.FC = () => {
                   {/* Seniors */}
                   <div className="flex items-center justify-between">
                     <div>
-                      <div className="font-medium text-gray-900">Senior</div>
-                      <div className="text-sm text-gray-600">Over 65 years old</div>
+                      <div className="font-medium text-gray-900">{t('search.senior')}</div>
+                      <div className="text-sm text-gray-600">{t('search.seniorAge')}</div>
                     </div>
                     <div className="flex items-center gap-3">
                       <button
@@ -330,8 +334,8 @@ const AccommodationSearch: React.FC = () => {
                   {/* Children */}
                   <div className="flex items-center justify-between">
                     <div>
-                      <div className="font-medium text-gray-900">Children/Youth</div>
-                      <div className="text-sm text-gray-600">0 - 17 years</div>
+                      <div className="font-medium text-gray-900">{t('search.childrenYouth')}</div>
+                      <div className="text-sm text-gray-600">{t('search.childrenAge')}</div>
                     </div>
                     <div className="flex items-center gap-3">
                       <button
@@ -356,14 +360,14 @@ const AccommodationSearch: React.FC = () => {
                     onClick={clearGuests}
                     className="flex-1 px-6 py-2 rounded-full border-2 border-[#C41E3A] text-[#C41E3A] font-medium hover:bg-[#C41E3A] hover:text-white transition-colors"
                   >
-                    Clear
+                    {t('search.clear')}
                   </button>
                   {totalGuests > 0 && (
                     <button
                       onClick={() => setGuestsOpen(false)}
                       className="flex-1 px-6 py-2 rounded-full bg-[#C41E3A] text-white font-medium hover:bg-[#A01830] transition-colors"
                     >
-                      OK
+                      {t('search.ok')}
                     </button>
                   )}
                 </div>
@@ -395,7 +399,7 @@ const AccommodationSearch: React.FC = () => {
                         day: 'numeric',
                         year: 'numeric',
                       })
-                    : 'Select arrival day'}
+                    : t('search.selectArrival')}
                 </span>
                 {dateOpen ? (
                   <ChevronUp className="w-5 h-5 text-gray-400" />
@@ -430,7 +434,15 @@ const AccommodationSearch: React.FC = () => {
                 {/* Calendar Grid */}
                 <div className="grid grid-cols-7 gap-1">
                   {/* Day headers */}
-                  {['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].map((day) => (
+                  {[
+                    t('search.weekdays.mon'),
+                    t('search.weekdays.tue'),
+                    t('search.weekdays.wed'),
+                    t('search.weekdays.thu'),
+                    t('search.weekdays.fri'),
+                    t('search.weekdays.sat'),
+                    t('search.weekdays.sun')
+                  ].map((day) => (
                     <div key={day} className="text-center text-sm text-gray-600 py-2">
                       {day}
                     </div>
@@ -476,7 +488,7 @@ const AccommodationSearch: React.FC = () => {
             onClick={handleSearch}
             className="w-full lg:w-auto bg-[#a71d34] text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-bold hover:bg-[#A01830] transition-colors whitespace-nowrap shadow-lg hover:shadow-xl"
           >
-            Search for accommodation
+            {t('search.searchAccommodation')}
           </button>
         </div>
       </div>

@@ -156,30 +156,42 @@ import AccommodationSearch from '../AccomodationSearch';
 import PackageSearch from '../PackageSearch';
 import SkiPassSearch from '../SkiPassSearch';
 import RentSearch from '../RentSearch';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 type TabType = 'home' | 'accommodation' | 'package' | 'skipass' | 'rent';
 
 interface Tab {
   id: TabType;
-  label: string;
   icon: React.ReactNode;
 }
 
-const tabs: Tab[] = [
-  { id: 'home', label: 'Home', icon: <Home className="w-5 h-5" /> },
-  { id: 'accommodation', label: 'Accommodation', icon: <Home className="w-5 h-5" /> },
-  { id: 'package', label: 'Package', icon: <Tag className="w-5 h-5" /> },
-  { id: 'skipass', label: 'Ski Pass', icon: <Ticket className="w-5 h-5" /> },
-  { id: 'rent', label: 'Rent', icon: <Key className="w-5 h-5" /> },
-];
-
 const SecondaryNav: React.FC = () => {
+  const { t } = useLanguage();
   const [activeTab, setActiveTab] = useState<TabType>('home');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const tabs: Tab[] = [
+    { id: 'home', icon: <Home className="w-5 h-5" /> },
+    { id: 'accommodation', icon: <Home className="w-5 h-5" /> },
+    { id: 'package', icon: <Tag className="w-5 h-5" /> },
+    { id: 'skipass', icon: <Ticket className="w-5 h-5" /> },
+    { id: 'rent', icon: <Key className="w-5 h-5" /> },
+  ];
 
   const handleTabClick = (tabId: TabType) => {
     setActiveTab(tabId);
     setIsMobileMenuOpen(false);
+  };
+
+  const getTabLabel = (tabId: TabType): string => {
+    const labels: Record<TabType, string> = {
+      home: t('nav.home'),
+      accommodation: t('nav.accommodation'),
+      package: t('nav.package'),
+      skipass: t('nav.skiPass'),
+      rent: t('nav.rent'),
+    };
+    return labels[tabId];
   };
 
   return (
@@ -201,7 +213,7 @@ const SecondaryNav: React.FC = () => {
                   <span className={`transition-colors ${isActive ? 'text-[#C41E3A]' : 'text-gray-400 group-hover:text-[#C41E3A]'}`}>
                     {tab.icon}
                   </span>
-                  {tab.label}
+                  {getTabLabel(tab.id)}
                   <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#C41E3A] transform transition-transform duration-300 ease-out origin-center scale-x-0 group-hover:scale-x-100"></span>
                 </button>
               );
@@ -262,7 +274,7 @@ const SecondaryNav: React.FC = () => {
                     <span className={`transition-colors ${isActive ? 'text-[#C41E3A]' : 'text-gray-400 group-hover:text-[#C41E3A]'}`}>
                       {tab.icon}
                     </span>
-                    {tab.label}
+                    {getTabLabel(tab.id)}
 
                     {/* Hover underline only */}
                     <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#C41E3A] transform transition-transform duration-300 ease-out origin-center scale-x-0 group-hover:scale-x-100"></span>

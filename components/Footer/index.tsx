@@ -2,8 +2,11 @@
 
 import React from 'react';
 import Link from 'next/link';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const Footer: React.FC = () => {
+  const { t } = useLanguage();
+
   return (
     <footer className="bg-white">
       {/* Top Red Section with Destinations */}
@@ -15,7 +18,7 @@ const Footer: React.FC = () => {
               href="/vacation-club"
               className="text-white text-lg hover:underline"
             >
-              Peakster Vacation Club
+              {t('footer.vacationClub')}
             </Link>
           </div>
 
@@ -26,7 +29,7 @@ const Footer: React.FC = () => {
               href="/destination/are"
               className="text-white hover:opacity-80 transition-opacity"
             >
-              <span className="text-2xl font-bold tracking-wider">ÅRE</span>
+              <span className="text-2xl font-bold tracking-wider">{t('footer.are')}</span>
             </Link>
 
             {/* STOCKHOLM */}
@@ -34,7 +37,7 @@ const Footer: React.FC = () => {
               href="/destination/stockholm"
               className="text-white hover:opacity-80 transition-opacity"
             >
-              <span className="text-2xl font-bold tracking-wider">STOCKHOLM</span>
+              <span className="text-2xl font-bold tracking-wider">{t('footer.stockholm')}</span>
             </Link>
           </div>
         </div>
@@ -54,7 +57,7 @@ const Footer: React.FC = () => {
 
           {/* Company Information */}
           <div className="text-center text-gray-600 text-sm">
-            <p>Peakster AB, Sälfjällsgården, 780 91 Sälen Corporate ID: 556093-6949</p>
+            <p>{t('footer.companyInfo')}</p>
           </div>
         </div>
       </div>
