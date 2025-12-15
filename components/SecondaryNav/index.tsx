@@ -185,7 +185,7 @@ const SecondaryNav: React.FC = () => {
   return (
     <div className="bg-white">
       {/* Desktop Navigation */}
-      <div className="hidden lg:block bg-white border-b border-gray-100">
+      <div className="hidden lg:block bg-white">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
           <nav className="flex items-center justify-between overflow-x-auto scrollbar-hide">
             {tabs.map((tab) => {
@@ -211,7 +211,7 @@ const SecondaryNav: React.FC = () => {
       </div>
 
       {/* Mobile Navigation */}
-      <div className="lg:hidden bg-white relative z-50 border-b border-gray-100">
+      <div className="lg:hidden bg-white relative z-50">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6">
           {!isMobileMenuOpen && (
             <div className="flex items-center justify-center py-3">
