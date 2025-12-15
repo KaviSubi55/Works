@@ -62,8 +62,10 @@ import React, { useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import SkiPassCard from '@/components/SkiPassCard';
 import { getSkiPassesByDestination, SkiPass } from '@/data/skipasses';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function SkiPassListingPage() {
+  const { t } = useLanguage();
   const searchParams = useSearchParams();
   const [skipasses, setSkiPasses] = useState<SkiPass[]>([]);
   const [destination, setDestination] = useState('Åre');
@@ -88,7 +90,7 @@ export default function SkiPassListingPage() {
     <div className="min-h-screen bg-gray-50">
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <h2 className=" flex justify-center m-8 text-3xl font-bold text-gray-900 mb-6">
-          Available passes in {destination}
+          {t('skipassListing.title')} {destination}
         </h2>
 
         {skipasses.length > 0 ? (
@@ -100,7 +102,7 @@ export default function SkiPassListingPage() {
         ) : (
           <div className="text-center py-12">
             <p className="text-xl text-gray-600">
-              No passes found for the selected destination.
+              {t('skipassListing.noResults')}
             </p>
           </div>
         )}

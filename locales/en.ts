@@ -255,6 +255,43 @@ export const en = {
     error: 'An error occurred',
     success: 'Success',
   },
+
+  // Listing Pages
+  accommodationListing: {
+    title: 'Accommodations in',
+    noResults: 'No accommodations found for the selected destination.',
+  },
+
+  packageListing: {
+    title: 'Packages in',
+    noResults: 'No packages found for the selected destination.',
+  },
+
+  skipassListing: {
+    title: 'Available passes in',
+    noResults: 'No passes found for the selected destination.',
+  },
+
+  rentListing: {
+    title: 'Rentals available in',
+    addToCart: 'Add to Cart',
+    noResults: 'No rentals found for the selected destination.',
+    supportHeading: 'Free equipment adjustment & support',
+    supportDescription: 'Our experienced staff will help you find the perfect equipment and make any necessary adjustments. Need help during your rental? Visit our rental shop anytime during operating hours.',
+  },
+
+  // Login Page
+  login: {
+    heading: 'Log in!',
+    emailLabel: 'Enter your email',
+    emailPlaceholder: 'Enter your email',
+    passwordLabel: 'Enter your password',
+    passwordPlaceholder: 'Enter your password',
+    submitButton: 'Log In',
+    submittingButton: 'Logging you in!',
+    noAccount: "Don't have an account?",
+    signUpLink: 'Sign up here!',
+  },
 };
 
 export type TranslationKeys = typeof en;
