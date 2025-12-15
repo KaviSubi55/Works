@@ -198,6 +198,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { ShoppingCart, X } from 'lucide-react';
 import { getCartItems, setCartItems as saveCartItems } from '@/utils/cartUtils';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 interface CartItem {
   id: string;
@@ -217,6 +218,7 @@ interface CartDropdownProps {
 }
 
 const CartDropdown: React.FC<CartDropdownProps> = ({ isOpen, onClose }) => {
+  const { t } = useLanguage();
   const [username, setUsername] = useState<string>('');
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -314,14 +316,14 @@ const CartDropdown: React.FC<CartDropdownProps> = ({ isOpen, onClose }) => {
       <div className="p-2 sm:p-4 border-b border-gray-200 text-center">
         {username ? (
           <div className="text-xs sm:text-sm">
-            <span className="text-gray-600 mr-1">Hello</span>
+            <span className="text-gray-600 mr-1">{t('userMenu.hello')}</span>
             <span className="font-semibold text-gray-900 capitalize">
               {username}
             </span>
           </div>
         ) : (
           <div className="text-xs sm:text-sm text-gray-600">
-            Welcome, Guest
+            {t('userMenu.welcomeGuest')}
           </div>
         )}
       </div>
@@ -329,7 +331,7 @@ const CartDropdown: React.FC<CartDropdownProps> = ({ isOpen, onClose }) => {
       {cartItems.length === 0 ? (
         <div className="flex-1 flex flex-col items-center justify-center p-6 text-center">
           <ShoppingCart className="w-12 h-12 text-gray-400 mb-4" />
-          <h3 className="text-lg font-semibold">Your cart is empty</h3>
+          <h3 className="text-lg font-semibold">{t('cart.empty')}</h3>
         </div>
       ) : (
         <>
@@ -346,7 +348,7 @@ const CartDropdown: React.FC<CartDropdownProps> = ({ isOpen, onClose }) => {
                   <div className="flex justify-between">
                     <span className="text-xs text-gray-600">{item.beds}</span>
                     <span className="font-bold text-[#C41E3A] text-sm">
-                      {item.price.toLocaleString()} SEK
+                      {item.price.toLocaleString()} {t('cart.sek')}
                     </span>
                   </div>
                 </div>
@@ -354,6 +356,7 @@ const CartDropdown: React.FC<CartDropdownProps> = ({ isOpen, onClose }) => {
                 <button
                   onClick={(e) => removeFromCart(e, item.id)}
                   className="text-gray-400 hover:text-red-600"
+                  aria-label={t('cart.removeItem')}
                 >
                   <X className="w-5 h-5" />
                 </button>
@@ -363,13 +366,13 @@ const CartDropdown: React.FC<CartDropdownProps> = ({ isOpen, onClose }) => {
 
           <div className="border-t border-gray-200 p-3 bg-gray-50">
             <div className="flex justify-between mb-3">
-              <span className="text-sm font-semibold">Total:</span>
+              <span className="text-sm font-semibold">{t('cart.total')}:</span>
               <span className="text-lg font-bold text-[#C41E3A]">
-                {getTotalPrice().toLocaleString()} SEK
+                {getTotalPrice().toLocaleString()} {t('cart.sek')}
               </span>
             </div>
             <button className="w-full bg-[#C41E3A] text-white py-3 rounded-full font-bold">
-              Proceed to Checkout
+              {t('cart.checkout')}
             </button>
           </div>
         </>

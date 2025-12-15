@@ -199,6 +199,9 @@ export const sv: TranslationKeys = {
   userMenu: {
     login: 'Logga in',
     logout: 'Logga ut',
+    hi: 'Hej',
+    hello: 'Hej',
+    welcomeGuest: 'Välkommen, Gäst',
     myBookings: 'Mina bokningar',
     profile: 'Profil',
     settings: 'Inställningar',
@@ -208,10 +211,18 @@ export const sv: TranslationKeys = {
   cart: {
     title: 'Varukorg',
     empty: 'Din varukorg är tom',
+    emptyDescription: 'Lägg till artiklar för att komma igång',
     viewCart: 'Visa varukorg',
-    checkout: 'Till kassan',
-    removeItem: 'Ta bort artikel',
+    checkout: 'Fortsätt till kassan',
+    removeItem: 'Ta bort från varukorgen',
     total: 'Totalt',
+    sek: 'SEK',
+  },
+
+  // Carousel/Scroll
+  carousel: {
+    scrollLeft: 'Scrolla vänster',
+    scrollRight: 'Scrolla höger',
   },
 
   // Common

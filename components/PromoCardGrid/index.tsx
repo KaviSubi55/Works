@@ -2,6 +2,7 @@
 
 import React, { useRef, useState, useEffect } from 'react';
 import PromoCard from '../PromoCard';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 interface PromoItem {
   id: string;
@@ -17,6 +18,7 @@ interface PromoCardGridProps {
 }
 
 const PromoCardGrid: React.FC<PromoCardGridProps> = ({ items }) => {
+  const { t } = useLanguage();
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [showLeftArrow, setShowLeftArrow] = useState(false);
   const [showRightArrow, setShowRightArrow] = useState(true);
@@ -70,7 +72,7 @@ const PromoCardGrid: React.FC<PromoCardGridProps> = ({ items }) => {
           <button
             onClick={() => scroll('left')}
             className="absolute left-4 top-1/2 z-10 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white/90 shadow-lg transition-all hover:bg-white hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-blue-500 sm:left-8"
-            aria-label="Scroll left"
+            aria-label={t('carousel.scrollLeft')}
           >
             <svg
               className="h-6 w-6 text-gray-800"
@@ -92,7 +94,7 @@ const PromoCardGrid: React.FC<PromoCardGridProps> = ({ items }) => {
           <button
             onClick={() => scroll('right')}
             className="absolute right-4 top-1/2 z-10 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white/90 shadow-lg transition-all hover:bg-white hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-blue-500 sm:right-8"
-            aria-label="Scroll right"
+            aria-label={t('carousel.scrollRight')}
           >
             <svg
               className="h-6 w-6 text-gray-800"

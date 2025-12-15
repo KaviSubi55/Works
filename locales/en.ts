@@ -195,8 +195,11 @@ export const en = {
 
   // User Menu
   userMenu: {
-    login: 'Log in',
-    logout: 'Log out',
+    login: 'Login',
+    logout: 'Logout',
+    hi: 'Hi',
+    hello: 'Hello',
+    welcomeGuest: 'Welcome, Guest',
     myBookings: 'My bookings',
     profile: 'Profile',
     settings: 'Settings',
@@ -206,10 +209,18 @@ export const en = {
   cart: {
     title: 'Shopping Cart',
     empty: 'Your cart is empty',
+    emptyDescription: 'Add items to get started',
     viewCart: 'View Cart',
-    checkout: 'Checkout',
-    removeItem: 'Remove item',
+    checkout: 'Proceed to Checkout',
+    removeItem: 'Remove from cart',
     total: 'Total',
+    sek: 'SEK',
+  },
+
+  // Carousel/Scroll
+  carousel: {
+    scrollLeft: 'Scroll left',
+    scrollRight: 'Scroll right',
   },
 
   // Common

@@ -1,3 +1,5 @@
+'use client';
+
 import AccommodationSearch from "@/components/AccomodationSearch";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
@@ -5,92 +7,95 @@ import HeroSection from "@/components/HeroSection";
 import SecondaryNav from "@/components/SecondaryNav";
 import PromoCardGrid from "@/components/PromoCardGrid";
 import Image from "next/image";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function Home() {
+  const { t } = useLanguage();
+
   const promoItems = [
     {
       id: '1',
       imageUrl: '/winter-home.jpg',
-      imageAlt: 'Winter home experience',
-      title: 'Winter Home Experience',
-      description: 'Discover the perfect winter getaway with our cozy accommodations and stunning mountain views.',
+      imageAlt: t('promo.winterHome'),
+      title: t('promo.winterHome'),
+      description: t('promo.winterHomeDesc'),
     },
     {
       id: '2',
       imageUrl: '/package-adventure.jpg',
-      imageAlt: 'Adventure package',
-      title: 'Adventure Packages',
-      description: 'Exciting adventure packages for thrill-seekers. Experience the best of winter sports and outdoor activities.',
+      imageAlt: t('promo.adventurePackages'),
+      title: t('promo.adventurePackages'),
+      description: t('promo.adventurePackagesDesc'),
     },
     {
       id: '3',
       imageUrl: '/rent-ski.jpg',
-      imageAlt: 'Ski rental',
-      title: 'Premium Ski Rentals',
-      description: 'Top-quality ski equipment rental services. Get fitted with the best gear for your mountain adventure.',
+      imageAlt: t('promo.skiRentals'),
+      title: t('promo.skiRentals'),
+      description: t('promo.skiRentalsDesc'),
     },
     {
       id: '4',
       imageUrl: '/rent-snowboard.jpg',
-      imageAlt: 'Snowboard rental',
-      title: 'Snowboard Rentals',
-      description: 'Professional snowboard rental services with expert fitting and guidance for all skill levels.',
+      imageAlt: t('promo.snowboardRentals'),
+      title: t('promo.snowboardRentals'),
+      description: t('promo.snowboardRentalsDesc'),
     },
     {
       id: '5',
       imageUrl: '/winter-home2.jpg',
-      imageAlt: 'Luxury mountain cabin',
-      title: 'Luxury Mountain Cabins',
-      description: 'Experience ultimate comfort in our premium mountain cabins with panoramic views and modern amenities.',
+      imageAlt: t('promo.luxuryCabins'),
+      title: t('promo.luxuryCabins'),
+      description: t('promo.luxuryCabinsDesc'),
     },
     {
       id: '6',
       imageUrl: '/package-adventure2.jpg',
-      imageAlt: 'Family adventure packages',
-      title: 'Family Adventure Packages',
-      description: 'Create unforgettable memories with specially designed family packages including activities for all ages.',
+      imageAlt: t('promo.familyPackages'),
+      title: t('promo.familyPackages'),
+      description: t('promo.familyPackagesDesc'),
     },
     {
       id: '7',
       imageUrl: '/accomodation-stock-6.jpg',
-      imageAlt: 'Ski resort accommodations',
-      title: 'Ski Resort Accommodations',
-      description: 'Stay at the heart of the action with our ski-in ski-out accommodations perfectly located on the slopes.',
+      imageAlt: t('promo.skiResort'),
+      title: t('promo.skiResort'),
+      description: t('promo.skiResortDesc'),
     },
     {
       id: '8',
       imageUrl: '/package-stock-5.jpg',
-      imageAlt: 'Winter sports packages',
-      title: 'Complete Winter Sports Packages',
-      description: 'All-inclusive packages combining accommodation, lift passes, and equipment rentals for the ultimate ski vacation.',
+      imageAlt: t('promo.winterSports'),
+      title: t('promo.winterSports'),
+      description: t('promo.winterSportsDesc'),
     },
     {
       id: '9',
       imageUrl: '/winter-home4.jpg',
-      imageAlt: 'Cozy winter retreat',
-      title: 'Cozy Winter Retreat',
-      description: 'Relax and unwind in our charming winter retreats featuring fireplaces and stunning alpine scenery.',
+      imageAlt: t('promo.cozyRetreat'),
+      title: t('promo.cozyRetreat'),
+      description: t('promo.cozyRetreatDesc'),
     },
     {
       id: '10',
       imageUrl: '/rent-ski2.jpg',
-      imageAlt: 'Expert ski fitting',
-      title: 'Expert Ski Fitting',
-      description: 'Get personalized ski fitting and equipment recommendations from our experienced staff for optimal performance.',
+      imageAlt: t('promo.expertFitting'),
+      title: t('promo.expertFitting'),
+      description: t('promo.expertFittingDesc'),
     },
     {
       id: '11',
       imageUrl: '/accomodation-stock-3.jpg',
-      imageAlt: 'Mountain lodges',
-      title: 'Traditional Mountain Lodges',
-      description: 'Enjoy authentic alpine hospitality in our traditional mountain lodges with rustic charm and modern comfort.',
+      imageAlt: t('promo.mountainLodges'),
+      title: t('promo.mountainLodges'),
+      description: t('promo.mountainLodgesDesc'),
     },
     {
       id: '12',
       imageUrl: '/package-adventure3.jpg',
-      imageAlt: 'Extreme sports packages',
-      title: 'Extreme Sports Adventures',
-      description: 'Push your limits with our extreme sports packages featuring off-piste skiing, snowboarding, and more.',
+      imageAlt: t('promo.extremeSports'),
+      title: t('promo.extremeSports'),
+      description: t('promo.extremeSportsDesc'),
     },
   ];
 
