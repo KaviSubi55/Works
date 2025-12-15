@@ -115,7 +115,7 @@ const CartDropdown: React.FC<CartDropdownProps> = ({ isOpen, onClose }) => {
   return (
     <div
       ref={dropdownRef}
-      className="absolute top-full right-0 mt-2 w-[90vw] max-w-[340px] sm:w-[380px] sm:max-w-[380px] md:w-[360px] md:max-w-[360px] lg:w-96 lg:max-w-[384px] bg-white rounded-lg shadow-lg border border-gray-200 z-[9999] max-h-[calc(100vh-120px)] sm:max-h-[500px] md:max-h-[550px] lg:max-h-[600px] flex flex-col"
+      className="absolute top-full -right-2 sm:right-0 mt-2 w-[min(300px,calc(100vw-1rem))] sm:w-[380px] sm:max-w-[380px] md:w-[360px] md:max-w-[360px] lg:w-96 lg:max-w-[384px] bg-white rounded-lg shadow-lg border border-gray-200 z-[9999] max-h-[calc(100vh-120px)] sm:max-h-[500px] md:max-h-[550px] lg:max-h-[600px] flex flex-col"
     >
       {/* Header */}
       <div className="p-3 sm:p-4 border-b border-gray-200">
