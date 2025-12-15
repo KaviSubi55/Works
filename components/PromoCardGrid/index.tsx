@@ -63,7 +63,7 @@ const PromoCardGrid: React.FC<PromoCardGridProps> = ({ items }) => {
   };
 
   return (
-    <div className="relative bg-gradient-to-br from-gray-50 to-gray-100 py-12 sm:py-16 lg:py-20">
+    <div className="relative bg-linear-to-br from-gray-50 to-gray-100 py-12 sm:py-16 lg:py-6 mt-4 mb-10">
       <div className="mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-8">
         {/* Navigation Buttons */}
         {showLeftArrow && (
@@ -122,7 +122,7 @@ const PromoCardGrid: React.FC<PromoCardGridProps> = ({ items }) => {
           {items.map((item) => (
             <div
               key={item.id}
-              className="w-[85vw] flex-shrink-0 sm:w-[45vw] lg:w-[30vw] xl:w-[25vw]"
+              className="w-[85vw] shrink-0 sm:w-[45vw] lg:w-[30vw] xl:w-[25vw]"
             >
               <PromoCard
                 imageUrl={item.imageUrl}
