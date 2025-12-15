@@ -1,4 +1,6 @@
-import React from 'react';
+'use client';
+
+import React, { useRef } from 'react';
 import PromoCard from '../PromoCard';
 
 interface PromoItem {
@@ -15,19 +17,84 @@ interface PromoCardGridProps {
 }
 
 const PromoCardGrid: React.FC<PromoCardGridProps> = ({ items }) => {
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+
+  const scroll = (direction: 'left' | 'right') => {
+    if (scrollContainerRef.current) {
+      const scrollAmount = direction === 'left' ? -400 : 400;
+      scrollContainerRef.current.scrollBy({
+        left: scrollAmount,
+        behavior: 'smooth',
+      });
+    }
+  };
+
   return (
-    <div className="min-h-screen bg-linear-to-br from-gray-50 to-gray-100 p-4 sm:p-6 lg:p-8">
-      <div className="mx-auto max-w-7xl">
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:gap-8">
-          {items.map((item) => (
-            <PromoCard
-              key={item.id}
-              imageUrl={item.imageUrl}
-              imageAlt={item.imageAlt}
-              title={item.title}
-              description={item.description}
-              link={item.link}
+    <div className="relative bg-gradient-to-br from-gray-50 to-gray-100 py-12 sm:py-16 lg:py-20">
+      <div className="mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-8">
+        {/* Navigation Buttons */}
+        <button
+          onClick={() => scroll('left')}
+          className="absolute left-4 top-1/2 z-10 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white/90 shadow-lg transition-all hover:bg-white hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-blue-500 sm:left-8"
+          aria-label="Scroll left"
+        >
+          <svg
+            className="h-6 w-6 text-gray-800"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M15 19l-7-7 7-7"
             />
+          </svg>
+        </button>
+
+        <button
+          onClick={() => scroll('right')}
+          className="absolute right-4 top-1/2 z-10 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white/90 shadow-lg transition-all hover:bg-white hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-blue-500 sm:right-8"
+          aria-label="Scroll right"
+        >
+          <svg
+            className="h-6 w-6 text-gray-800"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M9 5l7 7-7 7"
+            />
+          </svg>
+        </button>
+
+        {/* Carousel Container */}
+        <div
+          ref={scrollContainerRef}
+          className="scrollbar-hide flex gap-6 overflow-x-auto scroll-smooth px-2 py-4"
+          style={{
+            scrollbarWidth: 'none',
+            msOverflowStyle: 'none',
+          }}
+        >
+          {items.map((item) => (
+            <div
+              key={item.id}
+              className="w-[85vw] flex-shrink-0 sm:w-[45vw] lg:w-[30vw] xl:w-[25vw]"
+            >
+              <PromoCard
+                imageUrl={item.imageUrl}
+                imageAlt={item.imageAlt}
+                title={item.title}
+                description={item.description}
+                link={item.link}
+              />
+            </div>
           ))}
         </div>
       </div>
