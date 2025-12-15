@@ -53,7 +53,7 @@ const Header: React.FC<HeaderProps> = ({ navigationItems }) => {
 
   return (
     <>
-      <header className="bg-white border-b border-gray-50 drop-shadow-sm relative z-50">
+      <header className="sticky top-0 bg-white border-b border-gray-50 drop-shadow-sm z-50">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
           {/* Desktop Layout - Single Row */}
           <div className="hidden lg:flex items-center justify-between h-16">
