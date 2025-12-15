@@ -115,47 +115,47 @@ const CartDropdown: React.FC<CartDropdownProps> = ({ isOpen, onClose }) => {
   return (
     <div
       ref={dropdownRef}
-      className="absolute top-full right-0 mt-2 w-[95vw] max-w-[500px] sm:w-[85vw] sm:max-w-[500px] md:w-[500px] lg:w-96 bg-white rounded-lg shadow-lg border border-gray-200 z-[9999] max-h-[600px] flex flex-col"
+      className="absolute top-full right-0 mt-2 w-[90vw] max-w-[340px] sm:w-[380px] sm:max-w-[380px] md:w-[360px] md:max-w-[360px] lg:w-96 lg:max-w-[384px] bg-white rounded-lg shadow-lg border border-gray-200 z-[9999] max-h-[calc(100vh-120px)] sm:max-h-[500px] md:max-h-[550px] lg:max-h-[600px] flex flex-col"
     >
       {/* Header */}
-      <div className="p-4 border-b border-gray-200">
+      <div className="p-3 sm:p-4 border-b border-gray-200">
         {username ? (
-          <div className="text-sm">
+          <div className="text-xs sm:text-sm">
             <span className="text-gray-600">Hello, </span>
             <span className="font-semibold text-gray-900">{username}</span>
           </div>
         ) : (
-          <div className="text-sm text-gray-600">Welcome, Guest</div>
+          <div className="text-xs sm:text-sm text-gray-600">Welcome, Guest</div>
         )}
       </div>
 
       {/* Cart Content */}
       {cartItems.length === 0 ? (
-        <div className="p-6">
-          <div className="flex flex-col items-center justify-center text-center py-8">
-            <div className="mb-4 p-4 bg-gray-100 rounded-full">
-              <ShoppingCart className="w-12 h-12 text-gray-400" />
+        <div className="p-4 sm:p-6">
+          <div className="flex flex-col items-center justify-center text-center py-6 sm:py-8">
+            <div className="mb-3 sm:mb-4 p-3 sm:p-4 bg-gray-100 rounded-full">
+              <ShoppingCart className="w-10 h-10 sm:w-12 sm:h-12 text-gray-400" />
             </div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">Your cart is empty</h3>
-            <p className="text-sm text-gray-600">Add items to get started</p>
+            <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-2">Your cart is empty</h3>
+            <p className="text-xs sm:text-sm text-gray-600">Add items to get started</p>
           </div>
         </div>
       ) : (
         <>
           {/* Cart Items - Scrollable */}
-          <div className="flex-1 overflow-y-auto p-4 space-y-4">
+          <div className="flex-1 overflow-y-auto p-3 sm:p-4 space-y-3">
             {cartItems.map((item) => (
-              <div key={item.id} className="flex gap-3 bg-gray-50 rounded-lg p-3">
+              <div key={item.id} className="flex gap-2 sm:gap-3 bg-gray-50 rounded-lg p-2.5 sm:p-3">
                 <div className="flex-1 min-w-0">
-                  <h4 className="font-semibold text-gray-900 text-sm mb-1 truncate">{item.name}</h4>
-                  <p className="text-xs text-gray-600 mb-2 truncate">
+                  <h4 className="font-semibold text-gray-900 text-xs sm:text-sm mb-1 truncate">{item.name}</h4>
+                  <p className="text-[10px] sm:text-xs text-gray-600 mb-1.5 sm:mb-2 truncate">
                     {item.area}, {item.location}
                   </p>
                   <div className="flex items-center justify-between gap-2">
-                    <div className="text-sm">
+                    <div className="text-xs sm:text-sm">
                       <span className="text-gray-600">{item.beds}</span>
                     </div>
-                    <div className="font-bold text-[#C41E3A] whitespace-nowrap">
+                    <div className="font-bold text-[#C41E3A] whitespace-nowrap text-xs sm:text-base">
                       {item.price.toLocaleString()} SEK
                     </div>
                   </div>
@@ -166,21 +166,21 @@ const CartDropdown: React.FC<CartDropdownProps> = ({ isOpen, onClose }) => {
                   className="text-gray-400 hover:text-red-600 transition-colors flex-shrink-0"
                   aria-label="Remove from cart"
                 >
-                  <X className="w-5 h-5" />
+                  <X className="w-4 h-4 sm:w-5 sm:h-5" />
                 </button>
               </div>
             ))}
           </div>
 
           {/* Cart Footer - Total and Checkout */}
-          <div className="border-t border-gray-200 p-4 bg-gray-50">
-            <div className="flex items-center justify-between mb-4">
-              <span className="text-sm font-semibold text-gray-900">Total:</span>
-              <span className="text-xl font-bold text-[#C41E3A]">
+          <div className="border-t border-gray-200 p-3 sm:p-4 bg-gray-50">
+            <div className="flex items-center justify-between mb-3 sm:mb-4">
+              <span className="text-xs sm:text-sm font-semibold text-gray-900">Total:</span>
+              <span className="text-lg sm:text-xl font-bold text-[#C41E3A]">
                 {getTotalPrice().toLocaleString()} SEK
               </span>
             </div>
-            <button className="w-full bg-[#C41E3A] text-white py-3 rounded-full font-bold hover:bg-[#A01830] transition-colors">
+            <button className="w-full bg-[#C41E3A] text-white py-2.5 sm:py-3 rounded-full text-sm sm:text-base font-bold hover:bg-[#A01830] transition-colors">
               Proceed to Checkout
             </button>
           </div>
