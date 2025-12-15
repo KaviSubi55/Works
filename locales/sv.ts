@@ -225,6 +225,25 @@ export const sv: TranslationKeys = {
     scrollRight: 'Scrolla höger',
   },
 
+  // Card Overlay (HomeMain)
+  cardOverlay: {
+    accommodation: {
+      title: 'Skidanläggning Boende',
+      subtitle: 'Bo nära pisterna!',
+      feature1: 'Ski-in/Ski-out lägen',
+      feature2: 'Flexibla bokningsalternativ',
+      feature3: 'Avboka upp till 7 dagar före ankomst',
+    },
+    package: {
+      title: 'Komplett Skidpaket',
+      subtitle: 'Allt du behöver för din skidresa!',
+      feature1: 'Premium boende nära pister',
+      feature2: 'Skidpass ingår för alla dagar',
+      feature3: 'Gratis avbokning upp till 14 dagar före',
+    },
+    learnMore: 'Läs mer',
+  },
+
   // Common
   common: {
     bookNow: 'Boka Nu',

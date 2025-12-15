@@ -1,6 +1,10 @@
+'use client';
+
 import React, { useState } from "react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const CardOverlay: React.FC = () => {
+  const { t } = useLanguage();
   const [learnMoreLink1] = useState<string>('/accommodation');
   const [learnMoreLink2] = useState<string>('/package');
 
@@ -26,42 +30,42 @@ const CardOverlay: React.FC = () => {
         {/* Left Card */}
         <div className="bg-white rounded-[20px] p-5 w-[300px] shadow-[6px_6px_8px_0px_rgba(170,176,176,1)] text-center max-md:w-[250px] max-md:p-[15px] max-[480px]:w-[90%] max-[480px]:p-[15px]">
           <h3 className="text-[1.2rem] p-3 mb-2.5 max-md:text-[1.3rem] max-[480px]:text-[1.4rem]">
-            Ski Resort Accommodation
+            {t('cardOverlay.accommodation.title')}
           </h3>
           <p className="bg-[#ffe1e1] py-[5px] px-2.5 rounded-[5px] text-[0.9rem] mb-2.5 max-md:text-[1.2rem] max-[480px]:text-[1.2rem]">
-            Stay close to the slopes!
+            {t('cardOverlay.accommodation.subtitle')}
           </p>
           <ul className="flex flex-col items-start text-base pl-5 text-[rgb(52,51,51)] max-md:text-[1.2rem] max-[480px]:text-[1.2rem]">
-            <li>Ski-in/Ski-out locations</li>
-            <li>Flexible booking options</li>
-            <li>Cancel up to 7 days before arrival</li>
+            <li>{t('cardOverlay.accommodation.feature1')}</li>
+            <li>{t('cardOverlay.accommodation.feature2')}</li>
+            <li>{t('cardOverlay.accommodation.feature3')}</li>
           </ul>
           <a
             href={learnMoreLink1}
             className="block mt-[5px] pt-2.5 text-[#C41E3A] no-underline hover:underline max-md:text-[1.5rem] max-[480px]:text-[1.5rem]"
           >
-            Learn more
+            {t('cardOverlay.learnMore')}
           </a>
         </div>
 
         {/* Right Card */}
         <div className="bg-white rounded-[20px] p-5 w-[300px] shadow-[6px_6px_8px_0px_rgba(170,176,176,1)] text-center max-md:w-[250px] max-md:p-[15px] max-[480px]:w-[90%] max-[480px]:p-[15px]">
           <h3 className="text-[1.2rem] p-3 mb-2.5 max-md:text-[1.3rem] max-[480px]:text-[1.4rem]">
-            Complete Ski Package
+            {t('cardOverlay.package.title')}
           </h3>
           <p className="bg-[#ffe1e1] py-[5px] px-2.5 rounded-[5px] text-[0.9rem] mb-2.5 max-md:text-[1.2rem] max-[480px]:text-[1.2rem]">
-            Everything you need for your ski trip!
+            {t('cardOverlay.package.subtitle')}
           </p>
           <ul className="flex flex-col items-start text-base pl-5 text-[rgb(52,51,51)] max-md:text-[1.2rem] max-[480px]:text-[1.2rem]">
-            <li>Premium accommodation near slopes</li>
-            <li>Ski pass included for all days</li>
-            <li>Free cancellation up to 14 days before</li>
+            <li>{t('cardOverlay.package.feature1')}</li>
+            <li>{t('cardOverlay.package.feature2')}</li>
+            <li>{t('cardOverlay.package.feature3')}</li>
           </ul>
           <a
             href={learnMoreLink2}
             className="block mt-[5px] pt-2.5 text-[#C41E3A] no-underline hover:underline max-md:text-[1.5rem] max-[480px]:text-[1.5rem]"
           >
-            Learn more
+            {t('cardOverlay.learnMore')}
           </a>
         </div>
       </div>

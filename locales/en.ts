@@ -223,6 +223,25 @@ export const en = {
     scrollRight: 'Scroll right',
   },
 
+  // Card Overlay (HomeMain)
+  cardOverlay: {
+    accommodation: {
+      title: 'Ski Resort Accommodation',
+      subtitle: 'Stay close to the slopes!',
+      feature1: 'Ski-in/Ski-out locations',
+      feature2: 'Flexible booking options',
+      feature3: 'Cancel up to 7 days before arrival',
+    },
+    package: {
+      title: 'Complete Ski Package',
+      subtitle: 'Everything you need for your ski trip!',
+      feature1: 'Premium accommodation near slopes',
+      feature2: 'Ski pass included for all days',
+      feature3: 'Free cancellation up to 14 days before',
+    },
+    learnMore: 'Learn more',
+  },
+
   // Common
   common: {
     bookNow: 'Book Now',
