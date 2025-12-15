@@ -145,7 +145,7 @@ const UserMenu: React.FC = () => {
       {/* User avatar with first letter */}
       <div
         onClick={toggleDropdown}
-        className="flex items-center justify-center w-10 h-10 bg-[#C41E3A] rounded-full cursor-pointer transition-colors"
+        className="flex items-center justify-center w-8 h-8 bg-[#C41E3A] rounded-full cursor-pointer transition-colors"
       >
         <span className="text-white font-bold text-sm uppercase">
           {username?.[0] || 'U'}
