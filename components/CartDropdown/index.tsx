@@ -120,9 +120,9 @@ const CartDropdown: React.FC<CartDropdownProps> = ({ isOpen, onClose }) => {
       {/* Header */}
       <div className="p-2 sm:p-4 border-b border-gray-200">
         {username ? (
-          <div className="text-xs sm:text-sm">
-            <span className="text-gray-600">Hello, </span>
-            <span className="font-semibold text-gray-900">{username}</span>
+          <div className="flex text-xs sm:text-sm justify-center">
+            <span className="text-gray-600 mr-2">Hello </span>
+            <span className="font-semibold text-gray-900 capitalize">{username}</span>
           </div>
         ) : (
           <div className="text-xs sm:text-sm text-gray-600">Welcome, Guest</div>
@@ -163,7 +163,7 @@ const CartDropdown: React.FC<CartDropdownProps> = ({ isOpen, onClose }) => {
                 <button
                   onClick={(e) => removeFromCart(e, item.id)}
                   onMouseDown={(e) => e.stopPropagation()}
-                  className="text-gray-400 hover:text-red-600 transition-colors flex-shrink-0"
+                  className="text-gray-400 hover:text-red-600 transition-colors shrink-0"
                   aria-label="Remove from cart"
                 >
                   <X className="w-4 h-4 sm:w-5 sm:h-5" />
