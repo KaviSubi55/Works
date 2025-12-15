@@ -17,27 +17,30 @@ const PromoCard: React.FC<PromoCardProps> = ({
   link,
 }) => {
   const CardContent = (
-    <div className="relative overflow-hidden rounded-2xl bg-white shadow-lg transition-transform duration-300 hover:scale-[1.02] hover:shadow-xl">
+    <div className="group relative h-full w-full flex-shrink-0 overflow-hidden rounded-xl bg-white shadow-md transition-all duration-300 hover:shadow-xl">
       {/* Image Container */}
-      <div className="relative h-64 w-full sm:h-80 md:h-96">
+      <div className="relative h-[400px] w-full">
         <Image
           src={imageUrl}
           alt={imageAlt}
           fill
-          className="object-cover"
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          className="object-cover transition-transform duration-300 group-hover:scale-105"
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
           priority
         />
-      </div>
 
-      {/* Text Content */}
-      <div className="absolute bottom-0 left-0 right-0 bg-linear-to-t from-white via-white to-transparent p-6 sm:p-8">
-        <h2 className="mb-3 text-2xl font-bold text-gray-900 sm:text-3xl md:text-4xl">
-          {title}
-        </h2>
-        <p className="text-sm text-gray-700 sm:text-base md:text-lg">
-          {description}
-        </p>
+        {/* Gradient Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+
+        {/* Text Content Overlay */}
+        <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+          <h3 className="mb-2 text-xl font-bold leading-tight sm:text-2xl">
+            {title}
+          </h3>
+          <p className="line-clamp-2 text-sm leading-relaxed text-gray-100 sm:text-base">
+            {description}
+          </p>
+        </div>
       </div>
     </div>
   );
