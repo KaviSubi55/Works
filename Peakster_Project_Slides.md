@@ -22,22 +22,29 @@
 
 ## Slide 2: Why I Chose This Problem
 
-### The Motivation Behind Peakster
+### The Problem
 
-**Problem Statement:**
-Booking ski resort experiences is fragmented and complicated across multiple platforms
+**Booking ski vacations is fragmented and frustrating**
 
-**Pain Points Identified:**
-- Multiple websites for different services (accommodation, passes, rentals)
-- Language barriers for international tourists
-- No unified cart or checkout experience
-- Poor mobile experience on existing platforms
+❌ Multiple websites for each service
+❌ Language barriers for tourists
+❌ No unified checkout
+❌ Poor mobile experience
 
-**My Vision:**
-Create an all-in-one platform that simplifies the entire ski vacation booking process with modern UX and multi-language support
+### The Solution
 
-**Personal Connection:**
-Passion for winter sports + desire to learn full-stack development with modern technologies
+**Peakster: All-in-one ski booking platform**
+
+✓ One platform for everything
+✓ Multi-language support
+✓ Seamless checkout experience
+✓ Modern, mobile-first design
+
+### Why This Project?
+
+🎿 **Passion:** Love for winter sports
+💻 **Goal:** Learn modern full-stack development
+🎯 **Impact:** Make ski trips easier to plan
 
 ---
 
