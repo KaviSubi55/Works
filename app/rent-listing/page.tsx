@@ -110,14 +110,14 @@
 
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import RentCard from '@/components/RentCard';
 import { getRentalsByDestination, Rental } from '@/data/rentals';
 import { getCartItems, setCartItems as saveCartItems } from '@/utils/cartUtils';
 import { useLanguage } from '@/contexts/LanguageContext';
 
-export default function RentListingPage() {
+function RentListingContent() {
   const { t } = useLanguage();
   const searchParams = useSearchParams();
   const [rentals, setRentals] = useState<Rental[]>([]);
@@ -207,5 +207,13 @@ export default function RentListingPage() {
 
       </div>
     </div>
+  );
+}
+
+export default function RentListingPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-gray-50 m-8"><div className="text-center py-12">Loading...</div></div>}>
+      <RentListingContent />
+    </Suspense>
   );
 }

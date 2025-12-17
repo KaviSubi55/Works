@@ -66,14 +66,14 @@
 
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import PackageCard from '@/components/PackageCard';
 import { getPackagesByDestination, Package } from '@/data/packages';
 import { Tag } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 
-export default function PackagePage() {
+function PackageListingContent() {
   const { t } = useLanguage();
   const searchParams = useSearchParams();
   const [packages, setPackages] = useState<Package[]>([]);
@@ -117,5 +117,13 @@ export default function PackagePage() {
         )}
       </div>
     </div>
+  );
+}
+
+export default function PackagePage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-gray-50 mt-8"><div className="text-center py-12">Loading...</div></div>}>
+      <PackageListingContent />
+    </Suspense>
   );
 }

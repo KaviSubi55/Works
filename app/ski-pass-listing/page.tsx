@@ -1,12 +1,12 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import SkiPassCard from '@/components/SkiPassCard';
 import { getSkiPassesByDestination, SkiPass } from '@/data/skipasses';
 import { useLanguage } from '@/contexts/LanguageContext';
 
-export default function SkiPassListingPage() {
+function SkiPassListingContent() {
   const { t } = useLanguage();
   const searchParams = useSearchParams();
   const [skipasses, setSkiPasses] = useState<SkiPass[]>([]);
@@ -50,5 +50,13 @@ export default function SkiPassListingPage() {
         )}
       </div>
     </div>
+  );
+}
+
+export default function SkiPassListingPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-gray-50"><div className="text-center py-12">Loading...</div></div>}>
+      <SkiPassListingContent />
+    </Suspense>
   );
 }

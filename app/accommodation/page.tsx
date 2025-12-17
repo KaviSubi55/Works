@@ -1,4 +1,4 @@
-import AccommodationListingPage from "@/pages/AccomodationListingPage/page";
+import AccommodationListingPage from "@/app/accommodation-listing/page";
 
 export default function AccommodationPage() {
   return <AccommodationListingPage />;
