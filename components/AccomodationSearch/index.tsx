@@ -152,13 +152,14 @@ const AccommodationSearch: React.FC = () => {
     }
 
     // Get selected destination names
-    const destinationNames = selectedDestinations
-      .map(id => {
-        const dest = destinations.find(d => d.id === id);
-        return dest ? t(dest.nameKey) : null;
-      })
-      .filter(Boolean)
-      .join(', ');
+   const destinationNames = selectedDestinations
+  .map(id => {
+    const dest = destinations.find(d => d.id === id);
+    return dest ? t(dest.nameKey) : null;
+  })
+  .filter(Boolean)
+  .join(', ');
+
 
     // Format date
     const dateStr = selectedDate!.toLocaleDateString('en-US', {
