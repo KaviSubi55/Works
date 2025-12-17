@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { Mountain, Snowflake, Home, MapPin, ChevronRight, Ski, TreePine, Coffee } from 'lucide-react';
+import { Mountain, Snowflake, Home, MapPin, ChevronRight, Activity, TreePine, Coffee } from 'lucide-react';
 
 export default function ArePage() {
   const locations = [
@@ -47,7 +47,7 @@ export default function ArePage() {
   ];
 
   const activities = [
-    { icon: Ski, name: 'Alpine Skiing', description: 'World-class slopes and ski system' },
+    { icon: Activity, name: 'Alpine Skiing', description: 'World-class slopes and ski system' },
     { icon: Snowflake, name: 'Snow Parks', description: 'SkiStar Fun Rides and Snow Parks' },
     { icon: TreePine, name: 'Cross-Country', description: 'Extensive cross-country trails' },
     { icon: Coffee, name: 'Après-Ski', description: 'Vibrant village atmosphere' },
@@ -154,7 +154,7 @@ export default function ArePage() {
 
                 <div className="space-y-2 mb-4">
                   <div className="flex items-center gap-2 text-sm text-white">
-                    <Ski className="w-4 h-4" />
+                    <Activity className="w-4 h-4" />
                     <span>{location.distance}</span>
                   </div>
                   <div className="flex items-center gap-2 text-sm text-white">
