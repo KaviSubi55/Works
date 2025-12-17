@@ -7,7 +7,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 
 interface Destination {
   id: string;
-  nameKey: string;
+  nameKey: string; // Translation key for destination name
 }
 
 const AccommodationSearch: React.FC = () => {
