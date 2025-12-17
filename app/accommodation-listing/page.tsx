@@ -69,13 +69,13 @@
 
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import PropertyCard from '@/components/PropertyCard';
 import { getAccommodationsByDestination, Accommodation } from '@/data/accommodations';
 import { useLanguage } from '@/contexts/LanguageContext';
 
-export default function AccommodationListingPage() {
+function AccommodationListingContent() {
   const { t } = useLanguage();
   const searchParams = useSearchParams();
   const [properties, setProperties] = useState<Accommodation[]>([]);
@@ -119,5 +119,13 @@ export default function AccommodationListingPage() {
         )}
       </div>
     </div>
+  );
+}
+
+export default function AccommodationListingPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-gray-50 m-8"><div className="text-center py-12">Loading...</div></div>}>
+      <AccommodationListingContent />
+    </Suspense>
   );
 }

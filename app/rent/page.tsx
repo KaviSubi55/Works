@@ -1,4 +1,4 @@
-import RentListingPage from "@/pages/RentListingPage/page";
+import RentListingPage from "@/app/rent-listing/page";
 
 export default function RentPage() {
   return <RentListingPage />;

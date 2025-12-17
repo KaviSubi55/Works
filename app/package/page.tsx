@@ -1,4 +1,4 @@
-import PackageListingPage from "@/pages/PackageListingPage/page";
+import PackageListingPage from "@/app/package-listing/page";
 
 export default function PackagePage() {
   return <PackageListingPage />;
