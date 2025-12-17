@@ -3,19 +3,21 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { ChevronDown, ChevronUp, ChevronLeft, ChevronRight } from 'lucide-react';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 interface Destination {
   id: string;
-  name: string;
+  nameKey: string;
 }
-
-const destinations: Destination[] = [
-  { id: 'are', name: 'Åre' },
-  { id: 'stockholm', name: 'Stockholm' },
-];
 
 const RentSearch: React.FC = () => {
   const router = useRouter();
+  const { t } = useLanguage();
+
+  const destinations: Destination[] = [
+    { id: 'are', nameKey: 'search.destinations.are' },
+    { id: 'stockholm', nameKey: 'search.destinations.stockholm' },
+  ];
   
   const [destinationOpen, setDestinationOpen] = useState(false);
   const [dateOpen, setDateOpen] = useState(false);
@@ -114,7 +116,10 @@ const RentSearch: React.FC = () => {
 
     // Get selected destination names
     const destinationNames = selectedDestinations
-      .map(id => destinations.find(d => d.id === id)?.name)
+      .map(id => {
+        const dest = destinations.find(d => d.id === id);
+        return dest ? t(dest.nameKey) : null;
+      })
       .filter(Boolean)
       .join(', ');
 
@@ -183,7 +188,7 @@ const RentSearch: React.FC = () => {
                         onChange={() => handleDestinationChange(dest.id)}
                         className="w-5 h-5 rounded border-gray-300 text-[#C41E3A] focus:ring-[#C41E3A]"
                       />
-                      <span className="text-gray-900">{dest.name}</span>
+                      <span className="text-gray-900">{t(dest.nameKey)}</span>
                     </label>
                   ))}
                 </div>
