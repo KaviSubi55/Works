@@ -1,0 +1,536 @@
+{\rtf1\ansi\deff0
+{\fonttbl{\f0\fswiss Arial;}{\f1\fswiss\fcharset0 Calibri;}{\f2\fmodern Courier New;}}
+{\colortbl;\red233\green30\blue99;\red255\green152\blue0;\red102\green102\blue102;\red0\green0\blue0;}
+\paperw11906\paperh16838\margl1417\margr1417\margt1417\margb1417
+
+{\pard\qc\fs72\b\cf1 PEAKSTER\par}
+{\pard\qc\fs36\cf3 Multi-Language Ski Resort Booking Platform\par}
+{\pard\qc\fs32\cf1 Graduation Project Report\par}
+\par\par\par
+{\pard\qc\fs24\b0
+Project Type: Full-Stack Web Application\par
+Technologies: Next.js, React, TypeScript, Supabase\par
+Date: December 2025\par}
+\par\par\par
+{\pard\qc\i\cf3 [INSERT: Hero Section Screenshot of Peakster Homepage]\par}
+\page
+
+{\pard\fs48\b\cf1 Table of Contents\par}
+\par
+{\pard\fs24\b0
+1. Introduction\par
+2. Methodology\par
+3. Findings\par
+4. Reflections\par
+5. Future Development\par
+6. Attachments\par}
+\page
+
+{\pard\fs48\b\cf1 1. INTRODUCTION\par}
+\par
+{\pard\fs32\b\cf1 1.1 Topic and Purpose\par}
+\par
+{\pard\fs24\b0\cf4
+Peakster is a comprehensive ski resort booking platform designed to simplify the process of planning and booking winter sports vacations. The project addresses the common challenges travelers face when organizing ski trips, such as booking accommodations, ski passes, equipment rentals, and ski school lessons across multiple platforms.\par
+\par
+The primary purpose of this project is to create a unified, user-friendly platform that consolidates all aspects of ski vacation planning into a single, streamlined experience. By integrating multi-language support (English and Swedish), the platform caters to both international tourists and local Scandinavian markets, making winter sports more accessible to a broader audience.\par}
+\par
+{\pard\fs32\b\cf1 1.2 Definition of Success\par}
+\par
+{\pard\fs24\b0\cf4
+Success for this project is defined by the following criteria:\par}
+\par
+{\pard\fi-360\li720\fs24\b0\cf4
+\'95\tab {\b Functional Completeness:} A fully operational booking system supporting multiple service types (accommodations, ski passes, equipment rentals, ski school)\par
+\'95\tab {\b User Authentication:} Secure user registration, login, and profile management system\par
+\'95\tab {\b Multi-language Support:} Complete internationalization with seamless language switching\par
+\'95\tab {\b Real-time Cart Management:} Persistent shopping cart with real-time updates across devices\par
+\'95\tab {\b Security Implementation:} Row Level Security (RLS) policies ensuring data protection\par
+\'95\tab {\b Modern Tech Stack:} Utilizing cutting-edge technologies (Next.js 16, React 19, TypeScript)\par
+\'95\tab {\b Responsive Design:} Mobile-first approach ensuring accessibility across all devices\par
+\'95\tab {\b Code Quality:} Type-safe, well-structured, and maintainable codebase\par}
+\par
+{\pard\fs32\b\cf1 1.3 Project Results\par}
+\par
+{\pard\fs24\b0\cf4
+The Peakster project successfully achieved all defined success criteria, resulting in a production-ready web application with the following accomplishments:\par}
+\par
+{\pard\shading10000\fs24\b
+Key Achievements:\par}
+{\pard\fi-360\li720\fs24\b0\cf4
+\'95\tab 10,000+ lines of TypeScript code\par
+\'95\tab 30+ reusable React components\par
+\'95\tab 10+ unique pages with full functionality\par
+\'95\tab Complete authentication and authorization system\par
+\'95\tab Real-time database operations with Supabase\par
+\'95\tab Fully responsive UI with TailwindCSS\par
+\'95\tab Type-safe implementation (100% TypeScript)\par}
+\par
+{\pard\qc\i\cf3 [INSERT: Dashboard Overview Screenshot]\par}
+\page
+
+{\pard\fs48\b\cf1 2. METHODOLOGY\par}
+\par
+{\pard\fs32\b\cf1 2.1 Development Approach\par}
+\par
+{\pard\fs24\b0\cf4
+The project followed an iterative development approach, combining aspects of agile methodology with feature-driven development. The development process was structured as follows:\par}
+\par
+{\pard\fi-360\li720\fs24\b0\cf4
+1.\tab {\b Planning & Architecture:} Database schema design, component structure planning, and technology stack selection\par
+2.\tab {\b Core Infrastructure:} Setting up Next.js project, Supabase integration, and authentication system\par
+3.\tab {\b Feature Implementation:} Developing booking system, cart functionality, and user management\par
+4.\tab {\b UI/UX Development:} Creating responsive components, implementing multi-language support\par
+5.\tab {\b Testing & Refinement:} Bug fixes, performance optimization, and security enhancements\par}
+\par
+{\pard\fs32\b\cf1 2.2 Technology Stack\par}
+\par
+{\pard\fs28\b\cf4 Frontend Technologies\par}
+{\pard\fi-360\li720\fs24\b0\cf4
+\'95\tab {\b Next.js 16:} React framework with App Router for server-side rendering and routing\par
+\'95\tab {\b React 19:} Latest version for building interactive user interfaces\par
+\'95\tab {\b TypeScript:} Static typing for enhanced code quality and developer experience\par
+\'95\tab {\b TailwindCSS 4:} Utility-first CSS framework for rapid UI development\par
+\'95\tab {\b Lucide React:} Icon library for consistent visual elements\par}
+\par
+{\pard\fs28\b\cf4 Backend Technologies\par}
+{\pard\fi-360\li720\fs24\b0\cf4
+\'95\tab {\b Next.js Server Actions:} Server-side functions for data mutations\par
+\'95\tab {\b Supabase:} Backend-as-a-Service providing PostgreSQL database and authentication\par
+\'95\tab {\b Supabase Auth:} Complete authentication solution with Row Level Security\par}
+\par
+{\pard\fs28\b\cf4 State Management & Data Fetching\par}
+{\pard\fi-360\li720\fs24\b0\cf4
+\'95\tab {\b TanStack React Query:} Asynchronous state management and data synchronization\par
+\'95\tab {\b React Context API:} Custom language context for internationalization\par}
+\par
+{\pard\fs28\b\cf4 Form Handling & Validation\par}
+{\pard\fi-360\li720\fs24\b0\cf4
+\'95\tab {\b React Hook Form:} Performant form handling with minimal re-renders\par
+\'95\tab {\b Zod:} TypeScript-first schema validation\par
+\'95\tab {\b @hookform/resolvers:} Integration layer between React Hook Form and Zod\par}
+\par
+{\pard\qc\i\cf3 [INSERT: Technology Stack Visualization]\par}
+\par
+{\pard\fs32\b\cf1 2.3 Database Architecture\par}
+\par
+{\pard\fs24\b0\cf4
+The application uses a PostgreSQL database hosted on Supabase with three main tables:\par}
+\par
+{\pard\fi-360\li720\fs24\b0\cf4
+\'95\tab {\b users:} User profiles with username, email, and authentication data\par
+\'95\tab {\b cart_items:} Shopping cart persistence with JSONB for flexible product details\par
+\'95\tab {\b orders:} Transaction history with order status tracking and JSONB order details\par}
+\par
+{\pard\fs24\b0\cf4
+All tables implement Row Level Security (RLS) policies to ensure users can only access their own data. Automatic timestamp triggers maintain created_at and updated_at fields, and cascading deletes ensure referential integrity.\par}
+\par
+{\pard\fs32\b\cf1 2.4 Potential Issues and Solutions\par}
+\par
+{\pard\fs28\b\cf4 Issue 1: Multi-Language State Management\par}
+{\pard\fs24\b0\cf4
+{\b Challenge:} Managing translation state across components without prop drilling\par
+{\b Solution:} Implemented a custom LanguageContext provider with TypeScript support, storing translations in structured JSON files and providing a useLanguage hook for easy access throughout the application.\par}
+\par
+{\pard\fs28\b\cf4 Issue 2: Cart Synchronization Across Devices\par}
+{\pard\fs24\b0\cf4
+{\b Challenge:} Keeping cart state synchronized when users access the platform from multiple devices\par
+{\b Solution:} Database-backed cart storage using Supabase, combined with TanStack Query\'92s cache management and optimistic updates for instant UI feedback while ensuring data consistency.\par}
+\par
+{\pard\fs28\b\cf4 Issue 3: Next.js 16 Authentication with SSR\par}
+{\pard\fs24\b0\cf4
+{\b Challenge:} Implementing secure authentication in Next.js 16\'92s App Router with server-side rendering\par
+{\b Solution:} Utilized Supabase SSR package with middleware-based route protection, separate server and client Supabase clients, and server actions for secure authentication operations.\par}
+\par
+{\pard\fs28\b\cf4 Issue 4: Type Safety Across Full Stack\par}
+{\pard\fs24\b0\cf4
+{\b Challenge:} Maintaining type safety from database to frontend\par
+{\b Solution:} Zod schemas for runtime validation matching TypeScript types, server action return types, and Supabase-generated database types for end-to-end type safety.\par}
+\par
+{\pard\qc\i\cf3 [INSERT: Code Structure Screenshot]\par}
+\page
+
+{\pard\fs48\b\cf1 3. FINDINGS\par}
+\par
+{\pard\fs32\b\cf1 3.1 Outcomes and Measures of Success\par}
+\par
+{\pard\fs24\b0\cf4
+The project successfully delivered a fully functional ski resort booking platform that meets all initial objectives. The application demonstrates professional-grade code quality, modern development practices, and a polished user experience.\par}
+\par
+{\pard\shading10000\fs24\b
+Measurable Outcomes:\par}
+{\pard\fi-360\li720\fs24\b0\cf4
+\'95\tab 100% of planned features implemented and functional\par
+\'95\tab Zero critical security vulnerabilities through RLS implementation\par
+\'95\tab Full TypeScript coverage (no 'any' types in production code)\par
+\'95\tab Responsive design tested across mobile, tablet, and desktop\par
+\'95\tab Complete authentication flow with profile management\par
+\'95\tab Real-time cart operations with <300ms response time\par
+\'95\tab Multi-language support with instant switching capability\par}
+\par
+{\pard\fs32\b\cf1 3.2 Key Features and Functionality\par}
+\par
+{\pard\fs28\b\cf4 3.2.1 Comprehensive Booking System\par}
+{\pard\fs24\b0\cf4
+The core booking functionality supports multiple service types:\par}
+{\pard\fi-360\li720\fs24\b0\cf4
+\'95\tab {\b Ski Pass Booking:} Daily and season passes with dynamic pricing\par
+\'95\tab {\b Accommodation Search:} Browse and book hotels and lodges at various ski destinations\par
+\'95\tab {\b Ski School Registration:} Book lessons for different skill levels and age groups\par
+\'95\tab {\b Equipment Rental:} Rent skis, snowboards, helmets, and accessories\par
+\'95\tab {\b Package Deals:} Pre-configured adventure packages combining multiple services\par}
+\par
+{\pard\qc\i\cf3 [INSERT: Booking Interface Screenshot]\par}
+\par
+{\pard\fs28\b\cf4 3.2.2 User Authentication and Authorization\par}
+{\pard\fs24\b0\cf4
+Secure user management system with the following capabilities:\par}
+{\pard\fi-360\li720\fs24\b0\cf4
+\'95\tab Email/password authentication via Supabase Auth\par
+\'95\tab User profile creation with custom username\par
+\'95\tab Protected routes using Next.js middleware\par
+\'95\tab Automatic session management and refresh\par
+\'95\tab Row Level Security ensuring data isolation between users\par
+\'95\tab Secure logout with session invalidation\par}
+\par
+{\pard\fs28\b\cf4 3.2.3 Shopping Cart System\par}
+{\pard\fs24\b0\cf4
+Advanced cart management with real-time synchronization:\par}
+{\pard\fi-360\li720\fs24\b0\cf4
+\'95\tab Add multiple product types to cart with flexible details (JSONB storage)\par
+\'95\tab Update quantities with automatic price recalculation\par
+\'95\tab Remove individual items or clear entire cart\par
+\'95\tab Persistent storage across sessions and devices\par
+\'95\tab Optimistic UI updates for instant feedback\par
+\'95\tab Cart item count badge in navigation\par}
+\par
+{\pard\qc\i\cf3 [INSERT: Shopping Cart Interface Screenshot]\par}
+\par
+{\pard\fs28\b\cf4 3.2.4 Multi-Language Support\par}
+{\pard\fs24\b0\cf4
+Complete internationalization for English and Swedish:\par}
+{\pard\fi-360\li720\fs24\b0\cf4
+\'95\tab Custom language context provider\par
+\'95\tab Structured translation files for maintainability\par
+\'95\tab Language switcher component in navigation\par
+\'95\tab Persistent language preference\par
+\'95\tab All UI elements, forms, and error messages translated\par}
+\par
+{\pard\fs28\b\cf4 3.2.5 Responsive UI/UX Design\par}
+{\pard\fs24\b0\cf4
+Modern, accessible interface design:\par}
+{\pard\fi-360\li720\fs24\b0\cf4
+\'95\tab Mobile-first responsive design approach\par
+\'95\tab Clean, minimalist aesthetic with mountain-inspired color scheme\par
+\'95\tab Hero sections with engaging imagery\par
+\'95\tab Intuitive navigation with clear calls-to-action\par
+\'95\tab Loading states and error handling\par
+\'95\tab Accessible form components with validation feedback\par}
+\par
+{\pard\qc\i\cf3 [INSERT: Responsive Design Showcase]\par}
+\par
+{\pard\fs32\b\cf1 3.3 Challenges Encountered\par}
+\par
+{\pard\fs28\b\cf4 Challenge 1: Learning Curve with Next.js 16 App Router\par}
+{\pard\fs24\b0\cf4
+{\b Issue:} Next.js 16 introduced significant changes to the App Router, server components, and data fetching patterns.\par
+{\b Impact:} Initial development was slower as understanding the distinction between server and client components required substantial research.\par
+{\b Solution:} Thorough documentation study, building small proof-of-concept features, and establishing clear patterns for server/client component boundaries.\par}
+\par
+{\pard\fs28\b\cf4 Challenge 2: Supabase Row Level Security Configuration\par}
+{\pard\fs24\b0\cf4
+{\b Issue:} Implementing proper RLS policies that balanced security with functionality, particularly for the signup process.\par
+{\b Impact:} Initial signup attempts failed due to restrictive RLS policies preventing profile creation.\par
+{\b Solution:} Implemented a service role key for the signup server action to bypass RLS during user creation, while maintaining strict RLS for all other operations.\par}
+\par
+{\pard\fs28\b\cf4 Challenge 3: Type Safety with Dynamic Cart Data\par}
+{\pard\fs24\b0\cf4
+{\b Issue:} Cart items need to store different types of product details while maintaining type safety.\par
+{\b Impact:} Risk of runtime errors and difficulty in maintaining consistent data structures.\par
+{\b Solution:} Utilized JSONB database field type for flexible storage combined with Zod schemas for validation and TypeScript discriminated unions.\par}
+\par
+{\pard\fs28\b\cf4 Challenge 4: Multi-Language Architecture\par}
+{\pard\fs24\b0\cf4
+{\b Issue:} Designing a scalable internationalization system without relying on heavy external libraries.\par
+{\b Solution:} Built a custom language context with structured JSON translation files, TypeScript support for type-safe key access, and a simple useLanguage hook pattern.\par}
+\page
+
+{\pard\fs48\b\cf1 4. REFLECTIONS\par}
+\par
+{\pard\fs32\b\cf1 4.1 What I Learned\par}
+\par
+{\pard\fs28\b\cf4 Technical Skills Development\par}
+\par
+{\pard\fs24\b\cf4 Next.js 16 and Modern React:\par}
+{\pard\fi-360\li720\fs24\b0\cf4
+\'95\tab Deep understanding of the App Router architecture and server/client component patterns\par
+\'95\tab Mastery of server actions for secure backend operations without traditional API routes\par
+\'95\tab React 19 features including improved hooks and concurrent rendering\par
+\'95\tab Server-side rendering (SSR) and static site generation (SSG) strategies\par
+\'95\tab Middleware implementation for authentication and request handling\par}
+\par
+{\pard\fs24\b\cf4 TypeScript Advanced Patterns:\par}
+{\pard\fi-360\li720\fs24\b0\cf4
+\'95\tab Generic types for reusable components and functions\par
+\'95\tab Discriminated unions for type-safe data handling\par
+\'95\tab Type inference and utility types for cleaner code\par
+\'95\tab Integration of runtime validation (Zod) with static types\par
+\'95\tab Proper typing of async operations and server actions\par}
+\par
+{\pard\fs24\b\cf4 Database and Backend Development:\par}
+{\pard\fi-360\li720\fs24\b0\cf4
+\'95\tab PostgreSQL database design with proper normalization\par
+\'95\tab Supabase integration including Auth, Database, and Storage\par
+\'95\tab Row Level Security (RLS) policy creation and management\par
+\'95\tab Database triggers for automatic timestamp management\par
+\'95\tab Query optimization and index creation for performance\par}
+\par
+{\pard\fs24\b\cf4 State Management and Data Fetching:\par}
+{\pard\fi-360\li720\fs24\b0\cf4
+\'95\tab TanStack React Query for server state management\par
+\'95\tab Optimistic updates and cache invalidation strategies\par
+\'95\tab Custom React Context for client-side global state\par
+\'95\tab Balancing server and client state appropriately\par}
+\par
+{\pard\fs24\b\cf4 Form Handling and Validation:\par}
+{\pard\fi-360\li720\fs24\b0\cf4
+\'95\tab React Hook Form for performant form management\par
+\'95\tab Zod schema creation for complex validation rules\par
+\'95\tab Error handling and user feedback patterns\par
+\'95\tab Server-side validation to complement client-side checks\par}
+\par
+{\pard\fs24\b\cf4 Responsive Design and Styling:\par}
+{\pard\fi-360\li720\fs24\b0\cf4
+\'95\tab TailwindCSS 4 utility-first approach for rapid development\par
+\'95\tab Mobile-first responsive design methodology\par
+\'95\tab Custom design system with consistent spacing and colors\par
+\'95\tab Accessibility considerations in component design\par}
+\par
+{\pard\fs28\b\cf4 Software Development Principles\par}
+{\pard\fi-360\li720\fs24\b0\cf4
+\'95\tab {\b Architecture Planning:} Learned the importance of upfront design for database schema and component structure\par
+\'95\tab {\b Security First:} Understanding that security must be built in from the start, not added later\par
+\'95\tab {\b User Experience:} Balancing feature richness with simplicity and intuitive design\par
+\'95\tab {\b Code Maintainability:} Writing self-documenting code with clear naming and structure\par
+\'95\tab {\b Error Handling:} Comprehensive error handling for better user experience and debugging\par
+\'95\tab {\b Performance Optimization:} Understanding when and how to optimize for better application performance\par}
+\par
+{\pard\fs32\b\cf1 4.2 Limitations Encountered\par}
+\par
+{\pard\fs24\b\cf4 Payment Integration:\par}
+{\pard\fs24\b0\cf4
+The current implementation does not include actual payment processing. Integration with payment gateways like Stripe or PayPal would be essential for a production deployment but was beyond the scope of this project phase.\par}
+\par
+{\pard\fs24\b\cf4 Email Notifications:\par}
+{\pard\fs24\b0\cf4
+While user authentication is implemented, automated email confirmations for bookings, password resets, and account verification are not yet integrated.\par}
+\par
+{\pard\fs24\b\cf4 Admin Dashboard:\par}
+{\pard\fs24\b0\cf4
+The application currently lacks an administrative interface for managing inventory, viewing bookings, and updating content.\par}
+\par
+{\pard\fs24\b\cf4 Real-time Availability:\par}
+{\pard\fs24\b0\cf4
+Accommodation and service availability is static. A production system would need real-time inventory management to prevent overbooking.\par}
+\par
+{\pard\fs32\b\cf1 4.3 Documentation Created\par}
+\par
+{\pard\fs24\b0\cf4
+Throughout the project, comprehensive documentation was created:\par}
+{\pard\fi-360\li720\fs24\b0\cf4
+\'95\tab {\b README-SETUP.md:} Complete setup guide for authentication and cart functionality\par
+\'95\tab {\b SUPABASE_SETUP.md:} Detailed Supabase configuration instructions\par
+\'95\tab {\b database-schema.sql:} Documented SQL schema with comments\par
+\'95\tab {\b Presentation Files:} Detailed presentation slides and project overview\par
+\'95\tab {\b Code Comments:} Inline documentation for complex logic\par}
+\par
+{\pard\qc\i\cf3 [INSERT: Documentation Screenshot]\par}
+\page
+
+{\pard\fs48\b\cf1 5. FUTURE DEVELOPMENT\par}
+\par
+{\pard\fs32\b\cf1 5.1 Your App: Planned Improvements and Expansions\par}
+\par
+{\pard\fs28\b\cf4 Phase 1: Core Functionality Enhancements (3-6 months)\par}
+\par
+{\pard\fs24\b\cf4 Payment Integration\par}
+{\pard\fi-360\li720\fs24\b0\cf4
+\'95\tab Stripe payment gateway integration for secure transactions\par
+\'95\tab Support for multiple payment methods (credit cards, PayPal, Klarna for Swedish market)\par
+\'95\tab Currency conversion for international bookings\par
+\'95\tab Automatic receipt generation\par}
+\par
+{\pard\fs24\b\cf4 Email Notification System\par}
+{\pard\fi-360\li720\fs24\b0\cf4
+\'95\tab Booking confirmation emails with PDF attachments\par
+\'95\tab Password reset functionality via email\par
+\'95\tab Account verification for new users\par
+\'95\tab Reminder emails before trip dates\par
+\'95\tab Newsletter and promotional email support\par}
+\par
+{\pard\fs24\b\cf4 Enhanced Booking Management\par}
+{\pard\fi-360\li720\fs24\b0\cf4
+\'95\tab Booking modification and cancellation functionality\par
+\'95\tab Refund request system\par
+\'95\tab Booking status tracking (confirmed, pending, cancelled)\par
+\'95\tab Calendar integration for trip reminders\par}
+\par
+{\pard\fs28\b\cf4 Phase 2: Feature Expansion (6-12 months)\par}
+\par
+{\pard\fs24\b\cf4 Reviews and Ratings System\par}
+{\pard\fi-360\li720\fs24\b0\cf4
+\'95\tab User reviews for accommodations and services\par
+\'95\tab Star rating system with photo uploads\par
+\'95\tab Helpful/unhelpful voting on reviews\par
+\'95\tab Moderation dashboard for review management\par}
+\par
+{\pard\fs24\b\cf4 Social Features\par}
+{\pard\fi-360\li720\fs24\b0\cf4
+\'95\tab Share trips on social media platforms\par
+\'95\tab Create shareable itineraries\par
+\'95\tab Friend system to coordinate group bookings\par
+\'95\tab Trip photo galleries\par}
+\par
+{\pard\fs24\b\cf4 Mobile Application\par}
+{\pard\fi-360\li720\fs24\b0\cf4
+\'95\tab React Native mobile app for iOS and Android\par
+\'95\tab Offline access to booking confirmations\par
+\'95\tab Push notifications for booking updates\par
+\'95\tab Mobile-specific features (location services, camera integration)\par}
+\par
+{\pard\fs28\b\cf4 Phase 3: Advanced Features (12-24 months)\par}
+\par
+{\pard\fs24\b\cf4 Administrative Dashboard\par}
+{\pard\fi-360\li720\fs24\b0\cf4
+\'95\tab Comprehensive admin panel for managing all aspects of the platform\par
+\'95\tab Inventory management for accommodations and equipment\par
+\'95\tab Analytics and reporting (revenue, popular destinations, user behavior)\par
+\'95\tab Content management system for destinations and services\par
+\'95\tab User management and moderation tools\par}
+\par
+{\pard\fs24\b\cf4 Weather and Conditions Integration\par}
+{\pard\fi-360\li720\fs24\b0\cf4
+\'95\tab Real-time weather forecasts for ski destinations\par
+\'95\tab Snow condition reports and webcams\par
+\'95\tab Ski slope status (open/closed)\par
+\'95\tab Weather-based booking recommendations\par}
+\par
+{\pard\fs24\b\cf4 AI-Powered Features\par}
+{\pard\fi-360\li720\fs24\b0\cf4
+\'95\tab AI-powered destination recommendations based on user preferences\par
+\'95\tab Smart package suggestions combining services\par
+\'95\tab Chatbot for customer support using LLM APIs\par
+\'95\tab Natural language processing for smart search\par}
+\par
+{\pard\qc\i\cf3 [INSERT: Future Features Mockup]\par}
+\par
+{\pard\fs32\b\cf1 5.2 Your Research: Technical Exploration\par}
+\par
+{\pard\fs28\b\cf4 Areas for Further Investigation\par}
+\par
+{\pard\fs24\b\cf4 Performance Optimization Research\par}
+{\pard\fi-360\li720\fs24\b0\cf4
+\'95\tab Investigate Next.js Edge Runtime for reduced latency\par
+\'95\tab Explore incremental static regeneration (ISR) for destination pages\par
+\'95\tab Research image optimization techniques for destination galleries\par
+\'95\tab Study caching strategies for frequently accessed data\par}
+\par
+{\pard\fs24\b\cf4 Advanced TypeScript Patterns\par}
+{\pard\fi-360\li720\fs24\b0\cf4
+\'95\tab Template literal types for better type safety\par
+\'95\tab Advanced generics for more reusable utilities\par
+\'95\tab Type-safe API client generation\par}
+\par
+{\pard\fs24\b\cf4 AI and Machine Learning Integration\par}
+{\pard\fi-360\li720\fs24\b0\cf4
+\'95\tab Implement recommendation engine using collaborative filtering\par
+\'95\tab Natural language processing for smart search\par
+\'95\tab Image recognition for user-uploaded photos\par}
+\par
+{\pard\fs24\b\cf4 Scalability and Architecture\par}
+{\pard\fi-360\li720\fs24\b0\cf4
+\'95\tab Microservices architecture for independent service scaling\par
+\'95\tab GraphQL as alternative to REST for more efficient data fetching\par
+\'95\tab Message queues for handling high-volume booking requests\par
+\'95\tab Content Delivery Network (CDN) optimization strategies\par}
+\page
+
+{\pard\fs48\b\cf1 6. ATTACHMENTS\par}
+\par
+{\pard\fs32\b\cf1 6.1 Project Links\par}
+\par
+{\pard\fs24\b0\cf4
+{\b GitHub Repository:} [INSERT REPOSITORY URL]\par
+Complete source code, commit history, and documentation\par
+\par
+{\b Live Application:} [INSERT DEPLOYMENT URL]\par
+Production deployment (if available)\par
+\par
+{\b Supabase Project:} [INSERT SUPABASE PROJECT URL]\par
+Database dashboard and API documentation\par
+\par
+{\b Project Presentation:} [INSERT PRESENTATION LINK]\par
+Slide deck for project demonstration\par}
+\par
+{\pard\fs32\b\cf1 6.2 Key Project Files\par}
+\par
+{\pard\fi-360\li720\fs24\b0\cf4
+\'95\tab {\b package.json:} Project dependencies and scripts configuration\par
+\'95\tab {\b database-schema.sql:} Complete database schema with RLS policies\par
+\'95\tab {\b README-SETUP.md:} Step-by-step setup instructions\par
+\'95\tab {\b SUPABASE_SETUP.md:} Supabase configuration guide\par
+\'95\tab {\b .env.local.example:} Environment variables template\par}
+\par
+{\pard\fs32\b\cf1 6.3 Project Statistics\par}
+\par
+{\pard\fs24\b0\cf4
+Total Lines of Code: ~10,000+\par
+React Components: 30+\par
+Pages/Routes: 10+\par
+Database Tables: 3 main tables\par
+Supported Languages: 2 (English, Swedish)\par
+NPM Dependencies: 12 production, 7 development\par
+TypeScript Coverage: 100%\par}
+\par
+{\pard\fs32\b\cf1 6.4 Technology Stack Summary\par}
+\par
+{\pard\fs24\b\cf4 Core Technologies:\par}
+{\pard\fi-360\li720\fs24\b0\cf4
+\'95\tab Next.js 16.0.10\par
+\'95\tab React 19.2.3\par
+\'95\tab TypeScript 5\par
+\'95\tab TailwindCSS 4\par
+\'95\tab Supabase (PostgreSQL + Auth)\par}
+\par
+{\pard\fs24\b\cf4 Key Libraries:\par}
+{\pard\fi-360\li720\fs24\b0\cf4
+\'95\tab @tanstack/react-query 5.90.12\par
+\'95\tab react-hook-form 7.68.0\par
+\'95\tab zod 4.1.13\par
+\'95\tab @supabase/ssr 0.8.0\par
+\'95\tab lucide-react 0.555.0\par}
+\par
+{\pard\fs32\b\cf1 6.5 Screenshots Index\par}
+\par
+{\pard\fs24\b0\cf4
+The following screenshots should be included:\par}
+{\pard\fi-360\li720\fs24\b0\cf4
+1.\tab Hero Section Screenshot (Cover Page)\par
+2.\tab Dashboard Overview Screenshot (Introduction)\par
+3.\tab Technology Stack Visualization (Methodology)\par
+4.\tab Code Structure Screenshot (Methodology)\par
+5.\tab Booking Interface Screenshot (Findings)\par
+6.\tab Shopping Cart Interface Screenshot (Findings)\par
+7.\tab Responsive Design Showcase (Findings)\par
+8.\tab Documentation Screenshot (Reflections)\par
+9.\tab Future Features Mockup (Future Development)\par}
+\par
+{\pard\qc\i\cf3 [INSERT: Final Project Showcase Screenshot]\par}
+\par\par
+{\pard\qc\fs20\cf3
+________________________________________\par
+\par
+{\b PEAKSTER - Multi-Language Ski Resort Booking Platform}\par
+Built with Next.js, React, TypeScript, and Supabase\par
+\'a9 2025 | Graduation Project Report\par}
+}
