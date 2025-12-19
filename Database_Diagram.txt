@@ -1,0 +1,59 @@
+PEAKSTER DATABASE SCHEMA
+=========================
+
+┌─────────────────────────────────┐
+│           USERS                 │
+├─────────────────────────────────┤
+│ • id (UUID) [PK]                │
+│ • email (TEXT)                  │
+│ • username (TEXT)               │
+│ • created_at (TIMESTAMP)        │
+│ • updated_at (TIMESTAMP)        │
+└─────────────────────────────────┘
+              │
+              │ 1
+              │
+              │ *
+              ↓
+┌─────────────────────────────────┐
+│         CART_ITEMS              │
+├─────────────────────────────────┤
+│ • id (UUID) [PK]                │
+│ • user_id (UUID) [FK]           │
+│ • product_id (TEXT)             │
+│ • product_name (TEXT)           │
+│ • product_type (TEXT)           │
+│ • quantity (INTEGER)            │
+│ • price (DECIMAL)               │
+│ • details (JSONB)               │
+│ • created_at (TIMESTAMP)        │
+│ • updated_at (TIMESTAMP)        │
+└─────────────────────────────────┘
+
+              │
+              │ 1
+              │
+              │ *
+              ↓
+┌─────────────────────────────────┐
+│           ORDERS                │
+├─────────────────────────────────┤
+│ • id (UUID) [PK]                │
+│ • user_id (UUID) [FK]           │
+│ • total_amount (DECIMAL)        │
+│ • status (TEXT)                 │
+│ • order_details (JSONB)         │
+│ • created_at (TIMESTAMP)        │
+│ • updated_at (TIMESTAMP)        │
+└─────────────────────────────────┘
+
+
+RELATIONSHIPS:
+--------------
+• One USER can have many CART_ITEMS (1:*)
+• One USER can have many ORDERS (1:*)
+
+KEY:
+----
+[PK] = Primary Key
+[FK] = Foreign Key
